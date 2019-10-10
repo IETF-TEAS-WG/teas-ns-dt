@@ -2,6 +2,13 @@
 Repo for the Network Slicing Design Team (see https://mailarchive.ietf.org/arch/browse/teas-ns-dt/)
 Also see: https://mailarchive.ietf.org/arch/msg/teas/jiHWXU_i5kK5BzjRffFbYnbZJfs
 
+# Calls
+
+The primary discussion medium for the team is the list. In addition, there are weekly calls. The calls alternate on a different time every other week:
+
+* Monday calls at 3pm Paris / 9am New York, starting from October 7th.
+* Thursday calls at 5pm Paris / 11am New York, starting from October 17th.
+
 # IETF Note Well
 This repository relates to activities in the Internet Engineering Task Force(IETF). All material in this repository is considered Contributions to the IETF Standards Process, as defined in the intellectual property policies of IETF currently designated as BCP 78 (https://www.rfc-editor.org/info/bcp78), BCP 79 (https://www.rfc-editor.org/info/bcp79) and the IETF Trust Legal Provisions (TLP) Relating to IETF Documents (http://trustee.ietf.org/trust-legal-provisions.html).
 
