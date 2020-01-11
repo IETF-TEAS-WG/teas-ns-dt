@@ -19,7 +19,7 @@
 
 ## Applications
 
-...
+... the transport slice system is used by an application. in most likely, that application is just another level slice orchestrator, e.g., the end-to-end slice orchestrator. but in theory it could also be an actual application that wants to manage some specific connectivity through the transport slice system. ...
 
 ## Expressing connectivity intents
 
