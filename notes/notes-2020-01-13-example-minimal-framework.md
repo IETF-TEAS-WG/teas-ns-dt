@@ -78,6 +78,16 @@ See [draft-ietf-teas-enhanced-vpn] - section 4 - for instance, for example under
 
 <Note: do we want to add to the list of candidate technolgies in the enhanced VPN draft?  It should not be the intention that this document should provide an exhaustive list.>
 
+A transport slice can be realized in a network, using specific underlying technology or technologies.  The creation of a new transport slice will be initiated with following three steps:
+
+* Step 1:  A higher level system requests connections with specific  characteristics via NBI.
+
+* Step 2:  This request will be processed by a Transport Slice Controller which specifies a mapping between northbound request to  any IETF Services, Tunnels, and paths models.
+
+* Step 3:  A series of requests for creation of services, tunnels and paths will be sent to the network to realize the trasport slice.
+
+It is very clear that regardless of how transport slice is realized in the network (i.e. using tunnels of type RSVP or SR), the  definition of transport slice does not change at all but rather  its realization.
+
 # Considerations
 
 ## Monitoring
