@@ -109,6 +109,10 @@ Privacy of transport nework slice service consumers must be preserved.  It shoul
 
 In this sense, it is of paramount importance that the system use the privacy protection mechanism defined for the specific underlying technologies used, including in particular those mechanisms designed to preclude acquiring identifying information associated with any transport slice consumer.
 
+# Acknowledgments
+
+The entire TEAS NS design team and everyone participating in those discussion has contributed to this draft. Some text fragments in the draft have been copied from the [draft-ietf-teas-enhanced-vpn], for which we are grateful.
+
 # References
 
 <Add references used above>
