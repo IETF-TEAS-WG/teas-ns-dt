@@ -1,12 +1,76 @@
+---
+title: Framework for Transport Network Slices
+abbrev: Transport Network Slice Framework
+docname: draft-framework-00
+date:
+category: info
+
+ipr: trust200902
+keyword: Internet-Draft
+
+stand_alone: yes
+pi: [toc, sortrefs, symrefs]
+
+author:
+  -
+    ins: E. Gray
+    name: Eric Gray
+    org: Ericsson
+    email: eric.gray@ericsson.com
+  -
+    ins: J. Drake
+    name: John Drake
+    org: Juniper Networks
+    email: jdrake@juniper.net
+  -
+    ins: J. Arkko
+    name: Jari Arkko
+    org: Ericsson
+    email: jari.arkko@piuha.net
+
+informative:
+  RFC7149:
+  RFC8172: 
+  RFC8568: 
+  I-D.nsdt-teas-transport-slice-definition: 
+  I-D.ietf-teas-enhanced-vpn: 
+  NGMN-NS-Concept:
+   title: Description of Network Slicing Concept
+   date: 2016
+   author:
+    - ins: NGMN Alliance
+   seriesinfo:  https://www.ngmn.org/uploads/media/161010_NGMN_Network_Slicing_framework_v1.0.8.pdf 
+  TS23501:
+   title: System architecture for the 5G System (5GS)
+   date: 2019
+   author:
+    - ins: 3GPP
+   seriesinfo: 3GPP TS 23.501
+  TS28530:
+   title: Management and orchestration; Concepts, use cases and requirements
+   date: 2019
+   author:
+    - ins: 3GPP
+   seriesinfo: 3GPP TS 28.530
+  BBF-SD406:
+   title: End-to-end network slicing
+   author:
+    - ins: Broadband Forum
+   seriesinfo: BBF SD-406
+  
+--- abstract
+
+TBD
+
+--- middle
+
 # Introduction
 
 This draft provides a framework and architecture for discussing transport slices, multipoint-to-multipoint connections:
 
-    "A transport slice is an abstract network topology connecting a
-    number of endpoints, with expected objectives specified through
-    a set of service level objectives (SLO)." 
+    "A transport slice is an abstract network topology connecting a number of endpoints, with expected objectives specified through a set of service level objectives (SLO)." 
 
-This definition comes from [draft-rokui-teas-transport-slice-definition].  It is the intention in this document to use terminology consistent with this and other definitions provided in that draft.
+This definition comes from {{I-D.nsdt-teas-transport-slice-definition}} (to be replaced by draft-rokui-teas-transport-slice-definition).  It is the intention in this document to use terminology consistent with this and other definitions provided in that draft.
 
 This framework is intended as a structure for discussing interfaces and technologies. It is not intended to be a new set of concrete interfaces or technologies. Rather,  the idea is that existing or under-development IETF technologies (plural) can be used to realize the ideas expressed here.
 
@@ -14,7 +78,7 @@ For example, virtual private networks (VPNs) have served the industry well as a 
 
 Note: It is conceivable that extensions to these IETF technologies are needed in order to fully support all the ideas that can be implemented with slices, but at least in the beginning there is no plan for the creation of new protocols or interfaces.
 
-Driven largely by needs surfacing from 5G, the concept of network slicing has gained traction ([NGMN-NS-Concept], [TS23501], [TS28530], and [BBF-SD406]).  In [TS23501], Network Slice is defined as "a logical network that provides specific network capabilities and network characteristics", and Network Slice Instance is defined as "A set of Network Function instances and the required resources (e.g. compute, storage and networking resources) which form a deployed Network Slice".  According to [TS28530], an end-to-end network slice consists of three major types of network segments: Radio Access Network (RAN), Transport Network (TN) and Core Network (CN).  Transport network provides the required connectivity within and between RAN and CN portions, with a specific performance commitment.  For each end-to-end network slice, the topology and performance requirement on transport network can be very different, which requires the transport network to have the capability of supporting multiple different transport slices.
+Driven largely by needs surfacing from 5G, the concept of network slicing has gained traction ({{NGMN-NS-Concept}}, {{TS23501}}, {{TS28530}}, and {{BBF-SD406}}).  In {{TS23501}}, Network Slice is defined as "a logical network that provides specific network capabilities and network characteristics", and Network Slice Instance is defined as "A set of Network Function instances and the required resources (e.g. compute, storage and networking resources) which form a deployed Network Slice".  According to {{TS28530}}, an end-to-end network slice consists of three major types of network segments: Radio Access Network (RAN), Transport Network (TN) and Core Network (CN).  Transport network provides the required connectivity within and between RAN and CN portions, with a specific performance commitment.  For each end-to-end network slice, the topology and performance requirement on transport network can be very different, which requires the transport network to have the capability of supporting multiple different transport slices.
 
 While network slices are commonly discussed in the context of 5G, it is important to note that transport slices are a narrower concept, and focus primarily on particular network connectivity aspects. Other systems, including 5G deployments, may use transport slices as a component to create entire systems and concatenated constructs that match their needs, including end-to-end connectivity.
 
@@ -22,11 +86,11 @@ A transport slice is a virtual (logical) network with a particular network topol
 
 Network abstraction is a technique that can be applied to a network domain to select network resources by policy to obtain a view of potential connectivity and a set of service functions.
 
-Transport network slicing builds on the concept of resource management, network virtualization and abstraction to provide performance assurance, flexibility, programmability and modularity.  It might use techniques such as Software Defined Networking (SDN) [RFC7149] and Network Function Virtualization (NFV) [RFC8172], [RFC8568] to create multiple logical (virtual) networks, each tailored for a set of services, a particular transport slice consumer, or a group of consumers that share the same (or closely similar) requirements, on top of a shared network.  How the network slices are engineered can be deployment-specific.
+Transport network slicing builds on the concept of resource management, network virtualization and abstraction to provide performance assurance, flexibility, programmability and modularity.  It might use techniques such as Software Defined Networking (SDN) {{RFC7149}} and Network Function Virtualization (NFV) {{RFC8172}}, {{RFC8568}} to create multiple logical (virtual) networks, each tailored for a set of services, a particular transport slice consumer, or a group of consumers that share the same (or closely similar) requirements, on top of a shared network.  How the network slices are engineered can be deployment-specific.
 
 Thus, there is a need to create virtual network structures with required characteristics.  The consumer of such a virtual network can require a degree of isolation and performance that previously might not have been satisfied by traditional overlay VPNs.  Additionally, the transport slice consumer might ask for some level of control to their virtual networks, e.g., to customize the service paths in a network slice.
 
-This document specifies a framework for the use of existing technologies as components to provide a transport slice service, and might also discuss (or reference) modified and potential new technologies, as they develop (such as [draft-ietf-teas-enhanced-vpn]).
+This document specifies a framework for the use of existing technologies as components to provide a transport slice service, and might also discuss (or reference) modified and potential new technologies, as they develop (such as {{I-D.ietf-teas-enhanced-vpn}}).
 
 # Requirements
 
@@ -36,7 +100,7 @@ And it is intended that, once created, these slices can be monitored, modified, 
 
 It is also intended that applications and components will be able to use these transport slices to move packets between the specified end-points in accordance with specified characteristics.
 
-As an example of additional requirements that might apply to transport slices, see [draft-ietf-teas-enhanced-vpn] (in particular, section 2).
+As an example of additional requirements that might apply to transport slices, see {{I-D.ietf-teas-enhanced-vpn}} (in particular, section 2).
 
 # Framework
 
@@ -52,7 +116,7 @@ These users are served by the system that can build transport slices, as follows
 * A controller takes requests from a management system or other application, which are then communicated via an abstracted northbound interface. This interface transmits data objects that describe the needed transport slices in terms of service level objectives (SLO).
 * These requests are assumed to be translated by one or more underlying systems, which establish specific transport slice instances, using specific implementation techniques (such as MPLS) implemented on top of the underlying network infrastructure.
 
-Section 3 of [draft-ietf-teas-enhanced-vpn] provides an example architecture that might apply in using the technology described in that document.
+Section 3 of {{I-D.ietf-teas-enhanced-vpn}} provides an example architecture that might apply in using the technology described in that document.
 
 ## Management systems or other applications
 
@@ -74,7 +138,7 @@ The main task of the transport slice controller is to map abstract transport sli
 
 There are a number of different technologies that can be used, including physical connections, MPLS, TSN, Flex-E, etc.
 
-See [draft-ietf-teas-enhanced-vpn] - section 4 - for instance, for example underlying technologies.
+See {{I-D.ietf-teas-enhanced-vpn}} - section 4 - for instance, for example underlying technologies.
 
 <Note: do we want to add to the list of candidate technolgies in the enhanced VPN draft?  It should not be the intention that this document should provide an exhaustive list.>
 
@@ -111,8 +175,4 @@ In this sense, it is of paramount importance that the system use the privacy pro
 
 # Acknowledgments
 
-The entire TEAS NS design team and everyone participating in those discussion has contributed to this draft. Some text fragments in the draft have been copied from the [draft-ietf-teas-enhanced-vpn], for which we are grateful.
-
-# References
-
-<Add references used above>
+The entire TEAS NS design team and everyone participating in those discussion has contributed to this draft. Some text fragments in the draft have been copied from the {{I-D.ietf-teas-enhanced-vpn}}, for which we are grateful.
