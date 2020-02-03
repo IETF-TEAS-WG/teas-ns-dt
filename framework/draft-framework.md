@@ -68,7 +68,7 @@ TBD
 
 This draft provides a framework and architecture for discussing transport slices, multipoint-to-multipoint connections:
 
-    "A transport slice is an abstract network topology connecting a number of endpoints, with expected objectives specified through a set of service level objectives (SLO)." 
+"A transport slice is an abstract network topology connecting a number of endpoints, with expected objectives specified through a set of service level objectives (SLO)."
 
 This definition comes from {{I-D.nsdt-teas-transport-slice-definition}} (to be replaced by draft-rokui-teas-transport-slice-definition).  It is the intention in this document to use terminology consistent with this and other definitions provided in that draft.
 
