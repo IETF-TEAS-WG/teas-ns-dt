@@ -11,7 +11,7 @@ $ make
 ```
 
 This requires that you have the necessary software installed. Namely, you will need "make", "kramdown-rfc2629" and "xml2rfc". See
-[the instructions](https://github.com/martinthomson/i-d-template/blob/master/doc/SETUP.md) for setting this tools up.
+[the instructions](https://github.com/martinthomson/i-d-template/blob/master/doc/SETUP.md) for setting these tools up.
 
 
 ## Contributing
