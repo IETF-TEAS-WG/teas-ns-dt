@@ -307,11 +307,23 @@ Internet-Draft draft-nsdt-teas-transport-slice-definition   January 2020
 
 4.1.  Transport Slice Definition
 
-   The basic IETF definition of a transport slice is as follows:
+   [RFC8453] defines a virtual network as a customer view of the
+   physical network topology that can be expressed or as a set of 
+   edge-to-edge abstract link, called VN members, or customer can ask
+   a more detailed view of VN member than can be described in terms of 
+   virtual nodes and virtual links.
+   In both cases VN can be considered as built up on top of an 
+   abstracted topology representing potential connectivity of 
+   the underlying network as described in [RFC7926] section 2.3.1. 
 
-   "A transport slice is an abstract network topology connecting a
-   number of endpoints, with expected objectives specified through a set
-   of service level objectives (SLO)".
+   The basic definition of a transport slice can be as follows:
+   A transport network slice is a virtual network with a particular
+   network topology and a set of shared or dedicated network resources,
+   which are used to provide the network slice consumer with the
+   required connectivity, appropriate isolation and 
+   specific Service Level Agreement (SLA) or Service Level Objective (SLO).
+
+   
 
    Note: The term sub-slice or slice-subnet is used by many standard
    organizations to refer to "Transport Slice" or "Other Slice" (i.e.
