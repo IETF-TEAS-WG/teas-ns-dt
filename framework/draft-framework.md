@@ -30,10 +30,13 @@ author:
 
 informative:
   RFC7149:
-  RFC8172: 
+  RFC8172:
+  RFC8453:
   RFC8568: 
   I-D.nsdt-teas-transport-slice-definition: 
   I-D.ietf-teas-enhanced-vpn: 
+  I-D.ietf-teas-actn-yang:
+  I-D.ietf-teas-te-service-mapping-yang:
   NGMN-NS-Concept:
    title: Description of Network Slicing Concept
    date: 2016
@@ -129,6 +132,54 @@ The northbound interface can be used to communicate betweern users and/or provid
 ## Controller
 
 The transport slice controller takes abstract requests for transport slices and implements them using a suitable underlying technology. 
+
+{{I-D.nsdt-teas-transport-slice-definition}} (to be replaced by draft-rokui-teas-transport-slice-definition) define two new terms - Transport Slice Controller (TSC) and Transport Network Controller. The TSC realizes the transport slice in the network as well as maintains and monitors the transport slice. The Transport Network Controller is traditional network infrastructure controller that offers network resources to TSC to be used for realization of a particular transport slice. 
+
+### Mapping to ACTN
+{{RFC8453}} defined three controllers as per the framework for Abstraction and Control of TE Networks (ACTN) to support virtual network (VN) services - Customer Network Controller (CNC), Multi-Domain Service Coordinator (MDSC) and Provisioning Network Controller (PNC). A CNC is responsible for communicating a customer's virtual network requirements, a MDSC is responsible for multi-domain coordination, virtualization/abstraction, customer mapping/translation and virtual service coordination to realize the virtual network requirement. Its key role is to detach the network/service requirements from the underlying technology. A PNC oversees the configuration, monitoring and collection of the network topology. The PNC is a underlay technology specific controller. 
+
+While the ACTN framework is a generic VN framework that is used for various VN service beyond the transport slice, it is still a suitable based to understand how the various controllers interact to realize the Transport slice. 
+
+A mapping between the Transport Slice controller definitions and ACTN controllers is as shown below figure -  
+
+~~~ ascii-art 
++------------------------------------+
+|             Customer               |
++------------------------------------+
+                  A
+                  |
+                  V
++------------------------------------+
+|      A highter level system        |
+|(e.g e2e network slice orchestrator)| 
++------------------------------------+
+                  A
+                  | TSC NBI
+                  V
++------------------------------------+     +-----+
+|      Transport Slice Controller    | ==> | CNC | 
++------------------------------------+     +-----+
+                  A                           A
+                  | TSC SBI                   | CMI
+                  V                           V
++------------------------------------+     +-----+
+|        Network Controller(s)       | ==> |MDSC | 
++------------------------------------+     +-----+
+                                              A
+                                              | MPI
+                                              V
+                                           +-----+
+                                           | PNC |
+                                           +-----+
+~~~
+
+As per {{I-D.nsdt-teas-transport-slice-definition}} (to be replaced by draft-rokui-teas-transport-slice-definition) TSC NBI carries the generic transport slice requirements which is realized via the TSC SBI. 
+
+As per {{RFC8453}} and {{I-D.ietf-teas-actn-yang}}, the CNC-MDSC Interface (CMI) is used to convey the virtual network service requirements along with the service models and the MDSC-PNC Interface (MPI) is used to realize the service along network configuration models. {{I-D.ietf-teas-te-service-mapping-yang}} further describe how the VPN services can be mapped to the underlying TE resources. 
+
+The Network Controller in {{I-D.nsdt-teas-transport-slice-definition}} (to be replaced by draft-rokui-teas-transport-slice-definition) is depicted as a single block, where as in ACTN framework this has been decomposed into MDSC and PNC to handle multiple domains and various underlay technologies. 
+
+{{RFC8453}} also describe TE Network Slicing in the context of ACTN as a collection of resources that is used to establish a logically dedicated virtual network over one or more TE networks.  In case of TE enabled underlying network, ACTN VN can be used as a base to realize the transport network slicing by coordination among multiple peer domains as well as underlay technology domains. 
 
 ## Mapping
 
