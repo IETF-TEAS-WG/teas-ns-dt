@@ -10,8 +10,8 @@ Formatted text and HTML versions of the draft can be built using `make`.
 $ make
 ```
 
-This requires that you have the necessary software installed. Namely, you will "make", "kramdown-rfc2629" and "xml2rfc". See
-[the instructions](https://github.com/martinthomson/i-d-template/blob/master/doc/SETUP.md) for setting this tools up.
+This requires that you have the necessary software installed. Namely, you will need "make", "kramdown-rfc2629" and "xml2rfc". See
+[the instructions](https://github.com/martinthomson/i-d-template/blob/master/doc/SETUP.md) for setting these tools up.
 
 
 ## Contributing
