@@ -152,6 +152,211 @@ A transport slice can be realized in a network, using specific underlying techno
 
 It is very clear that regardless of how transport slice is realized in the network (i.e. using tunnels of type RSVP or SR), the  definition of transport slice does not change at all but rather  its realization.
 
+## Abstraction
+
+Abstraction is a capability provided by a transport slice provider.
+The abstraction process for TE network described in [RFC7926] is
+generalized to the transport slice:
+
+Abstraction is the process of applying policy to the available network
+information within a domain, to produce selective information that
+represents the potential ability to connect across the domain. Thus,
+abstraction does not necessarily offer all possible connectivity
+options, but it presents a general view of potential connectivity
+according to the policies that determine how the domain's
+administrator wants to allow the domain resources to be used.
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+  +---+              +---+               
+  |s31|--------------|S5 |               
+  +---+\           / +---+               
+        \         /                      
+         \       /                       
+          \+---+/                +---+   
+          /|AN1|\----------------|S8 |
+         / +---+ \               +---+
+  +---+ /         \ +---+             
+  |S9 |-------------|S11|
+  +---+             +---+
+        Abstract Network Topology
+
+
+         +---+                    +---+
+         |S1 |--------------------|S2 |
+         +---+                    +---+
+          /                          \            
+         /                            \
+  +---+ /                  +---+       \ +---+                
+  |s3 |--------------------|S4 |---------|S5 |                
+  +---+\                   +---+         +---+               
+        \                      \             \              
+         \                      \             \          
+          \+---+                 +---+         +---+   
+          /|S6 |\                |S7 |---------|S8 |      
+         / +---+ \               +---+\       /+---+   
+  +---+ /         \ +---+              +---+ /        
+  |S9 |-------------|S10|--------------|S11|/         
+  +---+             +---+              +---+          
+        Underlying, Native Topology                            
+
+      Figure 1: Abstract Network Topology
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Figure 1 shows an example of abstract network topology. Even though a
+one-time abstraction is shown, the abstraction process can be recursive
+over various layers in practice.
+
+By abstraction, clients of a transport slice normally have no
+visibility into the provider network’s actual topology and resource
+availability information. The benefits can be: 
+
+1. Security: network operators do not need to expose the network’s
+actual topology to its clients;
+
+2. Layer implementation: Transport network is comprised of network
+elements that belong to a different layer network that the client
+devices. Also, the internal network connectivity advertisements usually
+contain proprietary information, which the clients cannot interpret,
+but discarding of which would lead to incorrect assumptions and
+decisions. This means that the clients cannot use actual network
+topology and traffic engineering information even if said information
+is available; 
+
+3. Scalability: clients do not want to know any transport network
+information that is not related to the services provided to the
+clients.
+
+On the other hand, the clients need to influence to a certain extent on
+the way the services provided to them, so the abstraction topology and
+its properties can be negotiated between the clients and the
+providers, which provide Topology-As-A-Service.
+
+
+## Network Layers (Layer Hierarchy)
+
+Transport slices are structured with network layers, using existing
+architectures and technologies [RFC4397] [RFC5212] [RFC6001] [RFC8453]
+[RFC8345]. The term layer defined for GMPLS network [RFC4397] is
+generalized to be used in the transport slice:
+
+A layer is a set of resources of the same type that could
+be used for establishing a connection or used for connectionless
+data delivery.
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+                    +---------------------------------------+
+                   /            _[X1]_               "IP"  /
+                  /           _/  :   \_                  /
+                 /          _/     :    \_               /
+                /         _/        :     \_            /
+               /         /           :      \          /
+              /       [X2]__________________[X3]      /
+             +---------:--------------:------:-------+
+                        :              :     :
+                    +----:--------------:----:--------------+
+                   /      :              :   :  "Ethernet" /
+                  /        :              :  :            /
+                 /         :               : :           /
+                /         [Y1]_____________[Y2]         /
+               /           *               * *         /
+              /            *              *  *        /
+             +--------------*-------------*--*-------+
+                             *           *   *
+                    +--------*----------*----*--------------+
+                   /     [Z1]_______________[Z2]    "DWDM" /
+                  /         \_         *   _/             /
+                 /            \_      *  _/              /
+                /               \_   * _/               /
+               /                  \ * /                /
+              /                    [Z]                /
+             +---------------------------------------+
+
+               Figure 2: Layered Topology Hierarchy Example
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Figure 2 shows a network structured with three layers. A provider may
+build such a network to provide transport slices of either IP
+connectivities or Ethernet connectivities. The diagram shows the
+relationships between the layers. At the top, the "IP" topology shows
+the network elements at Layer 3 (IP), whose services are supported by
+the lower Layer 2 (Ethernet) network, which is then supported by the
+"DWDM" optical network.
+
+[RFC5212] describes the benefits and requirements for such GMPLS-based layered
+networks. The principles and mechanisms are also applicable to
+the transport slice architecture.
+
+
+## System Management and Control Interfaces
+
+A transport slicing system is built with management and control
+interfaces. The management interface needs to be human-friendly, and
+the control interface needs to be programmable for automation.
+
+Same as a Traffic Engineering system, a transport slicing system
+requires network controllability [RFC3272], with automated, secure,
+and reliable mechanisms.
+
+### Protocols
+
+- Network Configuration Protocol (NETCONF) [RFC6241]: XML encoded
+  programmable interface that is also human-friendly.
+
+- RESTCONF Protocol [RFC8040]: XML or JSON encoded programmable
+  interface that is also human-friendly.
+
+- Constrained Application Protocol (CoAP) Management Interface
+  [RFC7390] / [I-D.ietf-core-comi]: CBOR [I-D.ietf-core-yang-cbor]
+  encoded, programmable interface.
+
+- gRPC/GNMI [I-D.openconfig-rtgwg-gnmi-spec]: ProtoBuf encoded, binary
+  formatted, programmable interface.
+
+- Path Computation Element (PCE) Communication Protocol (PCEP)
+  [RFC5440]: TLV-based, binary formatted, programmable interface.
+
+- GMPLS User-Network Interface (UNI) using RSVP-TE [RFC4208]:
+  Distributed, TLV-based, programmable interface.
+
+- Forwarding and Control Element Separation (ForCES) Protocol
+  [RFC5810]: TLV-based, binary formatted, programmable interface,
+  following ForCES architecture [RFC3654] [RFC3746].
+
+- SNMP [RFC3417] [RFC3412] [RFC3414]: binary formatted, programmable
+  interface, usually used for management.
+
+### Model-driven interface data
+
+For many of the above protocols, the interface data is formally
+defined by a modeling language. The modeling languages related to the
+above protocols are:
+
+- YANG [RFC6020] [RFC7950]: Used to model configuration data,
+  state data, Remote Procedure Calls, and notifications for NETCONF,
+  RESTCONF, GNMI, and Constrained Application Protocol (CoAP) Management
+  Interface.
+
+- ProtoBuf: Used to model gRPC data and GNMI telemetry data. The
+  configuration data and state data modeled in YANG for GNMI are
+  also translated to the ProtoBuf format.
+
+- Structure of Management Information (SMI) [RFC2578]: Used to define
+  the Management Information Base (MIB) modules for the SNMP protocol.
+  Its syntax is an adapted subset of OSI's Abstract Syntax Notation
+  One, ASN.1 (1988).
+
+- XML schema for ForCES models [RFC5812]: [RFC5812] uses XML schema as the
+  data modeling language to formally define the ForCES models, even
+  though not required by ForCES architecture and protocol.
+
+Path Computation Element (PCE) Communication Protocol (PCEP) [RFC5440]
+and GMPLS User-Network Interface (UNI) using RSVP-TE [RFC4208] do not use
+a modeling language to define the interface data.
+
 # Considerations
 
 ## Monitoring
