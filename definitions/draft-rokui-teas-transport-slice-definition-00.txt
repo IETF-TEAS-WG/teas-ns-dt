@@ -5,16 +5,16 @@
 teas                                                            R. Rokui
 Internet-Draft                                                     Nokia
 Intended status: Informational                                  S. Homma
-Expires: August 9, 2020                                              NTT
+Expires: August 13, 2020                                             NTT
                                                             K. Makhijani
                                                                Futurewei
                                                            LM. Contreras
                                                               Telefonica
-                                                        February 6, 2020
+                                                       February 10, 2020
 
 
                    IETF Definition of Transport Slice
-               draft-rekui-transport-slice-definition-00
+               draft-rokui-transport-slice-definition-00
 
 Abstract
 
@@ -40,7 +40,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on August 9, 2020.
+   This Internet-Draft will expire on August 13, 2020.
 
 Copyright Notice
 
@@ -53,7 +53,7 @@ Copyright Notice
 
 
 
-Rokui, et al.            Expires August 9, 2020                 [Page 1]
+Rokui, et al.            Expires August 13, 2020                [Page 1]
 
 Internet-Draft   draft-rokui-transport-slice-definition    February 2020
 
@@ -109,7 +109,7 @@ Table of Contents
 
 
 
-Rokui, et al.            Expires August 9, 2020                 [Page 2]
+Rokui, et al.            Expires August 13, 2020                [Page 2]
 
 Internet-Draft   draft-rokui-transport-slice-definition    February 2020
 
@@ -165,7 +165,7 @@ Internet-Draft   draft-rokui-transport-slice-definition    February 2020
 
 
 
-Rokui, et al.            Expires August 9, 2020                 [Page 3]
+Rokui, et al.            Expires August 13, 2020                [Page 3]
 
 Internet-Draft   draft-rokui-transport-slice-definition    February 2020
 
@@ -221,7 +221,7 @@ Internet-Draft   draft-rokui-transport-slice-definition    February 2020
 
 
 
-Rokui, et al.            Expires August 9, 2020                 [Page 4]
+Rokui, et al.            Expires August 13, 2020                [Page 4]
 
 Internet-Draft   draft-rokui-transport-slice-definition    February 2020
 
@@ -277,7 +277,7 @@ Internet-Draft   draft-rokui-transport-slice-definition    February 2020
 
 
 
-Rokui, et al.            Expires August 9, 2020                 [Page 5]
+Rokui, et al.            Expires August 13, 2020                [Page 5]
 
 Internet-Draft   draft-rokui-transport-slice-definition    February 2020
 
@@ -333,7 +333,7 @@ Internet-Draft   draft-rokui-transport-slice-definition    February 2020
 
 
 
-Rokui, et al.            Expires August 9, 2020                 [Page 6]
+Rokui, et al.            Expires August 13, 2020                [Page 6]
 
 Internet-Draft   draft-rokui-transport-slice-definition    February 2020
 
@@ -364,10 +364,12 @@ Internet-Draft   draft-rokui-transport-slice-definition    February 2020
                          Figure 2: Transport slice
 
    Figure 2 illustrates a case where a single transport slice provides
-   connectivity between "m" endpoints on left-hand side to "n" endpoints
-   on right-hand side with specific characteristic for SLO (i.e.,
-   assuring B/W to at least x bps and transmission delay to be less than
-   y ms).
+   connectivity between any pair of endpoints with specific
+   characteristic for SLO (i.e., assuring B/W to at least x bps and
+   transmission delay to be less than y ms).  The endpoints may be
+   disbributed in the underlay networks, and transport slice can be
+   deployed across multiple network domains.  Also, the endpoints on the
+   same transport slice may belong to the same address space.
 
    As shown in Figure 1, an E2E network slice might have one or more of
    "Transport Slices" and one or more of "Other Slices" of any
@@ -384,16 +386,15 @@ Internet-Draft   draft-rokui-transport-slice-definition    February 2020
 
    Transport slice realization uses specific technologies in the
    operator's network.  The realization may require allocating
-   appropriate resources into one or more networks and a mapping to
 
 
 
-
-Rokui, et al.            Expires August 9, 2020                 [Page 7]
+Rokui, et al.            Expires August 13, 2020                [Page 7]
 
 Internet-Draft   draft-rokui-transport-slice-definition    February 2020
 
 
+   appropriate resources into one or more networks and a mapping to
    transport slice.  The managing entity realizing a transport slice is
    referred to as network controller.
 
@@ -440,15 +441,17 @@ Internet-Draft   draft-rokui-transport-slice-definition    February 2020
    Transport Network Controller:  A transport network controller is
       traditional network infrastructure controller that offers network
       resources to TSC to be used for realization of a particular
-      transport slice.  These are existing network controllers for a
-      specific technology to realize transport slices in its network.
 
 
 
-Rokui, et al.            Expires August 9, 2020                 [Page 8]
+
+Rokui, et al.            Expires August 13, 2020                [Page 8]
 
 Internet-Draft   draft-rokui-transport-slice-definition    February 2020
 
+
+      transport slice.  These are existing network controllers for a
+      specific technology to realize transport slices in its network.
 
 4.2.2.  Transport Slice Controller Interfaces
 
@@ -498,10 +501,7 @@ Internet-Draft   draft-rokui-transport-slice-definition    February 2020
 
 
 
-
-
-
-Rokui, et al.            Expires August 9, 2020                 [Page 9]
+Rokui, et al.            Expires August 13, 2020                [Page 9]
 
 Internet-Draft   draft-rokui-transport-slice-definition    February 2020
 
@@ -557,14 +557,14 @@ Internet-Draft   draft-rokui-transport-slice-definition    February 2020
 
 
 
-Rokui, et al.            Expires August 9, 2020                [Page 10]
+Rokui, et al.            Expires August 13, 2020               [Page 10]
 
 Internet-Draft   draft-rokui-transport-slice-definition    February 2020
 
 
-   o  High Reliability (i.e., low packet loss rate)
+   o  Reliability (i.e., low packet loss rate)
 
-   o  High Availability (i.e., MTBF, MTTR)
+   o  Availability (i.e., MTBF, MTTR)
 
    o  Secure network
 
@@ -613,7 +613,7 @@ Internet-Draft   draft-rokui-transport-slice-definition    February 2020
 
 
 
-Rokui, et al.            Expires August 9, 2020                [Page 11]
+Rokui, et al.            Expires August 13, 2020               [Page 11]
 
 Internet-Draft   draft-rokui-transport-slice-definition    February 2020
 
@@ -669,7 +669,7 @@ Internet-Draft   draft-rokui-transport-slice-definition    February 2020
 
 
 
-Rokui, et al.            Expires August 9, 2020                [Page 12]
+Rokui, et al.            Expires August 13, 2020               [Page 12]
 
 Internet-Draft   draft-rokui-transport-slice-definition    February 2020
 
@@ -725,7 +725,7 @@ Internet-Draft   draft-rokui-transport-slice-definition    February 2020
 
 
 
-Rokui, et al.            Expires August 9, 2020                [Page 13]
+Rokui, et al.            Expires August 13, 2020               [Page 13]
 
 Internet-Draft   draft-rokui-transport-slice-definition    February 2020
 
@@ -781,7 +781,7 @@ Internet-Draft   draft-rokui-transport-slice-definition    February 2020
 
 
 
-Rokui, et al.            Expires August 9, 2020                [Page 14]
+Rokui, et al.            Expires August 13, 2020               [Page 14]
 
 Internet-Draft   draft-rokui-transport-slice-definition    February 2020
 
@@ -837,4 +837,4 @@ Authors' Addresses
 
 
 
-Rokui, et al.            Expires August 9, 2020                [Page 15]
+Rokui, et al.            Expires August 13, 2020               [Page 15]
