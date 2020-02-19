@@ -1,11 +1,14 @@
 
-base:	draft-framework.txt
+base:	draft-ejj-teas-ns-framework-00.txt
 
 draft-framework.xml:	draft-framework.md
 	kramdown-rfc2629 draft-framework.md > draft-framework.xml
 
 draft-framework.txt:	draft-framework.xml
 	xml2rfc draft-framework.xml
+
+draft-ejj-teas-ns-framework-00.txt: draft-framework.txt
+	mv -v draft-framework.txt draft-ejj-teas-ns-framework-00.txt
 
 #base:	draft-framework.txt
 #
