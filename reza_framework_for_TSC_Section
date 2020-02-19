@@ -1,0 +1,63 @@
+# Transport Slice Controller (TSC)
+
+The transport slice controller takes abstract requests for transport 
+slices and implements them using a suitable underlying technology.
+A transport slice controller is the key building block for control
+and management of the transport slice.  It provides the 
+creation/modification/deletion, monitoring and optimization of
+transport Slices in a multi-domain, multi-technology and multi-vendor
+environment.  The TSC enables the dynamic E2E network slices with
+specific capabilities to address the transport slice SLO requirements
+through the entirety of a transport domains.
+
+This functional block has the following characteristics:
+
+* Provides a technology-agnostic NBI for creation/modification/
+  deletion of the transport slices.  The attributes of this
+  interface will be discussed in section sssss.  In summary, the API
+  exposed by this NBI contains all endpoints of the transport slice
+  (see draft Transport Slice), transport slice SLO, various policies
+  and some data which allows the correlation between the transport
+  slice and the E2E network slice.  The latter information is needed
+  not for creation but for monitoring and assurance.
+
+* Using the network abstract topology, it provides mechanism to find
+  the Service endpoints (these are technology specific).
+
+* Provides "Mapping Functions" for realization of transport slices.
+  In other words, it will use the mapping functions which map
+  technology-agnostic NBI request to technology-specific SBIs.
+  These mapping functions provide a tremendous flexibility for TSC
+  where the business logic provided on NBI is completely
+  programmable to adapt to any specific southbound network
+  technologies.
+
+* From its southbound, it will continuously receive the Telemetry
+  data (e.g.  OAM results, Statistics, States etc.) for all
+  technology-specific services/paths/tunnels which are used to
+  realize the transport slice (see section bbbbb for various
+  examples of realization).
+
+* Aggregates all the Telemetry data of underlying realization of a
+  transport slice (i.e. services/paths/tunnels) and calculate the
+  current "Transport Slice SLO" and exposes them to "Higher level
+  system" through its NBI.  It also raises a notification in case
+  the transport slice is out of SLO.
+
+* Provides the abstract network topology and in specific the "inter-
+  domain" links between multiple network domains.
+
+* Provides the Closed-loop Optimization of Transport slices.  This
+  is an important characteristic which allows full automation of the
+  transport slices.  Using the Telemetry data collected from the
+  network for all services/paths/tunnels which used to realize the
+  transport slice, TSC will pro-actively monitors the transport
+  slice and upon any SLO violation, it performs the closed-loop
+  action to fix the issue.  For example, if multiple LSPs has been
+  created in the network to realize a transport slice, upon
+  transport slice SLO violation, TSC will start re-routing one or
+  multiple LSPs.
+
+For the rest of this document, the requiremnts for transport slice controller,
+its northobund interfaces, its southbound interfaces and the mapping funciton to
+map the northbound intent to southbound realization will be discussed.
