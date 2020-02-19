@@ -1,0 +1,120 @@
+# Transport Slice Controller Mapping Function
+The role of Transport Slice Controller is to provide the following
+capabilities for transport slices:
+
+* Automation on creaton/modificatin/deletion of transport slice
+
+* Monitoring and analytics on transport slice
+
+* Closed-loop optimization on transport slice
+
+To perform any of these functions, TSC needs to map the NBI to SBI
+and vice versa.
+
+## TSC NBI to SBI Mapping for transport slice automation
+
+For automation on creaton/modificatin/deletion of transport slice,
+TSC should map the TSC NBI to its SBI.  Since the TSC NBI is
+technology-agnostic, it should first find out the network technlogy
+and its abstract topology.  In specific, the inter-doamin link shall
+be known to TSC.  Based on this, TSC will find out the network
+resource to be used for transport slice realizaton.  It will be then
+assign or re-use the resource attibutes (e.g.  IP addresses, VLAN,
+BSID etc.) which will be used later to initiate the transport slice
+realizetion via its SBI.  This capability is very impotant which
+provided tremendous flexibility for multi-vendor aspect of TSC.
+
+Finally, TSC via its SBI initiates transport slice realization using
+various tecnhnlogy-specific L0/L1/L2/L3 services/tunnels/paths.  To
+further allow more flexibility, an optional policy called "Transport
+Slice Selection Policy" (see Section 6.6.2) might be empolyed by
+higher level system to influence the way that TSC will realize a
+transport slice.  For example, if an operator would like to realize a
+specific transport slice using L3 VPRN sercvie and SR-TE tunnels, it
+can do so, by using selection policy of Section 6.6.2 as part of TSC
+NBI creation request API.  The details of this will be in draft dddd.
+
+Figure 4 illustrates more details on how the technology-agnostic TSC
+NBI maps to various technology-specific services/tunnels/paths models
+(Note that these models can also be various IETF service/tunnels/path
+models).  The transport slice controller receives a request for
+creation of a transport slice in step (1).  This request is an
+abstract intent-based request which contains the required connections
+between various endpoints and required SLO.  The transport slice
+controller will then find the resource (step 2) and the technology
+(step 3) torealize those conneections.  Finally in step (4), TSC uses
+its SBIs to tirgger creation of various services/tunnels/paths.
+These coud be any IETF models or any other models.  In other words,
+the TSC NBI provides an abstract layer on top of specific model,
+including IETF models.  The IETF services, paths and tunnels data
+models can be any existing IETF service models such as L3SM or L2SM
+([RFC8049] and [RFC8466]).  It also can be any future data models.
+
+
+                          | (1) Transport slice creation request via
+                          |     TSC NBI
+                          v
+               ---------------------
+               |                   | (2) Find the resource (e.g.
+               |                   |     boarder routers, ip addresses,
+               |     Transport     |     VLAN etc)
+               |       Slice       |
+               |     Controller    | (3) Find out the tecnology to be
+               |                   |     used during realization
+               |                   |     (e.g. use L3 VPRN with
+               |                   |     SR-TE tunnels)
+               |-------------------|
+                       | | |
+               |-------| | |-------|  (4) Via TSC SBI, trigger various
+               |         |         |      APIs for creation of services,
+               |         |         |      paths and tunnels
+               v         v         v
+           (---------------------------)
+          (                             )
+         (        Transport Network      )
+          (                             )
+           (---------------------------)
+
+
+      Figure 4: TSC NBI to SBI mapping for transport slice automation
+
+## TSC SBI to NBI Mapping for transport slice monitoring and optimization
+
+Figure 5 shows the details on how the TSC maps the telemetry data
+receives from TSC SBI to TSC NBI.  The mapping in this case involves
+correlation between the telemetry data arrived on TSC SBI to
+transport slice and calculation of "current transport slice SLO"
+which in turn will be used to trigger closed-loop optimization action
+upon SLA violation.  TSC will also inform the "Higher Level System"
+about the "current transport slice SLO".
+
+                        A
+                        | (5) Via TSC NBI, inform "Higher Level System"
+                        |     about the "current transport slice SLO"
+                        |     and if any SLA violation happened
+                        |
+                        |          (4) Using "current transport slice SLO"
+             ---------------------     find out if there is any
+             |                   |     transport slice SLA violation.
+             |                   |     If so, trigger corrective action
+             |                   |
+             |     Transport     | (3) Aggregate the Telemetry data
+             |       Slice       |     and calculate
+             |     Controller    |     "current transport slice SLO"
+             |                   |
+             |                   | (2) Map the Telemetry data
+             |-------------------|     to Transport Slice
+                     A A A
+                     | | |         (1) Via TSC SBI, TSC continuously
+                     | | |             receives Telemetry data
+             |-------| | |-------|     for services/tunnels/paths
+             |         |         |     used during transport slice
+             |         |         |     realization
+         (---------------------------)
+        (                             )
+       (        Transport Network      )
+        (                             )
+         (---------------------------)
+
+
+      Figure 5: TSC SBI to NBI mapping for transport slice monitoring
