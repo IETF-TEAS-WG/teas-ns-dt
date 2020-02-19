@@ -1,0 +1,148 @@
+# Transport Slice Controller Northboun Interfaces (NBI)
+
+As shown in Figure 1, the Transport Slice Controller NBI interfaces
+provides the abstaction of the transport slices to the higher level
+system.  It simplifies the automation, assurance and optimization of
+transport slices by hiding all the complexity of the transport slice
+for realization and monitoring.  The main characteristics of these
+new interfaces are:
+
+* These interfaces allow a request and response about resources.
+  It should not allow negotiation, as this would be complex and not
+  have a clear benefit
+
+* The provider of these interfaces is the higher layer sytem which
+  needs to create an E2E network slice.  The provider of this
+  interface is the lower layer netowork controllers which provide
+  the realization of the connectivities (i.e. transport slice).
+
+* These interfaces are needed in industry to achieve true standard
+  based automation of E2E network slices.  It provides technology-
+  agnostic intent-based interfaces to the higher level system (note
+  that as an example, these interfaces are similar to interfaces
+  defined by 3GPP for 5G RAN and 5G Core slices)
+
+* These interfaces are independent of type of network functions or
+  services which needs to be connected, i.e. it is independent of
+  any specific repository, software usage, protocol, or platform
+  which realizes the physical or virtual network functions.
+
+* These interfaces standardizes a way to learn about what resources
+  are available in the network which impact the creation of the
+  transport slices
+
+* These technology independent interfaces simplify the
+  creation/modification/deletion of the transports slices by
+  describing it in a standard way along with all the endpoints that
+  compose a transport slice, their properties, attributes and their
+  SLO requirements
+
+* These interfaces provide capabilities for transport slice
+  monitoring and analytics which means that these interface allow
+  enabling/disabling the collection of the transport slices
+  telemetry, assurance and Threshold Crossing Alert (TCA) data and
+  providing them to the higher level system
+
+* These interfaces provide capabilities for optimization of the
+  transport slices.  Since the E2E network slices are dynamic in
+  nature, it is important to make sure the transport slice SLOs are
+  valid and in case any SLO violation, the transport slice
+  controller performs the closed-loop action and inform the higher
+  layer system for the violation and closed-loop action.  These
+  interfaces allow this fucntionality.
+ 
+* These interfaces allows binding and association between
+  "Transport slices" to "Other Slices"
+
+* These interfaces complements various IETF services, tunnels, path
+  models by providing an abstract layer on top of these models
+
+# Transport Slice Controller NBI high level data model
+
+Figure 3 shows the high level data model of TSC NBI interfaces.  The
+aim is to illustate the main building block of the data model.  For
+complete NBI YANG model see rrrrr (author's note: This is the new
+draft on NBI YANG):
+
+   |----------------------------------------------------------------|
+   | module: transport-slice                                        |
+   | +--rw transport-slice                                          |
+   |   +--rw transport-slice-info                                   |
+   |    +--rw ts-id                                                 |
+   |      +--rw ts-name                                             |
+   |      +--...                                                    |
+   |    +--rw e2e-network-slice-info [ns-id]                        |
+   |       +--rw list of e2e network slice id                       |
+   |       +--rw customer (aka tenant)                              |
+   |       +--rw service type (e.g. CCTV, infotainment etc)         |
+   |       +--...                                                   |
+   |    +--rw transport-slice-group* [tsg-id]                       |
+   |       +--rw tsg-id                                             |
+   |          +--...                                                | 
+   |       +--rw endpoint* [endpoint-id]                            |
+   |          +--rw endpoint-id                                     |
+   |          +--...                                                |
+   |       +--rw connection-link* [link-id]                         |
+   |          +--rw link-id                                         |
+   |          +--rw endpoint-A                                      |
+   |          +--rw endpoint-B                                      |
+   |          +--...                                                |
+   |       +--rw transport-slice-policy* [policy-id]                |
+   |          +--rw policy-id                                       |
+   |          +--rw policy-type (e.g. slo-policy, selection-policy, |
+   |                                  assurance-policy)             |
+   |          +--...                                                |
+   |----------------------------------------------------------------|
+
+      Figure 3: Transport Slice Controller NBI high-level data model
+
+Refering to Figure 3, the proposed TSC NBI data model should include
+the following building blocks:
+
+* transport-slice-info: It contains information  related to transport 
+slice such as transport slice name, transport slice ID etc.
+
+* e2e-network-slice-info: A list of all E2E network slices mapped to
+  a transport slice.  Note that transport slice to E2E network slice
+  is a one-to-many mapping, i.e. one transport slice can be used
+  inside more that one e2e network slice
+
+* transport-slice-group: A transport slice is a set of transport-
+  slice-groups where each of them contains a set of distint
+  connections.  Each transport-slice-group contains:
+
+      * list of endpoints: A transport slice comprises a set of 
+        connection among various endpoints.  These attributes 
+        specify the endpoint in a generic fashion. The possible 
+        attributes of the endpoint could be IP address, node name, 
+        domain ID and termination points etc. The details will be 
+        provided in TSC NBI YANG draft.
+
+      * list of connection-links: These are the list of connections 
+        between endpoints. 
+
+      * list of transport-slice-policies: The request from TSC NBI 
+        to create the transport slices will have optional and mandatory 
+        policies, which specify the desired "transport slice SLO" along with
+        information on monitorig and mapping functions. This draft 
+        proposes three types of transport slice policies to be supported. 
+        The details of these policies shall be provided in TSC NBI YANG draft:
+
+             * transport-slice-slo-policy: This is a mandatory policy, which
+               represents in a generic and technology-agnostics way the required 
+               "transport slice SLO" needed to realize a transport slice.  
+               It is defined per transport-slice-group and contains the 
+               bounded latency, bandwidth, reliability, security etc.
+
+             * transport-slice-selection-policy: This is an optional policy.  
+               In some deployment, the higher level system might want to influence
+               the transport slice controller (TSC) on how to realize a transport 
+               slice by providing some information regarding the type of technologies 
+               and tunnels. 
+
+             * transport-slice-assurance-policy: This is an optional policy.  
+               The higher level system might want to influence the transport slice 
+               controller for transport slice assurance on how to perform 
+               monitoring, analytics and optimization.  This policy will be used
+               and contains, the type of assurance needed, time interval, 
+               how often inform the higher level system etc.
