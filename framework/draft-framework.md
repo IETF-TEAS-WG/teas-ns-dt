@@ -1,7 +1,7 @@
 ---
 title: Framework for Transport Network Slices
 abbrev: Transport Network Slice Framework
-docname: draft-framework-00
+docname: draft-ejj-teas-ns-framework-00
 date:
 category: info
 
