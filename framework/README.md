@@ -10,7 +10,7 @@ Formatted text and HTML versions of the draft can be built using `make`.
 $ make
 ```
 
-Before you can do this, you will need to download the latest MD format file, and Makefile.  You may also have to strip out any HTML wrapper text (header/footer) in both of therse files.
+Before you can do this, you will need to download the latest MD format file, and Makefile.  You may also have to strip out any HTML wrapper text (header/footer) in both of these files.
 
 This requires that you have the necessary software installed. Namely, you will need "make", "kramdown-rfc2629" and "xml2rfc". See
 [the instructions](https://github.com/martinthomson/i-d-template/blob/master/doc/SETUP.md) for setting these tools up.
