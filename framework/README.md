@@ -43,7 +43,7 @@ If you have completed any changes you wish to make in the local files, use the f
 
 For the local repository owner (the Editors for this draft), complete the following steps to finish:
 
-"git commit -m'some usefull message, perhaps a summary of the changes'"
-"git push"
+- "git commit -m'some usefull message, perhaps a summary of the changes'"
+- "git push"
 
 
