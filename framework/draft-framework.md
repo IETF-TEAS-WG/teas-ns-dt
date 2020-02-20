@@ -63,7 +63,9 @@ informative:
   
 --- abstract
 
-TBD
+This memo discusses setting up special-purpose transport connections using existing IETF technologies. These connections are called transport slices for the purposes of this memo. The memo discusses the general framework for this setup, the necessary system components and interfaces, and how abstract requests can be mapped to more specific technologies. The memo also discusses related considerations with monitoring and security.
+
+This memo is intended for discussing interfaces and technologies. It is not intended to be a new set of concrete interfaces or technologies. Rather, it should be seen as an explanation of how some existing, concrete IETF VPN and traffic-engineering technologies can be used to create transport slices. Note that there are is a rather large of these technologies, and new technologies or capabilities keep being added. This memo is also not intended presume any particular technology choice.
 
 --- middle
 
