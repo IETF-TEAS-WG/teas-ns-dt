@@ -1,0 +1,616 @@
+
+
+
+
+Network Working Group                                            E. Gray
+Internet-Draft                                                  Ericsson
+Intended status: Informational                                  J. Drake
+Expires: August 23, 2020                                Juniper Networks
+                                                                J. Arkko
+                                                                Ericsson
+                                                       February 20, 2020
+
+
+                 Framework for Transport Network Slices
+                     draft-ejj-teas-ns-framework-00
+
+Abstract
+
+   TBD
+
+Status of This Memo
+
+   This Internet-Draft is submitted in full conformance with the
+   provisions of BCP 78 and BCP 79.
+
+   Internet-Drafts are working documents of the Internet Engineering
+   Task Force (IETF).  Note that other groups may also distribute
+   working documents as Internet-Drafts.  The list of current Internet-
+   Drafts is at https://datatracker.ietf.org/drafts/current/.
+
+   Internet-Drafts are draft documents valid for a maximum of six months
+   and may be updated, replaced, or obsoleted by other documents at any
+   time.  It is inappropriate to use Internet-Drafts as reference
+   material or to cite them other than as "work in progress."
+
+   This Internet-Draft will expire on August 23, 2020.
+
+Copyright Notice
+
+   Copyright (c) 2020 IETF Trust and the persons identified as the
+   document authors.  All rights reserved.
+
+   This document is subject to BCP 78 and the IETF Trust's Legal
+   Provisions Relating to IETF Documents
+   (https://trustee.ietf.org/license-info) in effect on the date of
+   publication of this document.  Please review these documents
+   carefully, as they describe your rights and restrictions with respect
+   to this document.  Code Components extracted from this document must
+   include Simplified BSD License text as described in Section 4.e of
+   the Trust Legal Provisions and are provided without warranty as
+   described in the Simplified BSD License.
+
+
+
+
+Gray, et al.             Expires August 23, 2020                [Page 1]
+
+Internet-Draft      Transport Network Slice Framework      February 2020
+
+
+Table of Contents
+
+   1.  Introduction  . . . . . . . . . . . . . . . . . . . . . . . .   2
+   2.  Requirements  . . . . . . . . . . . . . . . . . . . . . . . .   4
+   3.  Framework . . . . . . . . . . . . . . . . . . . . . . . . . .   4
+     3.1.  Management systems or other applications  . . . . . . . .   5
+     3.2.  Expressing connectivity intents . . . . . . . . . . . . .   5
+     3.3.  Controller  . . . . . . . . . . . . . . . . . . . . . . .   5
+       3.3.1.  Mapping to ACTN . . . . . . . . . . . . . . . . . . .   6
+     3.4.  Mapping . . . . . . . . . . . . . . . . . . . . . . . . .   8
+     3.5.  Underlying technology . . . . . . . . . . . . . . . . . .   8
+   4.  Considerations  . . . . . . . . . . . . . . . . . . . . . . .   9
+     4.1.  Monitoring  . . . . . . . . . . . . . . . . . . . . . . .   9
+     4.2.  Security Considerations . . . . . . . . . . . . . . . . .   9
+     4.3.  Privacy Considerations  . . . . . . . . . . . . . . . . .   9
+   5.  Acknowledgments . . . . . . . . . . . . . . . . . . . . . . .  10
+   6.  Informative References  . . . . . . . . . . . . . . . . . . .  10
+   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  11
+
+1.  Introduction
+
+   This draft provides a framework and architecture for discussing
+   transport slices, multipoint-to-multipoint connections:
+
+   "A transport slice is an abstract network topology connecting a
+   number of endpoints, with expected objectives specified through a set
+   of service level objectives (SLO)."
+
+   This definition comes from [I-D.nsdt-teas-transport-slice-definition]
+   (to be replaced by draft-rokui-teas-transport-slice-definition).  It
+   is the intention in this document to use terminology consistent with
+   this and other definitions provided in that draft.
+
+   This framework is intended as a structure for discussing interfaces
+   and technologies.  It is not intended to be a new set of concrete
+   interfaces or technologies.  Rather, the idea is that existing or
+   under-development IETF technologies (plural) can be used to realize
+   the ideas expressed here.
+
+   For example, virtual private networks (VPNs) have served the industry
+   well as a means of providing different groups of users with logically
+   isolated access to a common network.  The common or base network that
+   is used to provide the VPNs is often referred to as an underlay
+   network, and the VPN is often called an overlay network.  As an
+   example technology, a VPN may in turn serve as an underlay network
+   for transport slices.
+
+
+
+
+
+Gray, et al.             Expires August 23, 2020                [Page 2]
+
+Internet-Draft      Transport Network Slice Framework      February 2020
+
+
+   Note: It is conceivable that extensions to these IETF technologies
+   are needed in order to fully support all the ideas that can be
+   implemented with slices, but at least in the beginning there is no
+   plan for the creation of new protocols or interfaces.
+
+   Driven largely by needs surfacing from 5G, the concept of network
+   slicing has gained traction ([NGMN-NS-Concept], [TS23501], [TS28530],
+   and [BBF-SD406]).  In [TS23501], Network Slice is defined as "a
+   logical network that provides specific network capabilities and
+   network characteristics", and Network Slice Instance is defined as "A
+   set of Network Function instances and the required resources (e.g.
+   compute, storage and networking resources) which form a deployed
+   Network Slice".  According to [TS28530], an end-to-end network slice
+   consists of three major types of network segments: Radio Access
+   Network (RAN), Transport Network (TN) and Core Network (CN).
+   Transport network provides the required connectivity within and
+   between RAN and CN portions, with a specific performance commitment.
+   For each end-to-end network slice, the topology and performance
+   requirement on transport network can be very different, which
+   requires the transport network to have the capability of supporting
+   multiple different transport slices.
+
+   While network slices are commonly discussed in the context of 5G, it
+   is important to note that transport slices are a narrower concept,
+   and focus primarily on particular network connectivity aspects.
+   Other systems, including 5G deployments, may use transport slices as
+   a component to create entire systems and concatenated constructs that
+   match their needs, including end-to-end connectivity.
+
+   A transport slice is a virtual (logical) network with a particular
+   network topology and a set of shared or dedicated network resources,
+   which are used to provide the network slice consumer with the
+   required connectivity, appropriate isolation and specific service
+   level objectives (SLO).  A transport slice could span multiple
+   technology and multiple administrative domains.  Depending on the
+   consumer's requirements, a transport slice could be isolated from
+   other, often concurrent transport slices in terms of data, control
+   and management planes.
+
+   Network abstraction is a technique that can be applied to a network
+   domain to select network resources by policy to obtain a view of
+   potential connectivity and a set of service functions.
+
+   Transport network slicing builds on the concept of resource
+   management, network virtualization and abstraction to provide
+   performance assurance, flexibility, programmability and modularity.
+   It might use techniques such as Software Defined Networking (SDN)
+   [RFC7149] and Network Function Virtualization (NFV) [RFC8172],
+
+
+
+Gray, et al.             Expires August 23, 2020                [Page 3]
+
+Internet-Draft      Transport Network Slice Framework      February 2020
+
+
+   [RFC8568] to create multiple logical (virtual) networks, each
+   tailored for a set of services, a particular transport slice
+   consumer, or a group of consumers that share the same (or closely
+   similar) requirements, on top of a shared network.  How the network
+   slices are engineered can be deployment-specific.
+
+   Thus, there is a need to create virtual network structures with
+   required characteristics.  The consumer of such a virtual network can
+   require a degree of isolation and performance that previously might
+   not have been satisfied by traditional overlay VPNs.  Additionally,
+   the transport slice consumer might ask for some level of control to
+   their virtual networks, e.g., to customize the service paths in a
+   network slice.
+
+   This document specifies a framework for the use of existing
+   technologies as components to provide a transport slice service, and
+   might also discuss (or reference) modified and potential new
+   technologies, as they develop (such as [I-D.ietf-teas-enhanced-vpn]).
+
+2.  Requirements
+
+   It is intended that transport slices can be created to meet specific
+   requirements, typically expressed as bandwidth, latency, latency
+   variation, and other desired or required characteristics.  Creation
+   is initiated by a management system or other application used to
+   specify network-related conditions for particular traffic flows.
+
+   And it is intended that, once created, these slices can be monitored,
+   modified, deleted, and otherwise managed.
+
+   It is also intended that applications and components will be able to
+   use these transport slices to move packets between the specified end-
+   points in accordance with specified characteristics.
+
+   As an example of additional requirements that might apply to
+   transport slices, see [I-D.ietf-teas-enhanced-vpn] (in particular,
+   section 2).
+
+3.  Framework
+
+   A number of transport slice services will typically be provided over
+   a shared underlying network infrastructure.  Each transport slice
+   consists of both the overlay connectivity and a specific set of
+   dedicated network resources and/or functions allocated in a shared
+   underlay network to satisfy the needs of the transport slice
+   consumer.  In at least some examples of underlying network
+   technologies, the integration between the overlay and various
+
+
+
+
+Gray, et al.             Expires August 23, 2020                [Page 4]
+
+Internet-Draft      Transport Network Slice Framework      February 2020
+
+
+   underlay resources is needed to ensure the guaranteed performance
+   requested for different transport slices.
+
+   The users of transport slices are:
+
+   o  The management system or other application that creates and
+      manages them.
+
+   o  The applications and components wishing to use these slices.
+
+   These users are served by the system that can build transport slices,
+   as follows:
+
+   o  A controller takes requests from a management system or other
+      application, which are then communicated via an abstracted
+      northbound interface.  This interface transmits data objects that
+      describe the needed transport slices in terms of service level
+      objectives (SLO).
+
+   o  These requests are assumed to be translated by one or more
+      underlying systems, which establish specific transport slice
+      instances, using specific implementation techniques (such as MPLS)
+      implemented on top of the underlying network infrastructure.
+
+   Section 3 of [I-D.ietf-teas-enhanced-vpn] provides an example
+   architecture that might apply in using the technology described in
+   that document.
+
+3.1.  Management systems or other applications
+
+   The transport slice system is used by a management system or other
+   application.  These systems and applications may also be a part of a
+   higher level function in the system, e.g., putting together network
+   functions, radio equipment, application specific components, as well
+   as the transport slices.
+
+3.2.  Expressing connectivity intents
+
+   The northbound interface can be used to communicate betweern users
+   and/or providers of the transport slices and the transport slice
+   system controller.
+
+3.3.  Controller
+
+   The transport slice controller takes abstract requests for transport
+   slices and implements them using a suitable underlying technology.
+
+
+
+
+
+Gray, et al.             Expires August 23, 2020                [Page 5]
+
+Internet-Draft      Transport Network Slice Framework      February 2020
+
+
+   [I-D.nsdt-teas-transport-slice-definition] (to be replaced by draft-
+   rokui-teas-transport-slice-definition) define two new terms -
+   Transport Slice Controller (TSC) and Transport Network Controller.
+   The TSC realizes the transport slice in the network as well as
+   maintains and monitors the transport slice.  The Transport Network
+   Controller is traditional network infrastructure controller that
+   offers network resources to TSC to be used for realization of a
+   particular transport slice.
+
+3.3.1.  Mapping to ACTN
+
+   [RFC8453] defined three controllers as per the framework for
+   Abstraction and Control of TE Networks (ACTN) to support virtual
+   network (VN) services - Customer Network Controller (CNC), Multi-
+   Domain Service Coordinator (MDSC) and Provisioning Network Controller
+   (PNC).  A CNC is responsible for communicating a customer's virtual
+   network requirements, a MDSC is responsible for multi-domain
+   coordination, virtualization/abstraction, customer mapping/
+   translation and virtual service coordination to realize the virtual
+   network requirement.  Its key role is to detach the network/service
+   requirements from the underlying technology.  A PNC oversees the
+   configuration, monitoring and collection of the network topology.
+   The PNC is a underlay technology specific controller.
+
+   While the ACTN framework is a generic VN framework that is used for
+   various VN service beyond the transport slice, it is still a suitable
+   based to understand how the various controllers interact to realize
+   the Transport slice.
+
+   A mapping between the Transport Slice controller definitions and ACTN
+   controllers is as shown below figure -
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Gray, et al.             Expires August 23, 2020                [Page 6]
+
+Internet-Draft      Transport Network Slice Framework      February 2020
+
+
+   +------------------------------------+
+   |             Customer               |
+   +------------------------------------+
+                     A
+                     |
+                     V
+   +------------------------------------+
+   |      A highter level system        |
+   |(e.g e2e network slice orchestrator)|
+   +------------------------------------+
+                     A
+                     | TSC NBI
+                     V
+   +------------------------------------+     +-----+
+   |      Transport Slice Controller    | ==> | CNC |
+   +------------------------------------+     +-----+
+                     A                           A
+                     | TSC SBI                   | CMI
+                     V                           V
+   +------------------------------------+     +-----+
+   |        Network Controller(s)       | ==> |MDSC |
+   +------------------------------------+     +-----+
+                                                 A
+                                                 | MPI
+                                                 V
+                                              +-----+
+                                              | PNC |
+                                              +-----+
+
+   As per [I-D.nsdt-teas-transport-slice-definition] (to be replaced by
+   draft-rokui-teas-transport-slice-definition) TSC NBI carries the
+   generic transport slice requirements which is realized via the TSC
+   SBI.
+
+   As per [RFC8453] and [I-D.ietf-teas-actn-yang], the CNC-MDSC
+   Interface (CMI) is used to convey the virtual network service
+   requirements along with the service models and the MDSC-PNC Interface
+   (MPI) is used to realize the service along network configuration
+   models.  [I-D.ietf-teas-te-service-mapping-yang] further describe how
+   the VPN services can be mapped to the underlying TE resources.
+
+   The Network Controller in [I-D.nsdt-teas-transport-slice-definition]
+   (to be replaced by draft-rokui-teas-transport-slice-definition) is
+   depicted as a single block, where as in ACTN framework this has been
+   decomposed into MDSC and PNC to handle multiple domains and various
+   underlay technologies.
+
+
+
+
+
+Gray, et al.             Expires August 23, 2020                [Page 7]
+
+Internet-Draft      Transport Network Slice Framework      February 2020
+
+
+   [RFC8453] also describe TE Network Slicing in the context of ACTN as
+   a collection of resources that is used to establish a logically
+   dedicated virtual network over one or more TE networks.  In case of
+   TE enabled underlying network, ACTN VN can be used as a base to
+   realize the transport network slicing by coordination among multiple
+   peer domains as well as underlay technology domains.
+
+3.4.  Mapping
+
+   The main task of the transport slice controller is to map abstract
+   transport slice requirements to concrete technologies and establish
+   the required connectivity, and ensuring that required resources are
+   allocated to the transport slice.
+
+3.5.  Underlying technology
+
+   There are a number of different technologies that can be used,
+   including physical connections, MPLS, TSN, Flex-E, etc.
+
+   See [I-D.ietf-teas-enhanced-vpn] - section 4 - for instance, for
+   example underlying technologies.
+
+   <Note: do we want to add to the list of candidate technolgies in the
+   enhanced VPN draft?  It should not be the intention that this
+   document should provide an exhaustive list.>
+
+   A transport slice can be realized in a network, using specific
+   underlying technology or technologies.  The creation of a new
+   transport slice will be initiated with following three steps:
+
+   o  Step 1: A higher level system requests connections with specific
+      characteristics via NBI.
+
+   o  Step 2: This request will be processed by a Transport Slice
+      Controller which specifies a mapping between northbound request to
+      any IETF Services, Tunnels, and paths models.
+
+   o  Step 3: A series of requests for creation of services, tunnels and
+      paths will be sent to the network to realize the trasport slice.
+
+   It is very clear that regardless of how transport slice is realized
+   in the network (i.e. using tunnels of type RSVP or SR), the
+   definition of transport slice does not change at all but rather its
+   realization.
+
+
+
+
+
+
+
+Gray, et al.             Expires August 23, 2020                [Page 8]
+
+Internet-Draft      Transport Network Slice Framework      February 2020
+
+
+4.  Considerations
+
+4.1.  Monitoring
+
+   Transport slice realization needs to be instrumented in order to
+   track how it is working, and it might be necessary to modify the
+   transport slice as requirements change.  Dynamic reconfiguration
+   might be needed.
+
+4.2.  Security Considerations
+
+   Transport slices might use underlying virtualized networking.  All
+   types of virtual networking require special consideration to be given
+   to the separation of traffic between distinct virtual networks, as
+   well as some degree of protection from effects of traffic use of
+   underlying network (and other) resources from other virtual networks
+   sharing those resources.
+
+   For example, if a service requires a specific latency, then that
+   service can be degraded by added delay in transmission of service
+   packetws through the activities of another service or application
+   using the same resources.
+
+   Similarly, in a network with virtual functions, noticeably impeding
+   access to a function used by another transport slice (for instance,
+   compute resources) can be just as service degrading as delaying
+   physical transmission of associated packet in the network.
+
+   While a transport slice might include encryption and other security
+   features as part of the service, consumers might be well advised to
+   take responsibility for their own security needs, possibly by
+   encrypting traffic before hand-off to a service provider.
+
+4.3.  Privacy Considerations
+
+   Privacy of transport nework slice service consumers must be
+   preserved.  It should not be possible for one transport slice
+   consumer to discover the presence of other consumers, nor should
+   sites that are members of one transport slice be visible outside the
+   context of that transport slice.
+
+   In this sense, it is of paramount importance that the system use the
+   privacy protection mechanism defined for the specific underlying
+   technologies used, including in particular those mechanisms designed
+   to preclude acquiring identifying information associated with any
+   transport slice consumer.
+
+
+
+
+
+Gray, et al.             Expires August 23, 2020                [Page 9]
+
+Internet-Draft      Transport Network Slice Framework      February 2020
+
+
+5.  Acknowledgments
+
+   The entire TEAS NS design team and everyone participating in those
+   discussion has contributed to this draft.  Some text fragments in the
+   draft have been copied from the [I-D.ietf-teas-enhanced-vpn], for
+   which we are grateful.
+
+6.  Informative References
+
+   [BBF-SD406]
+              Broadband Forum, ., "End-to-end network slicing", BBF
+              SD-406 , n.d..
+
+   [I-D.ietf-teas-actn-yang]
+              Lee, Y., Zheng, H., Ceccarelli, D., Yoon, B., Dios, O.,
+              Shin, J., and S. Belotti, "Applicability of YANG models
+              for Abstraction and Control of Traffic Engineered
+              Networks", draft-ietf-teas-actn-yang-05 (work in
+              progress), February 2020.
+
+   [I-D.ietf-teas-enhanced-vpn]
+              Dong, J., Bryant, S., Li, Z., Miyasaka, T., and Y. Lee, "A
+              Framework for Enhanced Virtual Private Networks (VPN+)
+              Services", draft-ietf-teas-enhanced-vpn-05 (work in
+              progress), February 2020.
+
+   [I-D.ietf-teas-te-service-mapping-yang]
+              Lee, Y., Dhody, D., Fioccola, G., WU, Q., Ceccarelli, D.,
+              and J. Tantsura, "Traffic Engineering (TE) and Service
+              Mapping Yang Model", draft-ietf-teas-te-service-mapping-
+              yang-02 (work in progress), September 2019.
+
+   [I-D.nsdt-teas-transport-slice-definition]
+              Rokui, R., Homma, S., and K. Makhijani, "IETF Definition
+              of Transport Slice", draft-nsdt-teas-transport-slice-
+              definition-00 (work in progress), November 2019.
+
+   [NGMN-NS-Concept]
+              NGMN Alliance, ., "Description of Network Slicing
+              Concept", https://www.ngmn.org/uploads/
+              media/161010_NGMN_Network_Slicing_framework_v1.0.8.pdf ,
+              2016.
+
+   [RFC7149]  Boucadair, M. and C. Jacquenet, "Software-Defined
+              Networking: A Perspective from within a Service Provider
+              Environment", RFC 7149, DOI 10.17487/RFC7149, March 2014,
+              <https://www.rfc-editor.org/info/rfc7149>.
+
+
+
+
+Gray, et al.             Expires August 23, 2020               [Page 10]
+
+Internet-Draft      Transport Network Slice Framework      February 2020
+
+
+   [RFC8172]  Morton, A., "Considerations for Benchmarking Virtual
+              Network Functions and Their Infrastructure", RFC 8172,
+              DOI 10.17487/RFC8172, July 2017,
+              <https://www.rfc-editor.org/info/rfc8172>.
+
+   [RFC8453]  Ceccarelli, D., Ed. and Y. Lee, Ed., "Framework for
+              Abstraction and Control of TE Networks (ACTN)", RFC 8453,
+              DOI 10.17487/RFC8453, August 2018,
+              <https://www.rfc-editor.org/info/rfc8453>.
+
+   [RFC8568]  Bernardos, CJ., Rahman, A., Zuniga, JC., Contreras, LM.,
+              Aranda, P., and P. Lynch, "Network Virtualization Research
+              Challenges", RFC 8568, DOI 10.17487/RFC8568, April 2019,
+              <https://www.rfc-editor.org/info/rfc8568>.
+
+   [TS23501]  3GPP, ., "System architecture for the 5G System (5GS)",
+              3GPP TS 23.501 , 2019.
+
+   [TS28530]  3GPP, ., "Management and orchestration; Concepts, use
+              cases and requirements", 3GPP TS 28.530 , 2019.
+
+Authors' Addresses
+
+   Eric Gray
+   Ericsson
+
+   Email: eric.gray@ericsson.com
+
+
+   John Drake
+   Juniper Networks
+
+   Email: jdrake@juniper.net
+
+
+   Jari Arkko
+   Ericsson
+
+   Email: jari.arkko@piuha.net
+
+
+
+
+
+
+
+
+
+
+
+
+Gray, et al.             Expires August 23, 2020               [Page 11]
