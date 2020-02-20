@@ -39,7 +39,7 @@ This can be done for your branch if you have created a pull.  It is helpful if y
 
 If you have completed any changes you wish to make in the local files, use the following steps to upload the changed file (using README.md as an example):
 
-"git add README.md"
+- "git add README.md"
 
 For the local repository owner (the Editors for this draft), complete the following steps to finish:
 
