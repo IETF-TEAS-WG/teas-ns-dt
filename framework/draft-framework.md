@@ -128,13 +128,13 @@ A number of transport slice services will typically be provided over a shared un
 
 The users of transport slices are:
 
-* The management system or other application that creates and manages them.
-* The applications and components wishing to use these slices.
+- The management system or other application that creates and manages them.
+- The applications and components wishing to use these slices.
 
 These users are served by the system that can build transport slices, as follows:
 
-* A controller takes requests from a management system or other application, which are then communicated via an abstracted northbound interface. This interface transmits data objects that describe the needed transport slices in terms of service level objectives (SLO).
-* These requests are assumed to be translated by one or more underlying systems, which establish specific transport slice instances, using specific implementation techniques (such as MPLS) implemented on top of the underlying network infrastructure.
+- A controller takes requests from a management system or other application, which are then communicated via an abstracted northbound interface. This interface transmits data objects that describe the needed transport slices in terms of service level objectives (SLO).
+- These requests are assumed to be translated by one or more underlying systems, which establish specific transport slice instances, using specific implementation techniques (such as MPLS) implemented on top of the underlying network infrastructure.
 
 Section 3 of {{I-D.ietf-teas-enhanced-vpn}} provides an example architecture that might apply in using the technology described in that document.
 
@@ -146,14 +146,15 @@ The transport slice system is used by a management system or other application. 
 
 The TSC northbound interface (NBI) can be used to communicate betweern users and/or providers of the transport slices and the transport slice system controller.
 
-A consumer expresses requirements for a particular slice by specifying what is required rather than how that is to be achieved.  That is, the consumer's view of a slice is an abstract one.  Consumers normally have limited (or no) visibilityinto the provider network's actual topology and resource availability information.
+A consumer expresses requirements for a particular slice by specifying what is required rather than how that is to be achieved.  That is, the consumer's view of a slice is an abstract one.  Consumers normally have limited (or no) visibility into the provider network's actual topology and resource availability information.
 
 This should be true even if both the consumer and provider are associated with a single administrative domain, in order to reduce the potential for adverse interactions between transport slice consumers and other uses/users of the transport network infrastructure.
 
 The benefits of this model can include:
-* Security: the transport network (or network operator) does not need to expose network details (topology, capacity, etc.) to transport slice consumers;
-* Layered Implementation: the transport network comprises network elements that belong to a different layer network than consumer applications, and network information (advertisements, protocols, etc.) that a consumer cannot interpret or respond to (note - a consumer should not use network information not exposed via the TSC NBI, even if that information is available);
-* Scalability: consumers do not need to know any information beyond that which is exposed via the NBI.
+
+- Security: the transport network (or network operator) does not need to expose network details (topology, capacity, etc.) to transport slice consumers;
+- Layered Implementation: the transport network comprises network elements that belong to a different layer network than consumer applications, and network information (advertisements, protocols, etc.) that a consumer cannot interpret or respond to (note - a consumer should not use network information not exposed via the TSC NBI, even if that information is available);
+- Scalability: consumers do not need to know any information beyond that which is exposed via the NBI.
 
 The general issues of abstraction in a TE network is described more fully in {{RFC7926}}.
 
@@ -166,11 +167,12 @@ Layered virtual connections are comprehensively discussed in IETF documents and 
 There are several IETF-defined mechanisms for expressing the need for a desired virtual network.  The NBI carries data either in a protocol-defined format, or in a formalism defined by a modeling language.  
 
 For instance:
-* Path Computation Element (PCE) Communication Protocol (PCEP) {{RFC5440}} and GMPLS User-Network Interface (UNI) using RSVP-TE {{RFC4208}} use a TLV-based binary encoding to transmit data.
-* Network Configuration Protocol (NETCONF) {{RFC6241}} and RESTCONF Protocol {{RFC8040}} use XML abnd JSON encoding.
-* gRPC/GNMI {{I-D.openconfig-rtgwg-gnmi-spec}} uses a binary encoded programmable interface;
-* SNMP ({{RFC3417}}, {{RFC3412}} and {{RFC3414}} uses binary encoding (ASN.1).
-* For data modeling, YANG ({{RFC6020}} and {{RFC7950}}) may be used to model configuration and other data for NETCONF, RESTCONF, and GNMI - among others; ProtoBufs can be used to model gRPC and GNMI data; Structure of Management Information (SMI) {{RFC2578}} may be used to define Management Information Base (MIB) modules for SNMP, using an adapted subset of OSI's Abstract Syntax Notation One (ASN.1, 1988).
+
+- Path Computation Element (PCE) Communication Protocol (PCEP) {{RFC5440}} and GMPLS User-Network Interface (UNI) using RSVP-TE {{RFC4208}} use a TLV-based binary encoding to transmit data.
+- Network Configuration Protocol (NETCONF) {{RFC6241}} and RESTCONF Protocol {{RFC8040}} use XML abnd JSON encoding.
+- gRPC/GNMI {{I-D.openconfig-rtgwg-gnmi-spec}} uses a binary encoded programmable interface;
+- SNMP ({{RFC3417}}, {{RFC3412}} and {{RFC3414}} uses binary encoding (ASN.1).
+- For data modeling, YANG ({{RFC6020}} and {{RFC7950}}) may be used to model configuration and other data for NETCONF, RESTCONF, and GNMI - among others; ProtoBufs can be used to model gRPC and GNMI data; Structure of Management Information (SMI) {{RFC2578}} may be used to define Management Information Base (MIB) modules for SNMP, using an adapted subset of OSI's Abstract Syntax Notation One (ASN.1, 1988).
 
 While several generic formats and data models for specific purposes exist, it is expected that transport slice management may require enhancement or augmentation od eisting data models.
 
