@@ -29,14 +29,31 @@ author:
     email: jari.arkko@piuha.net
 
 informative:
+  RFC2578:
+  RFC3412:
+  RFC3414:
+  RFC3417:
+  RFC4208:
+  RFC4397:
+  RFC5212:
+  RFC5278:
+  RFC5440:
+  RFC6020:
+  RFC6241:
   RFC7149:
+  RFC7926:
+  RFC7950:
+  RFC8040:
   RFC8172:
+  RFC8345:
+  RFC8353:
   RFC8453:
   RFC8568: 
-  I-D.nsdt-teas-transport-slice-definition: 
   I-D.ietf-teas-enhanced-vpn: 
   I-D.ietf-teas-actn-yang:
   I-D.ietf-teas-te-service-mapping-yang:
+  I-D.openconfig-rtgwg-gnmi-spec:
+  I-D.nsdt-teas-transport-slice-definition: 
   NGMN-NS-Concept:
    title: Description of Network Slicing Concept
    date: 2016
@@ -89,9 +106,7 @@ While network slices are commonly discussed in the context of 5G, it is importan
 
 A transport slice is a virtual (logical) network with a particular network topology and a set of shared or dedicated network resources, which are used to provide the network slice consumer with the required connectivity, appropriate isolation and specific service level objectives (SLO).  A transport slice could span multiple technology and multiple administrative domains.  Depending on the consumer's requirements, a transport slice could be isolated from other, often concurrent transport slices in terms of data, control and management planes.
 
-Network abstraction is a technique that can be applied to a network domain to select network resources by policy to obtain a view of potential connectivity and a set of service functions.
-
-Transport network slicing builds on the concept of resource management, network virtualization and abstraction to provide performance assurance, flexibility, programmability and modularity.  It might use techniques such as Software Defined Networking (SDN) {{RFC7149}} and Network Function Virtualization (NFV) {{RFC8172}}, {{RFC8568}} to create multiple logical (virtual) networks, each tailored for a set of services, a particular transport slice consumer, or a group of consumers that share the same (or closely similar) requirements, on top of a shared network.  How the network slices are engineered can be deployment-specific.
+The consumer expresses requirements for a particular transport slice by specifying what is requiired rather than how the rewquirement is to be fulfilled.  That is, the transport slice consumer's view of a transport slice is an abstract one.
 
 Thus, there is a need to create virtual network structures with required characteristics.  The consumer of such a virtual network can require a degree of isolation and performance that previously might not have been satisfied by traditional overlay VPNs.  Additionally, the transport slice consumer might ask for some level of control to their virtual networks, e.g., to customize the service paths in a network slice.
 
@@ -129,7 +144,35 @@ The transport slice system is used by a management system or other application. 
 
 ## Expressing connectivity intents
 
-The northbound interface can be used to communicate betweern users and/or providers of the transport slices and the transport slice system controller.
+The TSC northbound interface (NBI) can be used to communicate betweern users and/or providers of the transport slices and the transport slice system controller.
+
+A consumer expresses requirements for a particular slice by specifying what is required rather than how that is to be achieved.  That is, the consumer's view of a slice is an abstract one.  Consumers normally have limited (or no) visibilityinto the provider network's actual topology and resource availability information.
+
+This should be true even if both the consumer and provider are associated with a single administrative domain, in order to reduce the potential for adverse interactions between transport slice consumers and other uses/users of the transport network infrastructure.
+
+The benefits of this model can include:
+* Security: the transport network (or network operator) does not need to expose network details (topology, capacity, etc.) to transport slice consumers;
+* Layered Implementation: the transport network comprises network elements that belong to a different layer network than consumer applications, and network information (advertisements, protocols, etc.) that a consumer cannot interpret or respond to (note - a consumer should not use network information not exposed via the TSC NBI, even if that information is available);
+* Scalability: consumers do not need to know any information beyond that which is exposed via the NBI.
+
+The general issues of abstraction in a TE network is described more fully in {{RFC7926}}.
+
+This framework does not assume any particular layer at which transport slices operate as a number of layers (including virtual L2, Ethernet or IP connectivity) could be employed.
+
+Data models and interfaces are of course needed to set up transport slices, and specific interfaces may have capabilities that allow creation of specific layers.
+
+Layered virtual connections are comprehensively discussed in IETF documents and are widely supported.  See, for instance, GMPLS-based networks ({{RFC5212}} and {{RFC4397}}), or ACTN ({{RFC8353}} and {{RFC8353}}).  The principles and mechanisms are also applicable to transport slices.
+
+There are several IETF-defined mechanisms for expressing the need for a desired virtual network.  The NBI carries data either in a protocol-defined format, or in a formalism defined by a modeling language.  
+
+For instance:
+* Path Computation Element (PCE) Communication Protocol (PCEP) {{RFC5440}} and GMPLS User-Network Interface (UNI) using RSVP-TE {{RFC4208}} use a TLV-based binary encoding to transmit data.
+* Network Configuration Protocol (NETCONF) {{RFC6241}} and RESTCONF Protocol {{RFC8040}} use XML abnd JSON encoding.
+* gRPC/GNMI {{I-D.openconfig-rtgwg-gnmi-spec}} uses a binary encoded programmable interface;
+* SNMP ({{RFC3417}}, {{RFC3412}} and {{RFC3414}} uses binary encoding (ASN.1).
+* For data modeling, YANG ({{RFC6020}} and {{RFC7950}}) may be used to model configuration and other data for NETCONF, RESTCONF, and GNMI - among others; ProtoBufs can be used to model gRPC and GNMI data; Structure of Management Information (SMI) {{RFC2578}} may be used to define Management Information Base (MIB) modules for SNMP, using an adapted subset of OSI's Abstract Syntax Notation One (ASN.1, 1988).
+
+While several generic formats and data models for specific purposes exist, it is expected that transport slice management may require enhancement or augmentation od eisting data models.
 
 ## Controller
 
@@ -197,7 +240,7 @@ See {{I-D.ietf-teas-enhanced-vpn}} - section 4 - for instance, for example under
 
 A transport slice can be realized in a network, using specific underlying technology or technologies.  The creation of a new transport slice will be initiated with following three steps:
 
-* Step 1:  A higher level system requests connections with specific  characteristics via NBI.
+* Step 1:  A higher level system requests connections with specific characteristics via NBI.
 
 * Step 2:  This request will be processed by a Transport Slice Controller which specifies a mapping between northbound request to  any IETF Services, Tunnels, and paths models.
 
