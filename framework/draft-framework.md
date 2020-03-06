@@ -80,109 +80,121 @@ informative:
   
 --- abstract
 
-This memo discusses setting up special-purpose transport connections using existing IETF technologies. These connections are called transport slices for the purposes of this memo. The memo discusses the general framework for this setup, the necessary system components and interfaces, and how abstract requests can be mapped to more specific technologies. The memo also discusses related considerations with monitoring and security.
+This memo discusses setting up special-purpose transport connections using
+existing IETF technologies. These connections are called transport slices for
+the purposes of this memo. The memo discusses the general framework for this
+setup, the necessary system components and interfaces, and how abstract
+requests can be mapped to more specific technologies. The memo also discusses
+related considerations with monitoring and security.
 
-This memo is intended for discussing interfaces and technologies. It is not intended to be a new set of concrete interfaces or technologies. Rather, it should be seen as an explanation of how some existing, concrete IETF VPN and traffic-engineering technologies can be used to create transport slices. Note that there are is a rather large of these technologies, and new technologies or capabilities keep being added. This memo is also not intended presume any particular technology choice.
+This memo is intended for discussing interfaces and technologies. It is not
+intended to be a new set of concrete interfaces or technologies. Rather, it
+should be seen as an explanation of how some existing, concrete IETF VPN and
+traffic-engineering technologies can be used to create transport slices. Note
+that there are is a rather large of these technologies, and new technologies
+or capabilities keep being added. This memo is also not intended presume any
+particular technology choice.
 
 --- middle
 
 # Introduction
 
-This draft provides a framework and architecture for discussing transport slices, multipoint-to-multipoint connections:
+This draft provides a framework for discussing transport
+slices, as defined in 
+{{I-D.nsdt-teas-transport-slice-definition}} (to
+be replaced by draft-rokui-teas-transport-slice-definition).  It is the
+intention in this document to use terminology consistent with this and other
+definitions provided in that draft.
 
-"A transport slice is an abstract network topology connecting a number of endpoints, with expected objectives specified through a set of service level objectives (SLO)."
+In particular, this document uses the following terminology defined in the defintions document:
+- Transport Slice
+- Transport Slice Controller (TSC)
+- Transport Network Controller (TNC)
+- Nothrbound Interface (NBI)
+- Southbound Interface (SBI)
 
-This definition comes from {{I-D.nsdt-teas-transport-slice-definition}} (to be replaced by draft-rokui-teas-transport-slice-definition).  It is the intention in this document to use terminology consistent with this and other definitions provided in that draft.
+This framework is intended as a structure for discussing interfaces and
+technologies. It is not intended to be a new set of concrete interfaces or
+technologies. Rather,  the idea is that existing or under-development IETF
+technologies (plural) can be used to realize the ideas expressed here.
 
-This framework is intended as a structure for discussing interfaces and technologies. It is not intended to be a new set of concrete interfaces or technologies. Rather,  the idea is that existing or under-development IETF technologies (plural) can be used to realize the ideas expressed here.
+For example, virtual private networks (VPNs) have served the industry well as
+a means of providing different groups of users with logically isolated access
+to a common network.  The common or base network that is used to provide the
+VPNs is often referred to as an underlay network, and the VPN is often called
+an overlay network.  As an example technology, a VPN may in turn serve as an
+underlay network for transport slices.
 
-For example, virtual private networks (VPNs) have served the industry well as a means of providing different groups of users with logically isolated access to a common network.  The common or base network that is used to provide the VPNs is often referred to as an underlay network, and the VPN is often called an overlay network.  As an example technology, a VPN may in turn serve as an underlay network for transport slices.
+Note: It is conceivable that extensions to these IETF technologies are needed
+in order to fully support all the ideas that can be implemented with slices,
+but at least in the beginning there is no plan for the creation of new
+protocols or interfaces.
 
-Note: It is conceivable that extensions to these IETF technologies are needed in order to fully support all the ideas that can be implemented with slices, but at least in the beginning there is no plan for the creation of new protocols or interfaces.
+Driven largely by needs surfacing from 5G, the concept of network slicing has
+gained traction ({{NGMN-NS-Concept}}, {{TS23501}}, {{TS28530}}, and
+{{BBF-SD406}}).  In {{TS23501}}, Network Slice is defined as "a logical network
+that provides specific network capabilities and network characteristics", and
+a Network Slice Instance is defined as "A set of Network Function instances and
+the required resources (e.g. compute, storage and networking resources) which
+form a deployed Network Slice".  According to {{TS28530}}, an end-to-end
+network slice consists of three major types of network segments: Radio Access
+Network (RAN), Transport Network (TN) and Core Network (CN).  Transport network
+provides the required connectivity between different entities in RAN and CN
+segments of an end-to-end network slice, with a specific performance commitment.
+For each end-to-end network slice, the topology and performance requirement on
+transport network can be very different, which requires the transport network
+to have the capability of supporting multiple different transport slices.
 
-Driven largely by needs surfacing from 5G, the concept of network slicing has gained traction ({{NGMN-NS-Concept}}, {{TS23501}}, {{TS28530}}, and {{BBF-SD406}}).  In {{TS23501}}, Network Slice is defined as "a logical network that provides specific network capabilities and network characteristics", and Network Slice Instance is defined as "A set of Network Function instances and the required resources (e.g. compute, storage and networking resources) which form a deployed Network Slice".  According to {{TS28530}}, an end-to-end network slice consists of three major types of network segments: Radio Access Network (RAN), Transport Network (TN) and Core Network (CN).  Transport network provides the required connectivity within and between RAN and CN portions, with a specific performance commitment.  For each end-to-end network slice, the topology and performance requirement on transport network can be very different, which requires the transport network to have the capability of supporting multiple different transport slices.
+While network slices are commonly discussed in the context of 5G, it is
+important to note that transport slices are a narrower concept, and focus
+primarily on particular network connectivity aspects. Other systems, including
+5G deployments, may use transport slices as a component to create entire
+systems and concatenated constructs that match their needs, including
+end-to-end connectivity.
 
-While network slices are commonly discussed in the context of 5G, it is important to note that transport slices are a narrower concept, and focus primarily on particular network connectivity aspects. Other systems, including 5G deployments, may use transport slices as a component to create entire systems and concatenated constructs that match their needs, including end-to-end connectivity.
+A Transport Slice could span multiple technologies and multiple administrative
+domains.  Depending on the consumer's requirements, a transport slice could be
+isolated from other, often concurrent transport slices in terms of data, control
+and management planes.
 
-A transport slice is a virtual (logical) network with a particular network topology and a set of shared or dedicated network resources, which are used to provide the network slice consumer with the required connectivity, appropriate isolation and specific service level objectives (SLO).  A transport slice could span multiple technology and multiple administrative domains.  Depending on the consumer's requirements, a transport slice could be isolated from other, often concurrent transport slices in terms of data, control and management planes.
+The consumer expresses requirements for a particular transport slice by
+specifying what is required rather than how the requirement is to be fulfilled.
+That is, the Transport Slice consumer's view of a transport slice is an
+abstract one.
 
-The consumer expresses requirements for a particular transport slice by specifying what is requiired rather than how the rewquirement is to be fulfilled.  That is, the transport slice consumer's view of a transport slice is an abstract one.
+Thus, there is a need to create logical network structures with required
+characteristics.  The consumer of such a logical network can require a degree
+of isolation and performance that previously might not have been satisfied by
+traditional overlay VPNs.  Additionally, the transport slice consumer might
+ask for some level of control of their virtual networks, e.g., to customize
+the service paths in a network slice.
 
-Thus, there is a need to create virtual network structures with required characteristics.  The consumer of such a virtual network can require a degree of isolation and performance that previously might not have been satisfied by traditional overlay VPNs.  Additionally, the transport slice consumer might ask for some level of control to their virtual networks, e.g., to customize the service paths in a network slice.
-
-This document specifies a framework for the use of existing technologies as components to provide a transport slice service, and might also discuss (or reference) modified and potential new technologies, as they develop (such as {{I-D.ietf-teas-enhanced-vpn}}).
+This document specifies a framework for the use of existing technologies as
+components to provide a transport slice service, and might also discuss (or
+reference) modified and potential new technologies, as they develop (such as
+candidate technologies described in section 5 of
+{{I-D.ietf-teas-enhanced-vpn}}).
 
 # Requirements
 
-It is intended that transport slices can be created to meet specific requirements, typically expressed as bandwidth, latency, latency variation, and other desired or required characteristics. Creation is initiated by a management system or other application used to specify network-related conditions for particular traffic flows. 
+It is intended that transport slices can be created to meet specific
+requirements, typically expressed as bandwidth, latency, latency variation,
+and other desired or required characteristics. Creation is initiated by a
+management system or other application used to specify network-related
+conditions for particular traffic flows. 
 
-And it is intended that, once created, these slices can be monitored, modified, deleted, and otherwise managed.
+And it is intended that, once created, these slices can be monitored,
+modified, deleted, and otherwise managed.
 
-It is also intended that applications and components will be able to use these transport slices to move packets between the specified end-points in accordance with specified characteristics.
+It is also intended that applications and components will be able to use
+these transport slices to move packets between the specified end-points in
+accordance with specified characteristics.
 
-As an example of additional requirements that might apply to transport slices, see {{I-D.ietf-teas-enhanced-vpn}} (in particular, section 2).
+As an example of additional requirements that might apply to transport slices,
+see {{I-D.ietf-teas-enhanced-vpn}} (in particular, section 3).
 
-# Framework
+# Applicability of ACTN to Transport Slices
 
-A number of transport slice services will typically be provided over a shared underlying network infrastructure.  Each transport slice consists of both the overlay connectivity and a specific set of dedicated network resources and/or functions allocated in a shared underlay network to satisfy the needs of the transport slice consumer.  In at least some examples of underlying network technologies, the integration between the overlay and various underlay resources is needed to ensure the guaranteed performance requested for different transport slices.
-
-The users of transport slices are:
-
-- The management system or other application that creates and manages them.
-- The applications and components wishing to use these slices.
-
-These users are served by the system that can build transport slices, as follows:
-
-- A controller takes requests from a management system or other application, which are then communicated via an abstracted northbound interface. This interface transmits data objects that describe the needed transport slices in terms of service level objectives (SLO).
-- These requests are assumed to be translated by one or more underlying systems, which establish specific transport slice instances, using specific implementation techniques (such as MPLS) implemented on top of the underlying network infrastructure.
-
-Section 3 of {{I-D.ietf-teas-enhanced-vpn}} provides an example architecture that might apply in using the technology described in that document.
-
-## Management systems or other applications
-
-The transport slice system is used by a management system or other application. These systems and applications may also be a part of a higher level function in the system, e.g., putting together network functions, radio equipment, application specific components, as well as the transport slices.
-
-## Expressing connectivity intents
-
-The TSC northbound interface (NBI) can be used to communicate betweern users and/or providers of the transport slices and the transport slice system controller.
-
-A consumer expresses requirements for a particular slice by specifying what is required rather than how that is to be achieved.  That is, the consumer's view of a slice is an abstract one.  Consumers normally have limited (or no) visibility into the provider network's actual topology and resource availability information.
-
-This should be true even if both the consumer and provider are associated with a single administrative domain, in order to reduce the potential for adverse interactions between transport slice consumers and other uses/users of the transport network infrastructure.
-
-The benefits of this model can include:
-
-- Security: the transport network (or network operator) does not need to expose network details (topology, capacity, etc.) to transport slice consumers;
-- Layered Implementation: the transport network comprises network elements that belong to a different layer network than consumer applications, and network information (advertisements, protocols, etc.) that a consumer cannot interpret or respond to (note - a consumer should not use network information not exposed via the TSC NBI, even if that information is available);
-- Scalability: consumers do not need to know any information beyond that which is exposed via the NBI.
-
-The general issues of abstraction in a TE network is described more fully in {{RFC7926}}.
-
-This framework does not assume any particular layer at which transport slices operate as a number of layers (including virtual L2, Ethernet or IP connectivity) could be employed.
-
-Data models and interfaces are of course needed to set up transport slices, and specific interfaces may have capabilities that allow creation of specific layers.
-
-Layered virtual connections are comprehensively discussed in IETF documents and are widely supported.  See, for instance, GMPLS-based networks ({{RFC5212}} and {{RFC4397}}), or ACTN ({{RFC8353}} and {{RFC8353}}).  The principles and mechanisms are also applicable to transport slices.
-
-There are several IETF-defined mechanisms for expressing the need for a desired virtual network.  The NBI carries data either in a protocol-defined format, or in a formalism defined by a modeling language.  
-
-For instance:
-
-- Path Computation Element (PCE) Communication Protocol (PCEP) {{RFC5440}} and GMPLS User-Network Interface (UNI) using RSVP-TE {{RFC4208}} use a TLV-based binary encoding to transmit data.
-- Network Configuration Protocol (NETCONF) {{RFC6241}} and RESTCONF Protocol {{RFC8040}} use XML abnd JSON encoding.
-- gRPC/GNMI {{I-D.openconfig-rtgwg-gnmi-spec}} uses a binary encoded programmable interface;
-- SNMP ({{RFC3417}}, {{RFC3412}} and {{RFC3414}} uses binary encoding (ASN.1).
-- For data modeling, YANG ({{RFC6020}} and {{RFC7950}}) may be used to model configuration and other data for NETCONF, RESTCONF, and GNMI - among others; ProtoBufs can be used to model gRPC and GNMI data; Structure of Management Information (SMI) {{RFC2578}} may be used to define Management Information Base (MIB) modules for SNMP, using an adapted subset of OSI's Abstract Syntax Notation One (ASN.1, 1988).
-
-While several generic formats and data models for specific purposes exist, it is expected that transport slice management may require enhancement or augmentation od eisting data models.
-
-## Controller
-
-The transport slice controller takes abstract requests for transport slices and implements them using a suitable underlying technology. 
-
-{{I-D.nsdt-teas-transport-slice-definition}} (to be replaced by draft-rokui-teas-transport-slice-definition) define two new terms - Transport Slice Controller (TSC) and Transport Network Controller. The TSC realizes the transport slice in the network as well as maintains and monitors the transport slice. The Transport Network Controller is traditional network infrastructure controller that offers network resources to TSC to be used for realization of a particular transport slice. 
-
-### Mapping to ACTN
 {{RFC8453}} defined three controllers as per the framework for Abstraction and Control of TE Networks (ACTN) to support virtual network (VN) services - Customer Network Controller (CNC), Multi-Domain Service Coordinator (MDSC) and Provisioning Network Controller (PNC). A CNC is responsible for communicating a customer's virtual network requirements, a MDSC is responsible for multi-domain coordination, virtualization/abstraction, customer mapping/translation and virtual service coordination to realize the virtual network requirement. Its key role is to detach the network/service requirements from the underlying technology. A PNC oversees the configuration, monitoring and collection of the network topology. The PNC is a underlay technology specific controller. 
 
 While the ACTN framework is a generic VN framework that is used for various VN service beyond the transport slice, it is still a suitable based to understand how the various controllers interact to realize the Transport slice. 
@@ -220,13 +232,219 @@ A mapping between the Transport Slice controller definitions and ACTN controller
                                            +-----+
 ~~~
 
-As per {{I-D.nsdt-teas-transport-slice-definition}} (to be replaced by draft-rokui-teas-transport-slice-definition) TSC NBI carries the generic transport slice requirements which is realized via the TSC SBI. 
+The TSC NBI conveys the generic transport slice requirements. These may then be
+realized using an SBI.
 
-As per {{RFC8453}} and {{I-D.ietf-teas-actn-yang}}, the CNC-MDSC Interface (CMI) is used to convey the virtual network service requirements along with the service models and the MDSC-PNC Interface (MPI) is used to realize the service along network configuration models. {{I-D.ietf-teas-te-service-mapping-yang}} further describe how the VPN services can be mapped to the underlying TE resources. 
+As per {{RFC8453}} and {{I-D.ietf-teas-actn-yang}}, the CNC-MDSC Interface (CMI)
+is used to convey the virtual network service requirements along with the
+service models and the MDSC-PNC Interface (MPI) is used to realize the service
+along network configuration models. {{I-D.ietf-teas-te-service-mapping-yang}}
+further describe how the VPN services can be mapped to the underlying TE
+resources. 
 
-The Network Controller in {{I-D.nsdt-teas-transport-slice-definition}} (to be replaced by draft-rokui-teas-transport-slice-definition) is depicted as a single block, where as in ACTN framework this has been decomposed into MDSC and PNC to handle multiple domains and various underlay technologies. 
+The Transport Network Controller is depicted as a single block, where as in
+the ACTN framework this has been decomposed into MDSC and PNC to handle
+multiple domains and various underlay technologies. 
 
-{{RFC8453}} also describe TE Network Slicing in the context of ACTN as a collection of resources that is used to establish a logically dedicated virtual network over one or more TE networks.  In case of TE enabled underlying network, ACTN VN can be used as a base to realize the transport network slicing by coordination among multiple peer domains as well as underlay technology domains. 
+{{RFC8453}} also describes TE Network Slicing in the context of ACTN as a
+collection of resources that is used to establish a logically dedicated virtual
+network over one or more TE networks.  In case of TE enabled underlying network,
+ACTN VN can be used as a base to realize the transport network slicing by
+coordination among multiple peer domains as well as underlay technology
+domains.
+
+# Framework
+
+A number of transport slice services will typically be provided over a shared
+underlying network infrastructure.  Each transport slice consists of both the
+overlay connectivity and a specific set of dedicated network resources and/or
+functions allocated in a shared underlay network to satisfy the needs of the
+transport slice consumer.  In at least some examples of underlying network
+technologies, the integration between the overlay and various underlay
+resources is needed to ensure the guaranteed performance requested for
+different transport slices.
+
+  ** Align with definitions draft **
+
+The users of transport slices are:
+
+- The management system or other application that creates and manages them.
+- The applications and components wishing to use these slices.
+
+Transport users are served by the system that can build transport slices, as
+follows:
+
+- A controller takes requests from a management system or other application,
+which are then communicated via an abstracted northbound interface. This
+interface transmits data objects that describe the needed transport slices in
+terms of topology and service level objectives (SLO).
+- These requests are assumed to be translated by one or more underlying
+systems, which establish specific transport slice instances, using specific
+implementation techniques (such as IP and MPLS) implemented on top of the underlying
+network infrastructure.
+
+Section 3 of {{I-D.ietf-teas-enhanced-vpn}} provides an example architecture
+that might apply in using the technology described in that document.
+
+## Management systems or other applications
+
+The transport slice system is used by a management system or other application.
+These systems and applications may also be a part of a higher level function
+in the system, e.g., putting together network functions, access equipment,
+application specific components, as well as the transport slices.
+
+## Expressing connectivity intents
+
+The Transport Slice Controller (TSC) northbound interface (NBI) can be used to
+communicate between transport slice users (or consumers) and the TSC.
+
+A transport slice user may be a network operator who, in turn, provides the
+transport slice to another transport slice user or consumer.
+
+Using the NBI, a consumer expresses requirements for a particular slice by
+specifying what is required rather than how that is to be achieved.  That is,
+the consumer's view of a slice is an abstract one.  Consumers normally have
+limited (or no) visibility into the provider network's actual topology and
+resource availability information.
+
+This should be true even if both the consumer and provider are associated with
+a single administrative domain, in order to reduce the potential for adverse
+interactions between transport slice consumers and other uses/users of the
+transport network infrastructure.
+
+The benefits of this model can include:
+
+- Security: because the transport network (or network operator) does not need
+to expose network details (topology, capacity, etc.) to transport slice
+consumers the transport network components are less exposed to attack;
+- Layered Implementation: the transport network comprises network elements that
+belong to a different layer network than consumer applications, and network
+information (advertisements, protocols, etc.) that a consumer cannot interpret
+or respond to (note - a consumer should not use network information not exposed
+via the TSC NBI, even if that information is available);
+- Scalability: consumers do not need to know any information beyond that which
+is exposed via the NBI.
+
+The general issues of abstraction in a TE network is described more fully in
+{{RFC7926}}.
+
+This framework document does not assume any particular layer at which transport
+slices operate as a number of layers (including virtual L2, Ethernet or IP
+connectivity) could be employed.
+
+Data models and interfaces are of course needed to set up transport slices,
+and specific interfaces may have capabilities that allow creation of specific
+layers.
+
+Layered virtual connections are comprehensively discussed in IETF documents
+and are widely supported.  See, for instance, GMPLS-based networks ({{RFC5212}}
+and {{RFC4397}}), or ACTN ({{RFC8353}} and {{RFC8353}}).  The principles and
+mechanisms associated with layered networking are applicable to transport
+slices.
+
+There are several IETF-defined mechanisms for expressing the need for a desired
+logical network.  The NBI carries data either in a protocol-defined format, or
+in a formalism associated with a modeling language.  
+
+For instance:
+
+- Path Computation Element (PCE) Communication Protocol (PCEP) {{RFC5440}} and
+GMPLS User-Network Interface (UNI) using RSVP-TE {{RFC4208}} use a TLV-based
+binary encoding to transmit data.
+- Network Configuration Protocol (NETCONF) {{RFC6241}} and RESTCONF Protocol
+{{RFC8040}} use XML abnd JSON encoding.
+- gRPC/GNMI {{I-D.openconfig-rtgwg-gnmi-spec}} uses a binary encoded
+programmable interface;
+- SNMP ({{RFC3417}}, {{RFC3412}} and {{RFC3414}} uses binary encoding (ASN.1).
+- For data modeling, YANG ({{RFC6020}} and {{RFC7950}}) may be used to model
+configuration and other data for NETCONF, RESTCONF, and GNMI - among others;
+ProtoBufs can be used to model gRPC and GNMI data; Structure of Management
+Information (SMI) {{RFC2578}} may be used to define Management Information
+Base (MIB) modules for SNMP, using an adapted subset of OSI's
+Abstract Syntax Notation One (ASN.1, 1988).
+
+While several generic formats and data models for specific purposes exist,
+it is expected that transport slice management may require enhancement or
+augmentation of existing data models.
+
+## Transport Slice Controller (TSC)
+
+The transport slice controller takes abstract requests for
+transport slices and implements them using a suitable underlying
+technology. A transport slice controller is the key building
+block for control and management of the transport slice. It
+provides the creation/modification/deletion, monitoring and
+optimization of transport Slices in a multi-domain, a
+multi-technology and multi-vendor environment.
+
+A TSC northbound interface (NBI) is needed for communicating
+details of a transport slice, as well as providing information
+to a slice requester/consumer about transport slice status
+and performance. The details for this NBI are not in scope
+for this document.
+
+The controller provides the following functions:
+
+- Provides a technology-agnostic NBI for creation/modification/
+deletion of the transport slices. The API exposed by this NBI
+communicates the endpoints of the transport slice, transport
+slice SLO parameters (and possibly monitoring thresholds),
+applicable input selection (filtering) and various policies, and
+provides a way to monitor the slice.
+
+- Determines an abstract topology connecting the endpoints of
+the transport slice that meets criteria specified via the NBI.The
+TSC also retains information about the mapping of this abstract
+topology to underlying components of the transport slice as
+necessary to monitor transport slice status and performance.
+
+- Provides "Mapping Functions" for the realization of transport slices.
+In other words, it will use the mapping functions that:
+
+   map technology-agnostic NBI request to technology-specific SBIs.
+
+   map filtering/selection information as necessary to entities in the
+underlay network.
+
+- Via an SBI, the controller collects Telemetry data (e.g. OAM results,
+Statistics, States etc.) for all elements in the abstract topology used
+to realize the transport slice.
+
+- Using the Telemetry data from the underlying realization of a
+transport slice (i.e. services/paths/tunnels), evaluates the
+current performance against transport slice SLO parameters and
+exposes them to the transport slice consumer via the NBI. The
+TSC NBI may also include a capability to provide notification in
+case the transport slice performance reaches threshold values
+defined by the transport slice consumer.
+
+### Northbound Inteface (NBI)
+
+The Transport Slice Controller provides a Northbound Interface (NBI)
+that allows consumers of network slices to request and monitor
+transport slices.  Consumers operate on abstract transport slices,
+with details related to their realization hidden.
+ 
+The NBI complements various IETF services, tunnels, path models by
+providing an abstract layer on top of these models.
+ 
+The NBI is independent of type of network functions or services
+that need to be connected, i.e. it is independent of any specific
+storage, software, protocol, or platform used to realize physical or
+virtual network connectivity or functions in support of transport
+slices.
+ 
+The NBI uses protocol mechanisms and information passed over
+passed over those mechanisms to convey desired attributes for
+transport slices and their status. The information is expected to be
+represented as a well-defined data model, and should include at
+least endpoint and connectivity information, SLO specification, and
+status information.
+ 
+To accomplish this, the NBI needs to convey information needed to
+support communication across the NBI, in terms of identifying the
+transport slices, as well providing the above model information.
+
 
 ## Mapping
 
@@ -236,9 +454,11 @@ The main task of the transport slice controller is to map abstract transport sli
 
 There are a number of different technologies that can be used, including physical connections, MPLS, TSN, Flex-E, etc.
 
-See {{I-D.ietf-teas-enhanced-vpn}} - section 4 - for instance, for example underlying technologies.
+See {{I-D.ietf-teas-enhanced-vpn}} - section 5 - for instance, for example underlying technologies.
 
-<Note: do we want to add to the list of candidate technolgies in the enhanced VPN draft?  It should not be the intention that this document should provide an exhaustive list.>
+Also, as outlined in a previous section of this document, ACTN ({{RFC8453}}) 
+offers a framework that is used elsewhere in IETF specifications to create 
+virtual network (VN) services similar to Transport Slices.
 
 A transport slice can be realized in a network, using specific underlying technology or technologies.  The creation of a new transport slice will be initiated with following three steps:
 
@@ -260,7 +480,10 @@ Transport slice realization needs to be instrumented in order to track how it is
 
 Transport slices might use underlying virtualized networking.  All types of virtual networking require special consideration to be given to the separation of traffic between distinct virtual networks, as well as some degree of protection from effects of traffic use of underlying network (and other) resources from other virtual networks sharing those resources.
 
-For example, if a service requires a specific latency, then that service can be degraded by added delay in transmission of service packetws through the activities of another service or application using the same resources.
+For example, if a service requires a specific upper bound of latency, then that
+service can be degraded by added delay in transmission of service packets
+through the activities of another service or application using the same
+resources.
 
 Similarly, in a network with virtual functions, noticeably impeding access to a function used by another transport slice (for instance, compute resources) can be just as service degrading as delaying physical transmission of associated packet in the network.
 
@@ -273,4 +496,11 @@ In this sense, it is of paramount importance that the system use the privacy pro
 
 # Acknowledgments
 
-The entire TEAS NS design team and everyone participating in those discussion has contributed to this draft. Some text fragments in the draft have been copied from the {{I-D.ietf-teas-enhanced-vpn}}, for which we are grateful.
+The entire TEAS NS design team and everyone participating in related
+discussions has contributed to this draft. Some text fragments in the draft
+have been copied from the {{I-D.ietf-teas-enhanced-vpn}}, for which we are
+grateful.
+
+Significant contributions to this document were gratefully received from
+Dhruv Dhody, Xufeng Liu, Jie Dong, and Reza Rokui.  Useful comments have also
+been received from Sergio Belotti and Kiran Makhijani.
