@@ -5,16 +5,16 @@
 teas                                                            R. Rokui
 Internet-Draft                                                     Nokia
 Intended status: Informational                                  S. Homma
-Expires: September 8, 2020                                           NTT
+Expires: September 10, 2020                                          NTT
                                                             K. Makhijani
                                                                Futurewei
                                                            LM. Contreras
                                                               Telefonica
-                                                           March 7, 2020
+                                                           March 9, 2020
 
 
                    IETF Definition of Transport Slice
-               draft-rokui-transport-slice-definition-00
+                draft-nsdt-transport-slice-definition-00
 
 Abstract
 
@@ -39,7 +39,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on September 8, 2020.
+   This Internet-Draft will expire on September 10, 2020.
 
 Copyright Notice
 
@@ -53,9 +53,9 @@ Copyright Notice
 
 
 
-Rokui, et al.           Expires September 8, 2020               [Page 1]
+Rokui, et al.          Expires September 10, 2020               [Page 1]
 
-Internet-Draft   draft-rokui-transport-slice-definition       March 2020
+Internet-Draft    draft-nsdt-transport-slice-definition       March 2020
 
 
    carefully, as they describe your rights and restrictions with respect
@@ -72,18 +72,18 @@ Table of Contents
    4.  Transport Slice System Characteristics  . . . . . . . . . . .   4
      4.1.  Service Level Objectives on Transport Slice . . . . . . .   4
        4.1.1.  Isolation discussion  . . . . . . . . . . . . . . . .   6
-     4.2.  Endpoint Variation  . . . . . . . . . . . . . . . . . . .   7
-       4.2.1.  Types of Endpoints  . . . . . . . . . . . . . . . . .   7
+     4.2.  Endpoint Variation  . . . . . . . . . . . . . . . . . . .   8
+       4.2.1.  Types of Endpoints  . . . . . . . . . . . . . . . . .   8
        4.2.2.  Connectivity Patterns . . . . . . . . . . . . . . . .   8
      4.3.  Vertical Transport Slice  . . . . . . . . . . . . . . . .   8
-     4.4.  Horizontal Composition of Transport slice . . . . . . . .   9
+     4.4.  Horizontal Composition of Transport slice . . . . . . . .  10
    5.  Transport Slice Structure . . . . . . . . . . . . . . . . . .  10
-     5.1.  Stakeholders  . . . . . . . . . . . . . . . . . . . . . .  11
+     5.1.  Stakeholders  . . . . . . . . . . . . . . . . . . . . . .  12
      5.2.  Transport Slice Controller Interfaces . . . . . . . . . .  12
      5.3.  Transport slice Realization . . . . . . . . . . . . . . .  13
-   6.  Relationship with End-to-End Network Slicing  . . . . . . . .  13
+   6.  Relationship with End-to-End Network Slicing  . . . . . . . .  14
    7.  Security Considerations . . . . . . . . . . . . . . . . . . .  15
-   8.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .  15
+   8.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .  16
    9.  Acknowledgment  . . . . . . . . . . . . . . . . . . . . . . .  16
    10. Informative References  . . . . . . . . . . . . . . . . . . .  16
    Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  17
@@ -109,9 +109,9 @@ Table of Contents
 
 
 
-Rokui, et al.           Expires September 8, 2020               [Page 2]
+Rokui, et al.          Expires September 10, 2020               [Page 2]
 
-Internet-Draft   draft-rokui-transport-slice-definition       March 2020
+Internet-Draft    draft-nsdt-transport-slice-definition       March 2020
 
 
    This document defines the concept of transport slices that provide
@@ -165,9 +165,9 @@ Internet-Draft   draft-rokui-transport-slice-definition       March 2020
 
 
 
-Rokui, et al.           Expires September 8, 2020               [Page 3]
+Rokui, et al.          Expires September 10, 2020               [Page 3]
 
-Internet-Draft   draft-rokui-transport-slice-definition       March 2020
+Internet-Draft    draft-nsdt-transport-slice-definition       March 2020
 
 
 3.  Definition and Scope of Transport slice
@@ -221,9 +221,9 @@ Internet-Draft   draft-rokui-transport-slice-definition       March 2020
 
 
 
-Rokui, et al.           Expires September 8, 2020               [Page 4]
+Rokui, et al.          Expires September 10, 2020               [Page 4]
 
-Internet-Draft   draft-rokui-transport-slice-definition       March 2020
+Internet-Draft    draft-nsdt-transport-slice-definition       March 2020
 
 
       delay between selected packets in a flow.  Minimizing variations
@@ -264,6 +264,34 @@ Internet-Draft   draft-rokui-transport-slice-definition       March 2020
       the definition of transport slice itself (logical
       partitioning...).
 
+   o  Resolution of guarantee: The above objectives can be resolved in
+      to either hard or soft guarantees.  A hard guarantee is the one
+      that is not affected by other traffic.  In a soft guarantee, a
+      violation (of the guarantee) may occur in rare cases due to
+      resource interference.  In such cases, the guarantee will be
+      maintained by the network controller within a certain tolerance
+      level of that objective.  Note that a hard guarantee does not
+      prevent from hardware failures, such as losing a node.  Additional
+      protection against such issues is possible, by specifying those
+      characteristics separately (see item "resource redundancy" below).
+
+
+
+Rokui, et al.          Expires September 10, 2020               [Page 5]
+
+Internet-Draft    draft-nsdt-transport-slice-definition       March 2020
+
+
+      Note also that the hard and soft guarantees do not say anything
+      about the specific implementation of how these guarantees are
+      achieved.  Different implementations might use different
+      techniques, from avoiding oversubsription to dedicating particular
+      links or their virtual fractions to particular transport slices.
+
+   o  Resource isolation: In some cases it may be necessary to dedicate
+      specific resources to the slice, for instance, for security
+      reasons.
+
    o  etc.
 
    The framework may further specify mechanisms for the performance,
@@ -273,15 +301,6 @@ Internet-Draft   draft-rokui-transport-slice-definition       March 2020
    specifying well defined paths or domains that a slice may transit.  A
    transport slice carries multiple flows between the 2 endpoints,
    therefore objectives should also say if they are aggregates or on per
-
-
-
-
-Rokui, et al.           Expires September 8, 2020               [Page 5]
-
-Internet-Draft   draft-rokui-transport-slice-definition       March 2020
-
-
    flow basis and in such case to be specific enough for the system to
    be able to identify these specifics (subset of flows).
 
@@ -301,24 +320,46 @@ Internet-Draft   draft-rokui-transport-slice-definition       March 2020
 
 4.1.1.  Isolation discussion
 
-   Slice isolation means that the behavior and performance of one
-   transport slice does not impact other slices running over the same
-   underlying infrastructure or logically shared network resources.
-   When the shared resource pools begin to become saturated, SLO
-   violations can happen, impacting the performance or operation of
-   service associated with the transport slice.  Since the transport
-   slices are logically partitioned over the shared resources, a certain
-   degree of isolation is expected.  The degree of isolation can be
-   derived from availability characteristics requested.
+   Due to overloading of the term, a further discussion is added to
+   highlight two aspects of isolation, first the resolution of isolation
+   of an objective (as described above) and second, the dedicated use or
+   a hard-separation perspective of the resource.
 
-   When realizing a transport slice, the network controller should be
-   responsible for allocating and providing resources isolation as
-   requested to that slice.  But we have also said that the network
-   controllers need not understand the transport slice concept.  It
-   maybe simply fulfilling the resource request from the upper layer
-   entity without knowing it is realizing a transport slice with strict
-   SLOs.  In that case, it may become necessary for a TSC to explicitly
-   ask for isolation to prevent any SLO violations.
+   Providing a hard resolution of guarantee for the characteristics of a
+   transport slice means that the behavior and performance of other
+   transport slices should not impact that slice, even if they run over
+   the same underlying infrastructure or use logically shared network
+   resources.
+
+
+
+Rokui, et al.          Expires September 10, 2020               [Page 6]
+
+Internet-Draft    draft-nsdt-transport-slice-definition       March 2020
+
+
+   In the context of soft resolution of guarantees, since the transport
+   slices are logically partitioned over the shared resources, a certain
+   degree of commitment to the guarantee is expected even when it is not
+   hard.  When the shared resource pools begin to become saturated, SLO
+   violations can happen, however, impacting only the performance or
+   operation of service associated with the transport slice.
+
+   This degree of isolation can be derived from availability
+   characteristics requested, such as whether a hard or soft guarantee
+   was requested.  Requesting a hard guarantee may commit more resources
+   than would be required for a softer limit.
+
+   In addition, resource isolation may be applied to ensure dedicated
+   access to a particular node, for instance.  In such requests a
+   dedicated allocation to a link, node and/or other resources to create
+   a transport slice for a perticular service.  For example, a misison-
+   critical service may ask for a dedicated router and/or a link or port
+   for complete isolation from other services.
+
+   When realizing a transport slice, a network controller should be
+   responsible for allocating and providing resources according to the
+   specified objectives.
 
    SLO violations can occur for two reasons and corresponding statements
    apply
@@ -326,28 +367,16 @@ Internet-Draft   draft-rokui-transport-slice-definition       March 2020
    o  Shared resource interference: i.e. multiple transport slices
       simultaneously share the same resource, and one of them consume
       the resource in surplus.  If the SLO guarantees are strictly
-      required, then the network controller can be informed about the
-      requirement using hard- or soft- type of isolations (the terms
-      hard- and soft- isolation are reused from
-      [I-D.ietf-teas-enhanced-vpn]).
+      required, then the network controller can be informed of this by
+      requesting a hard guarantee.  Note that the terms hard and soft
+      limit are requirement oriented and different from what is
+      specified in, [I-D.ietf-teas-enhanced-vpn]).
 
-
-
-Rokui, et al.           Expires September 8, 2020               [Page 6]
-
-Internet-Draft   draft-rokui-transport-slice-definition       March 2020
-
-
-      *  Hard isolation: an SLO for a transport slice is always
-         guaranteed.  The network controller will strictly dedicate
-         resource to the transport slice (i.e. it will not be shared).
-
-      *  Soft isolation: an SLO violation for a transport slice may
-         happen due to resource interference.  In such cases, the
-         transport slice's resource usage will be maintained by the
-         controller within a certain tolerance level of that objective.
-
-   o  Resource failure or fault occurs.
+   o  Resource failure or fault occurs, such as a link or node failure.
+      Where it is important to defend against these, the relevant
+      characteristics on resoure redundancy (and perhaps some other
+      characteristics on restoration speed and other factors) need to be
+      specified.
 
       *  Restoration isolation: the network is not impacted for a period
          longer than the given time.  For example, failover or the
@@ -357,14 +386,13 @@ Internet-Draft   draft-rokui-transport-slice-definition       March 2020
       *  Protection isolation: the network path is protected with
          specified backup path.  This is specified by Availability SLO.
 
-   Now, the question to resolve at design is whether hard or soft
-   parameters be associated with each SLO individually or is a
-   characteristic of an entire transport slice.
 
-   Author's Note: This discussion is deferred to the framework document.
 
-   We consider fault-related isolations as part of the specification in
-   SLOs.
+
+Rokui, et al.          Expires September 10, 2020               [Page 7]
+
+Internet-Draft    draft-nsdt-transport-slice-definition       March 2020
+
 
 4.2.  Endpoint Variation
 
@@ -385,15 +413,6 @@ Internet-Draft   draft-rokui-transport-slice-definition       March 2020
       exhaustive list of service functions includes: firewalls, WAN and
       application acceleration, Deep Packet Inspection (DPI), server
       load balancers, NAT44 [RFC3022], NAT64 [RFC6146], HTTP header
-
-
-
-
-Rokui, et al.           Expires September 8, 2020               [Page 7]
-
-Internet-Draft   draft-rokui-transport-slice-definition       March 2020
-
-
       enrichment functions, and TCP optimizers.  The generic term "L4-L7
       services" is often used to describe such service functions (SFs).
 
@@ -423,6 +442,14 @@ Internet-Draft   draft-rokui-transport-slice-definition       March 2020
    provide a vertical structure to it.  This is used for building multi-
    layer slices in which each layer provides an abstraction, as well as
    an independent monitoring, performance, control and management of the
+
+
+
+Rokui, et al.          Expires September 10, 2020               [Page 8]
+
+Internet-Draft    draft-nsdt-transport-slice-definition       March 2020
+
+
    resources.  The vertical transport slice characteristic maybe used in
    2 forms:
 
@@ -441,15 +468,6 @@ Internet-Draft   draft-rokui-transport-slice-definition       March 2020
       transport slice would utilize one or more optical transport slice.
       In this case, realization will be done for a particular technology
       at that particular layer.  Thus, the lowest transport slice in
-
-
-
-
-Rokui, et al.           Expires September 8, 2020               [Page 8]
-
-Internet-Draft   draft-rokui-transport-slice-definition       March 2020
-
-
       this type of hierarchy that can not be decomposed further will be
       an instance of realized physical layer transport slice.
 
@@ -480,6 +498,14 @@ Internet-Draft   draft-rokui-transport-slice-definition       March 2020
    hierarchical structure, consider Network-2 and Network-3 are in the
    same administrative domain but use different transport technologies
    SR and L2VPN respectively.  Then instead of presenting 2 transport
+
+
+
+Rokui, et al.          Expires September 10, 2020               [Page 9]
+
+Internet-Draft    draft-nsdt-transport-slice-definition       March 2020
+
+
    slices, Operator-z can expose only one transport slice TS12
    abstracting the underlying transport technology details.
 
@@ -499,13 +525,6 @@ Internet-Draft   draft-rokui-transport-slice-definition       March 2020
    an SRV6 based path, then a 'Service type EP' (not shown in the
    figure) is needed for translation.
 
-
-
-Rokui, et al.           Expires September 8, 2020               [Page 9]
-
-Internet-Draft   draft-rokui-transport-slice-definition       March 2020
-
-
    Author's notes: This service type EP is a new type of transport slice
    specific service function.  We may call it transport slice gateway.
 
@@ -518,6 +537,29 @@ Internet-Draft   draft-rokui-transport-slice-definition       March 2020
    service for that matter.  Similarly, connections may be virtual or
    physical links of any type of technology.
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Rokui, et al.          Expires September 10, 2020              [Page 10]
+
+Internet-Draft    draft-nsdt-transport-slice-definition       March 2020
 
 
                         ____________________________
@@ -553,15 +595,6 @@ Internet-Draft   draft-rokui-transport-slice-definition       March 2020
    deployed across multiple network domains.  Also, the endpoints on the
    same transport slice may belong to the same address space.
 
-
-
-
-
-Rokui, et al.           Expires September 8, 2020              [Page 10]
-
-Internet-Draft   draft-rokui-transport-slice-definition       March 2020
-
-
    The "Transport Slices" provides various connections with certain SLO
    between various endpoints whereas the transport slice realization
    addresses its implementation using various technologies.  In short,
@@ -576,6 +609,14 @@ Internet-Draft   draft-rokui-transport-slice-definition       March 2020
    The request to instantiate a transport slice is represented with some
    indicators such as SLO, and technologies are selected and managed
    accordingly.
+
+
+
+
+Rokui, et al.          Expires September 10, 2020              [Page 11]
+
+Internet-Draft    draft-nsdt-transport-slice-definition       March 2020
+
 
    In the context of network slices, the term sub-slice or slice-subnet
    comes up in other standard organizations, however, w.r.t. the IP/MPLS
@@ -611,13 +652,6 @@ Internet-Draft   draft-rokui-transport-slice-definition       March 2020
       operator (or slice operator for short) manages one or more
       transport slices using the Transport Slice Controller(s).
 
-
-
-Rokui, et al.           Expires September 8, 2020              [Page 11]
-
-Internet-Draft   draft-rokui-transport-slice-definition       March 2020
-
-
    Transport Network Controller:  Or network controller is a traditional
       network infrastructure controller that offers network resources to
       TSC to be used for the realization of a particular transport
@@ -631,6 +665,15 @@ Internet-Draft   draft-rokui-transport-slice-definition       March 2020
    operating and monitoring the transport slices.  The following
    communication interfaces are identified (see Figure 3).
 
+
+
+
+
+Rokui, et al.          Expires September 10, 2020              [Page 12]
+
+Internet-Draft    draft-nsdt-transport-slice-definition       March 2020
+
+
    TSC Northbound Interface (NBI):  The TSC Northbound Interface is a
       bidirectional and an asynchronous interface between a higher level
       system, e.g.  'E2E network slice orchestrator' and the 'Transport
@@ -641,37 +684,6 @@ Internet-Draft   draft-rokui-transport-slice-definition       March 2020
       slice controller' and network controller(s).  These interfaces are
       technology-specific and can utilize many of the existing data
       models such as L2SM, L3SM, VPN, etc.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Rokui, et al.           Expires September 8, 2020              [Page 12]
-
-Internet-Draft   draft-rokui-transport-slice-definition       March 2020
 
 
                    +------------------------------------------+
@@ -709,6 +721,15 @@ Internet-Draft   draft-rokui-transport-slice-definition       March 2020
    to the TSC.  The network controller abstracts the details of
    underlying resources from the TSC.
 
+
+
+
+
+Rokui, et al.          Expires September 10, 2020              [Page 13]
+
+Internet-Draft    draft-nsdt-transport-slice-definition       March 2020
+
+
    The realization may be achieved in the form of either physical or
    logical connectivity through VPNs, a variety of tunneling
    technologies such as segment routing, SFC, etc.  Accordingly,
@@ -722,14 +743,6 @@ Internet-Draft   draft-rokui-transport-slice-definition       March 2020
    customer.  A transport slice concerns with those assurance aspects
    only within the transport networks.  Consider Figure 4, where a
    network operator has an E2E network slice that traverses multiple
-
-
-
-Rokui, et al.           Expires September 8, 2020              [Page 13]
-
-Internet-Draft   draft-rokui-transport-slice-definition       March 2020
-
-
    technology-specific networks.  Each of these networks might use any
    number of technologies, including but not limited to IP, MPLS, Fiber-
    Optics (e.g.  WDM, DWDM), Passive Optical Networking (PON),
@@ -765,25 +778,16 @@ Internet-Draft   draft-rokui-transport-slice-definition       March 2020
    o  Network 2 might have one or more layer-3 routers and layer-2
       switches which may run on top of an optical network.
 
+
+
+
+Rokui, et al.          Expires September 10, 2020              [Page 14]
+
+Internet-Draft    draft-nsdt-transport-slice-definition       March 2020
+
+
    o  Network 3 might have a number of 5G RAN nodes connected to Passive
       Optical Network (PON) switches.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Rokui, et al.           Expires September 8, 2020              [Page 14]
-
-Internet-Draft   draft-rokui-transport-slice-definition       March 2020
 
 
            <======================= E2E NS ======================>
@@ -827,25 +831,27 @@ Internet-Draft   draft-rokui-transport-slice-definition       March 2020
 
    TBD
 
+
+
+
+
+
+
+Rokui, et al.          Expires September 10, 2020              [Page 15]
+
+Internet-Draft    draft-nsdt-transport-slice-definition       March 2020
+
+
 8.  IANA Considerations
 
    This memo includes no request to IANA.
 
-
-
-
-
-
-
-Rokui, et al.           Expires September 8, 2020              [Page 15]
-
-Internet-Draft   draft-rokui-transport-slice-definition       March 2020
-
-
 9.  Acknowledgment
 
    The entire TEAS NS design team and everyone participating in those
-   discussion has contributed to this draft.
+   discussion has contributed to this draft.  Particularly, Eric Gray,
+   Xufeng Liu, Jie Dong, Jeff Tansula, and Jari Arkko for a thorough
+   review among other contributions.
 
 10.  Informative References
 
@@ -885,18 +891,17 @@ Internet-Draft   draft-rokui-transport-slice-definition       March 2020
               (IPPM)", STD 81, RFC 7679, DOI 10.17487/RFC7679, January
               2016, <https://www.rfc-editor.org/info/rfc7679>.
 
+
+
+Rokui, et al.          Expires September 10, 2020              [Page 16]
+
+Internet-Draft    draft-nsdt-transport-slice-definition       March 2020
+
+
    [RFC7680]  Almes, G., Kalidindi, S., Zekauskas, M., and A. Morton,
               Ed., "A One-Way Loss Metric for IP Performance Metrics
               (IPPM)", STD 82, RFC 7680, DOI 10.17487/RFC7680, January
               2016, <https://www.rfc-editor.org/info/rfc7680>.
-
-
-
-
-Rokui, et al.           Expires September 8, 2020              [Page 16]
-
-Internet-Draft   draft-rokui-transport-slice-definition       March 2020
-
 
    [TS.23.501-3GPP]
               3rd Generation Partnership Project (3GPP), "3GPP TS 23.501
@@ -944,9 +949,4 @@ Authors' Addresses
 
 
 
-
-
-
-
-
-Rokui, et al.           Expires September 8, 2020              [Page 17]
+Rokui, et al.          Expires September 10, 2020              [Page 17]
