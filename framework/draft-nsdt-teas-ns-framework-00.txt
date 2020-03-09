@@ -13,7 +13,7 @@ Expires: September 10, 2020                             Juniper Networks
 
 
                  Framework for Transport Network Slices
-                     draft-ejj-teas-ns-framework-00
+                    draft-nsdt-teas-ns-framework-00
 
 Abstract
 
@@ -481,10 +481,10 @@ Internet-Draft      Transport Network Slice Framework         March 2020
    See [I-D.ietf-teas-enhanced-vpn] - section 5 - for instance, for
    example underlying technologies.
 
-   Also, as outlined in a previous section of this document, ACTN
-   ([RFC8453]) offers a framework that is used elsewhere in IETF
-   specifications to create virtual network (VN) services similar to
-   Transport Slices.
+   Also, as outlined in "applicability of ACTN to Transport Slices"
+   below, ACTN ([RFC8453]) offers a framework that is used elsewhere in
+   IETF specifications to create virtual network (VN) services similar
+   to Transport Slices.
 
    A transport slice can be realized in a network, using specific
    underlying technology or technologies.  The creation of a new
@@ -534,8 +534,8 @@ Internet-Draft      Transport Network Slice Framework         March 2020
    based to understand how the various controllers interact to realize
    the Transport slice.
 
-   A mapping between the Transport Slice controller definitions and ACTN
-   controller definitions is as shown in the figure below -
+   A mapping between the Transport Slice definitions and ACTN
+   definitions is as shown in Figure 1 below.
 
 
 
@@ -562,34 +562,36 @@ Gray, Editor, et al.   Expires September 10, 2020              [Page 10]
 Internet-Draft      Transport Network Slice Framework         March 2020
 
 
-   +------------------------------------+
-   |             Customer               |  |
-   +------------------------------------+
-                     A                     |    ACTN
-                     |                       Terminology
-                     V                     | and Concepts
-   +------------------------------------+
-   |      A highter level system        |  |
-   |(e.g e2e network slice orchestrator)|
-   +------------------------------------+  |
-                     A
-                     | TSC NBI             |
-                     V
-   +------------------------------------+  |  +-----+
-   |      Transport Slice Controller    | ==> | CNC |
-   +------------------------------------+  |  +-----+
-                     A                           A
-                     | TSC SBI             |     | CMI
-                     V                           V
-   +------------------------------------+  |  +-----+
-   |        Network Controller(s)       | ==> |MDSC |
-   +------------------------------------+  |  +-----+
-                                                 A
-            Terminology/Concepts           |     | MPI
-           Used in this Document                 V
-                                           |  +-----+
-                                              | PNC |
-                                           |  +-----+
+       ------------------------------------+
+       |             Customer               |  |
+       +------------------------------------+
+                         A                     |     ACTN
+                         |                        Terminology
+                         V                     |  and Concepts
+       +------------------------------------+
+       |      A highter level system        |  |
+       |(e.g e2e network slice orchestrator)|
+       +------------------------------------+  |
+                         A
+                         | TSC NBI             |
+                         V
+       +------------------------------------+  |   +-----+
+       |      Transport Slice Controller    | ===> | CNC |
+       +------------------------------------+  |   +-----+
+                         A                            A
+                         | TSC SBI             |      | CMI
+                         V                            V
+       +------------------------------------+  |   +-----+
+       |        Network Controller(s)       | ===> |MDSC |
+       +------------------------------------+  |   +-----+
+                                                      A
+                Terminology/Concepts           |      | MPI
+               Used in this Document                  V
+                                               |   +-----+
+                                                   | PNC |
+                                               |   +-----+
+
+                              Figure 1
 
    The TSC NBI conveys the generic transport slice requirements.  These
    may then be realized using an SBI.
@@ -608,8 +610,6 @@ Internet-Draft      Transport Network Slice Framework         March 2020
    [RFC8453] also describes TE Network Slicing in the context of ACTN as
    a collection of resources that is used to establish a logically
    dedicated virtual network over one or more TE networks.  In case of
-   TE enabled underlying network, ACTN VN can be used as a base to
-
 
 
 
@@ -618,6 +618,7 @@ Gray, Editor, et al.   Expires September 10, 2020              [Page 11]
 Internet-Draft      Transport Network Slice Framework         March 2020
 
 
+   TE enabled underlying network, ACTN VN can be used as a base to
    realize the transport network slicing by coordination among multiple
    peer domains as well as underlay technology domains.
 
@@ -665,7 +666,6 @@ Internet-Draft      Transport Network Slice Framework         March 2020
    In this sense, it is of paramount importance that the system use the
    privacy protection mechanism defined for the specific underlying
    technologies used, including in particular those mechanisms designed
-
 
 
 

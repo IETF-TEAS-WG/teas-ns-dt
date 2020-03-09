@@ -1,7 +1,7 @@
 ---
 title: Framework for Transport Network Slices
 abbrev: Transport Network Slice Framework
-docname: draft-ejj-teas-ns-framework-00
+docname: draft-nsdt-teas-ns-framework-00
 date:
 category: info
 
@@ -13,20 +13,41 @@ pi: [toc, sortrefs, symrefs]
 
 author:
   -
-    ins: E. Gray
+    ins: E. Gray, Editor
     name: Eric Gray
     org: Ericsson
     email: eric.gray@ericsson.com
   -
-    ins: J. Drake
+    ins: J. Drake, Editor
     name: John Drake
     org: Juniper Networks
     email: jdrake@juniper.net
+  -
+    ins: R. Rokui
+    name: Reza Rokui
+    org: Nokia
+    email: reza.rokui@nokia.com
+  -
+    ins: D. Dhody
+    name: Dhruv Dhody
+    email: dhruv.ietf@gmail.com
+
+contributor:
   -
     ins: J. Arkko
     name: Jari Arkko
     org: Ericsson
     email: jari.arkko@piuha.net
+  - ins: X. Liu
+    name: Xufeng Liu
+    email: xufeng.liu.ietf@gmail.com
+  - ins: J. Dong
+    name: Jie Dong
+    org: Huawei
+    email: jie.dong@huawei.com
+
+normative:
+  I-D.nsdt-teas-transport-slice-definition: 
 
 informative:
   RFC2578:
@@ -53,7 +74,6 @@ informative:
   I-D.ietf-teas-actn-yang:
   I-D.ietf-teas-te-service-mapping-yang:
   I-D.openconfig-rtgwg-gnmi-spec:
-  I-D.nsdt-teas-transport-slice-definition: 
   NGMN-NS-Concept:
    title: Description of Network Slicing Concept
    date: 2016
@@ -192,66 +212,6 @@ accordance with specified characteristics.
 
 As an example of additional requirements that might apply to transport slices,
 see {{I-D.ietf-teas-enhanced-vpn}} (in particular, section 3).
-
-# Applicability of ACTN to Transport Slices
-
-{{RFC8453}} defined three controllers as per the framework for Abstraction and Control of TE Networks (ACTN) to support virtual network (VN) services - Customer Network Controller (CNC), Multi-Domain Service Coordinator (MDSC) and Provisioning Network Controller (PNC). A CNC is responsible for communicating a customer's virtual network requirements, a MDSC is responsible for multi-domain coordination, virtualization/abstraction, customer mapping/translation and virtual service coordination to realize the virtual network requirement. Its key role is to detach the network/service requirements from the underlying technology. A PNC oversees the configuration, monitoring and collection of the network topology. The PNC is a underlay technology specific controller. 
-
-While the ACTN framework is a generic VN framework that is used for various VN service beyond the transport slice, it is still a suitable based to understand how the various controllers interact to realize the Transport slice. 
-
-A mapping between the Transport Slice controller definitions and ACTN controllers is as shown below figure -  
-
-~~~ ascii-art 
-+------------------------------------+
-|             Customer               |
-+------------------------------------+
-                  A
-                  |
-                  V
-+------------------------------------+
-|      A highter level system        |
-|(e.g e2e network slice orchestrator)| 
-+------------------------------------+
-                  A
-                  | TSC NBI
-                  V
-+------------------------------------+     +-----+
-|      Transport Slice Controller    | ==> | CNC | 
-+------------------------------------+     +-----+
-                  A                           A
-                  | TSC SBI                   | CMI
-                  V                           V
-+------------------------------------+     +-----+
-|        Network Controller(s)       | ==> |MDSC | 
-+------------------------------------+     +-----+
-                                              A
-                                              | MPI
-                                              V
-                                           +-----+
-                                           | PNC |
-                                           +-----+
-~~~
-
-The TSC NBI conveys the generic transport slice requirements. These may then be
-realized using an SBI.
-
-As per {{RFC8453}} and {{I-D.ietf-teas-actn-yang}}, the CNC-MDSC Interface (CMI)
-is used to convey the virtual network service requirements along with the
-service models and the MDSC-PNC Interface (MPI) is used to realize the service
-along network configuration models. {{I-D.ietf-teas-te-service-mapping-yang}}
-further describe how the VPN services can be mapped to the underlying TE
-resources. 
-
-The Transport Network Controller is depicted as a single block, where as in
-the ACTN framework this has been decomposed into MDSC and PNC to handle
-multiple domains and various underlay technologies. 
-
-{{RFC8453}} also describes TE Network Slicing in the context of ACTN as a
-collection of resources that is used to establish a logically dedicated virtual
-network over one or more TE networks.  In case of TE enabled underlying network,
-ACTN VN can be used as a base to realize the transport network slicing by
-coordination among multiple peer domains as well as underlay technology
-domains.
 
 # Framework
 
@@ -448,51 +408,158 @@ transport slices, as well providing the above model information.
 
 ## Mapping
 
-The main task of the transport slice controller is to map abstract transport slice requirements to concrete technologies and establish the required connectivity, and ensuring that required resources are allocated to the transport slice.
+The main task of the transport slice controller is to map abstract transport
+slice requirements to concrete technologies and establish the required
+connectivity, and ensuring that required resources are allocated to the
+transport slice.
 
 ## Underlying technology
 
-There are a number of different technologies that can be used, including physical connections, MPLS, TSN, Flex-E, etc.
+There are a number of different technologies that can be used, including
+physical connections, MPLS, TSN, Flex-E, etc.
 
-See {{I-D.ietf-teas-enhanced-vpn}} - section 5 - for instance, for example underlying technologies.
+See {{I-D.ietf-teas-enhanced-vpn}} - section 5 - for instance, for example
+underlying technologies.
 
-Also, as outlined in a previous section of this document, ACTN ({{RFC8453}}) 
-offers a framework that is used elsewhere in IETF specifications to create 
-virtual network (VN) services similar to Transport Slices.
+Also, as outlined in "applicability of ACTN to Transport Slices" below,
+ACTN ({{RFC8453}}) offers a framework that is used elsewhere in IETF
+specifications to create virtual network (VN) services similar to Transport
+Slices.
 
-A transport slice can be realized in a network, using specific underlying technology or technologies.  The creation of a new transport slice will be initiated with following three steps:
+A transport slice can be realized in a network, using specific underlying
+technology or technologies.  The creation of a new transport slice will be
+initiated with following three steps:
 
-* Step 1:  A higher level system requests connections with specific characteristics via NBI.
+* Step 1:  A higher level system requests connections with specific
+characteristics via NBI.
 
-* Step 2:  This request will be processed by a Transport Slice Controller which specifies a mapping between northbound request to  any IETF Services, Tunnels, and paths models.
+* Step 2:  This request will be processed by a Transport Slice Controller
+which specifies a mapping between northbound request to  any IETF Services,
+Tunnels, and paths models.
 
-* Step 3:  A series of requests for creation of services, tunnels and paths will be sent to the network to realize the trasport slice.
+* Step 3:  A series of requests for creation of services, tunnels and paths
+will be sent to the network to realize the trasport slice.
 
-It is very clear that regardless of how transport slice is realized in the network (i.e. using tunnels of type RSVP or SR), the  definition of transport slice does not change at all but rather  its realization.
+It is very clear that regardless of how transport slice is realized in the
+network (i.e. using tunnels of type RSVP or SR), the  definition of transport
+slice does not change at all but rather  its realization.
+
+# Applicability of ACTN to Transport Slices
+
+{{RFC8453}} defined three controllers as per the framework for Abstraction and
+Control of TE Networks (ACTN) to support virtual network (VN) services -
+Customer Network Controller (CNC), Multi-Domain Service Coordinator (MDSC) and
+Provisioning Network Controller (PNC). A CNC is responsible for communicating
+a customer's virtual network requirements, a MDSC is responsible for
+multi-domain coordination, virtualization/abstraction, customer
+mapping/translation and virtual service coordination to realize the virtual
+network requirement. Its key role is to detach the network/service requirements
+from the underlying technology. A PNC oversees the configuration, monitoring
+and collection of the network topology. The PNC is a underlay technology
+specific controller. 
+
+While the ACTN framework is a generic VN framework that is used for various VN
+service beyond the transport slice, it is still a suitable based to understand
+how the various controllers interact to realize the Transport slice. 
+
+A mapping between the Transport Slice definitions and ACTN definitions is as
+shown in Figure 1 below.
+
+~~~ ascii-art 
+    ------------------------------------+  
+    |             Customer               |  |
+    +------------------------------------+  
+                      A                     |     ACTN
+                      |                        Terminology
+                      V                     |  and Concepts
+    +------------------------------------+  
+    |      A highter level system        |  |
+    |(e.g e2e network slice orchestrator)|   
+    +------------------------------------+  |
+                      A                     
+                      | TSC NBI             |
+                      V                     
+    +------------------------------------+  |   +-----+
+    |      Transport Slice Controller    | ===> | CNC | 
+    +------------------------------------+  |   +-----+
+                      A                            A
+                      | TSC SBI             |      | CMI
+                      V                            V
+    +------------------------------------+  |   +-----+
+    |        Network Controller(s)       | ===> |MDSC | 
+    +------------------------------------+  |   +-----+
+                                                   A
+             Terminology/Concepts           |      | MPI
+            Used in this Document                  V
+                                            |   +-----+
+                                                | PNC |
+                                            |   +-----+
+    
+                           Figure 1
+~~~
+
+The TSC NBI conveys the generic transport slice requirements. These may then be
+realized using an SBI.
+
+As per {{RFC8453}} and {{I-D.ietf-teas-actn-yang}}, the CNC-MDSC Interface (CMI)
+is used to convey the virtual network service requirements along with the
+service models and the MDSC-PNC Interface (MPI) is used to realize the service
+along network configuration models. {{I-D.ietf-teas-te-service-mapping-yang}}
+further describe how the VPN services can be mapped to the underlying TE
+resources. 
+
+The Transport Network Controller is depicted as a single block, where as in
+the ACTN framework this has been decomposed into MDSC and PNC to handle
+multiple domains and various underlay technologies. 
+
+{{RFC8453}} also describes TE Network Slicing in the context of ACTN as a
+collection of resources that is used to establish a logically dedicated virtual
+network over one or more TE networks.  In case of TE enabled underlying network,
+ACTN VN can be used as a base to realize the transport network slicing by
+coordination among multiple peer domains as well as underlay technology
+domains.
 
 # Considerations
 
 ## Monitoring
 
-Transport slice realization needs to be instrumented in order to track how it is working, and it might be necessary to modify the transport slice as requirements change. Dynamic reconfiguration might be needed.
+Transport slice realization needs to be instrumented in order to track how it
+is working, and it might be necessary to modify the transport slice as
+requirements change. Dynamic reconfiguration might be needed.
 
 ## Security Considerations
 
-Transport slices might use underlying virtualized networking.  All types of virtual networking require special consideration to be given to the separation of traffic between distinct virtual networks, as well as some degree of protection from effects of traffic use of underlying network (and other) resources from other virtual networks sharing those resources.
+Transport slices might use underlying virtualized networking.  All types of
+virtual networking require special consideration to be given to the separation
+of traffic between distinct virtual networks, as well as some degree of
+protection from effects of traffic use of underlying network (and other)
+resources from other virtual networks sharing those resources.
 
 For example, if a service requires a specific upper bound of latency, then that
 service can be degraded by added delay in transmission of service packets
 through the activities of another service or application using the same
 resources.
 
-Similarly, in a network with virtual functions, noticeably impeding access to a function used by another transport slice (for instance, compute resources) can be just as service degrading as delaying physical transmission of associated packet in the network.
+Similarly, in a network with virtual functions, noticeably impeding access to
+a function used by another transport slice (for instance, compute resources)
+can be just as service degrading as delaying physical transmission of associated
+packet in the network.
 
-While a transport slice might include encryption and other security features as part of the service, consumers might be well advised to take responsibility for their own security needs, possibly by encrypting traffic before hand-off to a service provider.
+While a transport slice might include encryption and other security features as
+part of the service, consumers might be well advised to take responsibility for
+their own security needs, possibly by encrypting traffic before hand-off to a
+service provider.
 
 ## Privacy Considerations
-Privacy of transport nework slice service consumers must be preserved.  It should not be possible for one transport slice consumer to discover the presence of other consumers, nor should sites that are members of one transport slice be visible outside the context of that transport slice.
+Privacy of transport nework slice service consumers must be preserved.  It
+should not be possible for one transport slice consumer to discover the presence
+of other consumers, nor should sites that are members of one transport slice
+be visible outside the context of that transport slice.
 
-In this sense, it is of paramount importance that the system use the privacy protection mechanism defined for the specific underlying technologies used, including in particular those mechanisms designed to preclude acquiring identifying information associated with any transport slice consumer.
+In this sense, it is of paramount importance that the system use the privacy
+protection mechanism defined for the specific underlying technologies used,
+including in particular those mechanisms designed to preclude acquiring
+identifying information associated with any transport slice consumer.
 
 # Acknowledgments
 
