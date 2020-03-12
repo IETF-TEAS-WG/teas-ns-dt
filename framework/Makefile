@@ -1,11 +1,14 @@
 
 base:	draft-nsdt-teas-ns-framework-01.txt
 
-draft-nsdt-teas-ns-framework-01.xml:	draft-nsdt-teas-ns-framework-01.md
-	kramdown-rfc2629 draft-nsdt-teas-ns-framework-01.md > draft-nsdt-teas-ns-framework-01.xml
+draft-nsdt-teas-ns-framework-01.txt:	draft-nsdt-teas-ns-framework-01.md
+	kdrfc -3 draft-nsdt-teas-ns-framework-01.md > /dev/null
 
-draft-nsdt-teas-ns-framework-01.txt:	draft-nsdt-teas-ns-framework-01.xml
-	xml2rfc draft-nsdt-teas-ns-framework-01.xml
+# draft-nsdt-teas-ns-framework-01.xml:	draft-nsdt-teas-ns-framework-01.md
+# 	kdrfc -3 draft-nsdt-teas-ns-framework-01.md > draft-nsdt-teas-ns-framework-01.xml
+# 
+# draft-nsdt-teas-ns-framework-01.txt:	draft-nsdt-teas-ns-framework-01.xml
+# 	xml2rfc draft-nsdt-teas-ns-framework-01.xml
 
 draft-framework.xml:	draft-framework.md
 	kramdown-rfc2629 draft-framework.md

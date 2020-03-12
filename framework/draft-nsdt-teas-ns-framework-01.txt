@@ -2,15 +2,11 @@
 
 
 
-Network Working Group                                    E. Gray, Editor
+Network Working Group                                       E. Gray, Ed.
 Internet-Draft                                                  Ericsson
-Intended status: Informational                          J. Drake, Editor
-Expires: September 11, 2020                             Juniper Networks
-                                                                R. Rokui
-                                                                   Nokia
-                                                                D. Dhody
-                                                                  Huawei
-                                                          March 10, 2020
+Intended status: Informational                             J. Drake, Ed.
+Expires: 13 September 2020                              Juniper Networks
+                                                           12 March 2020
 
 
                  Framework for Transport Network Slices
@@ -50,15 +46,17 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
+   This Internet-Draft will expire on 13 September 2020.
 
 
 
-Gray, Editor, et al.   Expires September 11, 2020               [Page 1]
+
+
+
+Gray & Drake            Expires 13 September 2020               [Page 1]
 
 Internet-Draft      Transport Network Slice Framework         March 2020
 
-
-   This Internet-Draft will expire on September 11, 2020.
 
 Copyright Notice
 
@@ -66,24 +64,23 @@ Copyright Notice
    document authors.  All rights reserved.
 
    This document is subject to BCP 78 and the IETF Trust's Legal
-   Provisions Relating to IETF Documents
-   (https://trustee.ietf.org/license-info) in effect on the date of
-   publication of this document.  Please review these documents
-   carefully, as they describe your rights and restrictions with respect
-   to this document.  Code Components extracted from this document must
-   include Simplified BSD License text as described in Section 4.e of
-   the Trust Legal Provisions and are provided without warranty as
-   described in the Simplified BSD License.
+   Provisions Relating to IETF Documents (https://trustee.ietf.org/
+   license-info) in effect on the date of publication of this document.
+   Please review these documents carefully, as they describe your rights
+   and restrictions with respect to this document.  Code Components
+   extracted from this document must include Simplified BSD License text
+   as described in Section 4.e of the Trust Legal Provisions and are
+   provided without warranty as described in the Simplified BSD License.
 
 Table of Contents
 
    1.  Introduction  . . . . . . . . . . . . . . . . . . . . . . . .   2
    2.  Requirements  . . . . . . . . . . . . . . . . . . . . . . . .   4
-   3.  Framework . . . . . . . . . . . . . . . . . . . . . . . . . .   4
+   3.  Framework . . . . . . . . . . . . . . . . . . . . . . . . . .   5
      3.1.  Management systems or other applications  . . . . . . . .   5
-     3.2.  Expressing connectivity intents . . . . . . . . . . . . .   5
-     3.3.  Transport Slice Controller (TSC)  . . . . . . . . . . . .   7
-       3.3.1.  Northbound Inteface (NBI) . . . . . . . . . . . . . .   8
+     3.2.  Expressing connectivity intents . . . . . . . . . . . . .   6
+     3.3.  Transport Slice Controller (TSC)  . . . . . . . . . . . .   8
+       3.3.1.  Northbound Inteface (NBI) . . . . . . . . . . . . . .   9
      3.4.  Mapping . . . . . . . . . . . . . . . . . . . . . . . . .   9
      3.5.  Underlying technology . . . . . . . . . . . . . . . . . .   9
    4.  Applicability of ACTN to Transport Slices . . . . . . . . . .  10
@@ -91,11 +88,13 @@ Table of Contents
      5.1.  Monitoring  . . . . . . . . . . . . . . . . . . . . . . .  12
      5.2.  Security Considerations . . . . . . . . . . . . . . . . .  12
      5.3.  Privacy Considerations  . . . . . . . . . . . . . . . . .  12
+     5.4.  IANA Considerations . . . . . . . . . . . . . . . . . . .  13
    6.  Acknowledgments . . . . . . . . . . . . . . . . . . . . . . .  13
    7.  References  . . . . . . . . . . . . . . . . . . . . . . . . .  13
      7.1.  Normative References  . . . . . . . . . . . . . . . . . .  13
      7.2.  Informative References  . . . . . . . . . . . . . . . . .  13
-   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  16
+   Contributors  . . . . . . . . . . . . . . . . . . . . . . . . . .  16
+   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  17
 
 1.  Introduction
 
@@ -105,17 +104,16 @@ Table of Contents
    in this document to use terminology consistent with this and other
    definitions provided in that draft.
 
+   In particular, this document uses the following terminology defined
+   in the defintions document: - Transport Slice - Transport Slice
 
 
 
-
-Gray, Editor, et al.   Expires September 11, 2020               [Page 2]
+Gray & Drake            Expires 13 September 2020               [Page 2]
 
 Internet-Draft      Transport Network Slice Framework         March 2020
 
 
-   In particular, this document uses the following terminology defined
-   in the defintions document: - Transport Slice - Transport Slice
    Controller (TSC) - Transport Network Controller (TNC) - Nothrbound
    Interface (NBI) - Southbound Interface (SBI)
 
@@ -147,7 +145,7 @@ Internet-Draft      Transport Network Slice Framework         March 2020
    compute, storage and networking resources) which form a deployed
    Network Slice".  According to [TS28530], an end-to-end network slice
    consists of three major types of network segments: Radio Access
-   Network (RAN), Transport Network (TN) and Core Network (CN).
+   Network (RAN), Transport Network (TN) and Core Network (CN). 
    Transport network provides the required connectivity between
    different entities in RAN and CN segments of an end-to-end network
    slice, with a specific performance commitment.  For each end-to-end
@@ -165,7 +163,9 @@ Internet-Draft      Transport Network Slice Framework         March 2020
 
 
 
-Gray, Editor, et al.   Expires September 11, 2020               [Page 3]
+
+
+Gray & Drake            Expires 13 September 2020               [Page 3]
 
 Internet-Draft      Transport Network Slice Framework         March 2020
 
@@ -213,19 +213,24 @@ Internet-Draft      Transport Network Slice Framework         March 2020
    transport slices, see [I-D.ietf-teas-enhanced-vpn] (in particular,
    section 3).
 
+
+
+
+
+
+
+
+
+Gray & Drake            Expires 13 September 2020               [Page 4]
+
+Internet-Draft      Transport Network Slice Framework         March 2020
+
+
 3.  Framework
 
    A number of transport slice services will typically be provided over
    a shared underlying network infrastructure.  Each transport slice
    consists of both the overlay connectivity and a specific set of
-
-
-
-Gray, Editor, et al.   Expires September 11, 2020               [Page 4]
-
-Internet-Draft      Transport Network Slice Framework         March 2020
-
-
    dedicated network resources and/or functions allocated in a shared
    underlay network to satisfy the needs of the transport slice
    consumer.  In at least some examples of underlying network
@@ -237,21 +242,21 @@ Internet-Draft      Transport Network Slice Framework         March 2020
 
    The users of transport slices are:
 
-   o  The management system or other application that creates and
+   *  The management system or other application that creates and
       manages them.
 
-   o  The applications and components wishing to use these slices.
+   *  The applications and components wishing to use these slices.
 
    Transport users are served by the system that can build transport
    slices, as follows:
 
-   o  A controller takes requests from a management system or other
+   *  A controller takes requests from a management system or other
       application, which are then communicated via an abstracted
       northbound interface.  This interface transmits data objects that
       describe the needed transport slices in terms of topology and
       service level objectives (SLO).
 
-   o  These requests are assumed to be translated by one or more
+   *  These requests are assumed to be translated by one or more
       underlying systems, which establish specific transport slice
       instances, using specific implementation techniques (such as IP
       and MPLS) implemented on top of the underlying network
@@ -269,18 +274,19 @@ Internet-Draft      Transport Network Slice Framework         March 2020
    functions, access equipment, application specific components, as well
    as the transport slices.
 
+
+
+
+Gray & Drake            Expires 13 September 2020               [Page 5]
+
+Internet-Draft      Transport Network Slice Framework         March 2020
+
+
 3.2.  Expressing connectivity intents
 
    The Transport Slice Controller (TSC) northbound interface (NBI) can
    be used to communicate between transport slice users (or consumers)
    and the TSC.
-
-
-
-Gray, Editor, et al.   Expires September 11, 2020               [Page 5]
-
-Internet-Draft      Transport Network Slice Framework         March 2020
-
 
    A transport slice user may be a network operator who, in turn,
    provides the transport slice to another transport slice user or
@@ -301,19 +307,19 @@ Internet-Draft      Transport Network Slice Framework         March 2020
 
    The benefits of this model can include:
 
-   o  Security: because the transport network (or network operator) does
+   *  Security: because the transport network (or network operator) does
       not need to expose network details (topology, capacity, etc.) to
       transport slice consumers the transport network components are
       less exposed to attack;
 
-   o  Layered Implementation: the transport network comprises network
+   *  Layered Implementation: the transport network comprises network
       elements that belong to a different layer network than consumer
       applications, and network information (advertisements, protocols,
       etc.) that a consumer cannot interpret or respond to (note - a
       consumer should not use network information not exposed via the
       TSC NBI, even if that information is available);
 
-   o  Scalability: consumers do not need to know any information beyond
+   *  Scalability: consumers do not need to know any information beyond
       that which is exposed via the NBI.
 
    The general issues of abstraction in a TE network is described more
@@ -323,6 +329,15 @@ Internet-Draft      Transport Network Slice Framework         March 2020
    transport slices operate as a number of layers (including virtual L2,
    Ethernet or IP connectivity) could be employed.
 
+
+
+
+
+Gray & Drake            Expires 13 September 2020               [Page 6]
+
+Internet-Draft      Transport Network Slice Framework         March 2020
+
+
    Data models and interfaces are of course needed to set up transport
    slices, and specific interfaces may have capabilities that allow
    creation of specific layers.
@@ -330,14 +345,6 @@ Internet-Draft      Transport Network Slice Framework         March 2020
    Layered virtual connections are comprehensively discussed in IETF
    documents and are widely supported.  See, for instance, GMPLS-based
    networks ([RFC5212] and [RFC4397]), or ACTN ([RFC8353] and
-
-
-
-Gray, Editor, et al.   Expires September 11, 2020               [Page 6]
-
-Internet-Draft      Transport Network Slice Framework         March 2020
-
-
    [RFC8353]).  The principles and mechanisms associated with layered
    networking are applicable to transport slices.
 
@@ -348,20 +355,20 @@ Internet-Draft      Transport Network Slice Framework         March 2020
 
    For instance:
 
-   o  Path Computation Element (PCE) Communication Protocol (PCEP)
+   *  Path Computation Element (PCE) Communication Protocol (PCEP)
       [RFC5440] and GMPLS User-Network Interface (UNI) using RSVP-TE
       [RFC4208] use a TLV-based binary encoding to transmit data.
 
-   o  Network Configuration Protocol (NETCONF) [RFC6241] and RESTCONF
+   *  Network Configuration Protocol (NETCONF) [RFC6241] and RESTCONF
       Protocol [RFC8040] use XML abnd JSON encoding.
 
-   o  gRPC/GNMI [I-D.openconfig-rtgwg-gnmi-spec] uses a binary encoded
+   *  gRPC/GNMI [I-D.openconfig-rtgwg-gnmi-spec] uses a binary encoded
       programmable interface;
 
-   o  SNMP ([RFC3417], [RFC3412] and [RFC3414] uses binary encoding
+   *  SNMP ([RFC3417], [RFC3412] and [RFC3414] uses binary encoding
       (ASN.1).
 
-   o  For data modeling, YANG ([RFC6020] and [RFC7950]) may be used to
+   *  For data modeling, YANG ([RFC6020] and [RFC7950]) may be used to
       model configuration and other data for NETCONF, RESTCONF, and GNMI
       - among others; ProtoBufs can be used to model gRPC and GNMI data;
       Structure of Management Information (SMI) [RFC2578] may be used to
@@ -372,6 +379,20 @@ Internet-Draft      Transport Network Slice Framework         March 2020
    While several generic formats and data models for specific purposes
    exist, it is expected that transport slice management may require
    enhancement or augmentation of existing data models.
+
+
+
+
+
+
+
+
+
+
+Gray & Drake            Expires 13 September 2020               [Page 7]
+
+Internet-Draft      Transport Network Slice Framework         March 2020
+
 
 3.3.  Transport Slice Controller (TSC)
 
@@ -385,34 +406,25 @@ Internet-Draft      Transport Network Slice Framework         March 2020
 
    A TSC northbound interface (NBI) is needed for communicating details
    of a transport slice, as well as providing information to a slice
-
-
-
-
-Gray, Editor, et al.   Expires September 11, 2020               [Page 7]
-
-Internet-Draft      Transport Network Slice Framework         March 2020
-
-
    requester/consumer about transport slice status and performance.  The
    details for this NBI are not in scope for this document.
 
    The controller provides the following functions:
 
-   o  Provides a technology-agnostic NBI for creation/modification/
+   *  Provides a technology-agnostic NBI for creation/modification/
       deletion of the transport slices.  The API exposed by this NBI
       communicates the endpoints of the transport slice, transport slice
       SLO parameters (and possibly monitoring thresholds), applicable
       input selection (filtering) and various policies, and provides a
       way to monitor the slice.
 
-   o  Determines an abstract topology connecting the endpoints of the
+   *  Determines an abstract topology connecting the endpoints of the
       transport slice that meets criteria specified via the NBI.The TSC
       also retains information about the mapping of this abstract
       topology to underlying components of the transport slice as
       necessary to monitor transport slice status and performance.
 
-   o  Provides "Mapping Functions" for the realization of transport
+   *  Provides "Mapping Functions" for the realization of transport
       slices.  In other words, it will use the mapping functions that:
 
       map technology-agnostic NBI request to technology-specific SBIs.
@@ -420,15 +432,24 @@ Internet-Draft      Transport Network Slice Framework         March 2020
       map filtering/selection information as necessary to entities in
       the underlay network.
 
-   o  Via an SBI, the controller collects Telemetry data (e.g.  OAM
+   *  Via an SBI, the controller collects Telemetry data (e.g.  OAM
       results, Statistics, States etc.) for all elements in the abstract
       topology used to realize the transport slice.
 
-   o  Using the Telemetry data from the underlying realization of a
+   *  Using the Telemetry data from the underlying realization of a
       transport slice (i.e. services/paths/tunnels), evaluates the
       current performance against transport slice SLO parameters and
       exposes them to the transport slice consumer via the NBI.  The TSC
       NBI may also include a capability to provide notification in case
+
+
+
+
+Gray & Drake            Expires 13 September 2020               [Page 8]
+
+Internet-Draft      Transport Network Slice Framework         March 2020
+
+
       the transport slice performance reaches threshold values defined
       by the transport slice consumer.
 
@@ -441,14 +462,6 @@ Internet-Draft      Transport Network Slice Framework         March 2020
 
    The NBI complements various IETF services, tunnels, path models by
    providing an abstract layer on top of these models.
-
-
-
-
-Gray, Editor, et al.   Expires September 11, 2020               [Page 8]
-
-Internet-Draft      Transport Network Slice Framework         March 2020
-
 
    The NBI is independent of type of network functions or services that
    need to be connected, i.e. it is independent of any specific storage,
@@ -486,27 +499,25 @@ Internet-Draft      Transport Network Slice Framework         March 2020
    IETF specifications to create virtual network (VN) services similar
    to Transport Slices.
 
-   A transport slice can be realized in a network, using specific
-   underlying technology or technologies.  The creation of a new
-   transport slice will be initiated with following three steps:
-
-   o  Step 1: A higher level system requests connections with specific
-      characteristics via NBI.
-
-   o  Step 2: This request will be processed by a Transport Slice
-      Controller which specifies a mapping between northbound request to
-      any IETF Services, Tunnels, and paths models.
 
 
-
-
-
-Gray, Editor, et al.   Expires September 11, 2020               [Page 9]
+Gray & Drake            Expires 13 September 2020               [Page 9]
 
 Internet-Draft      Transport Network Slice Framework         March 2020
 
 
-   o  Step 3: A series of requests for creation of services, tunnels and
+   A transport slice can be realized in a network, using specific
+   underlying technology or technologies.  The creation of a new
+   transport slice will be initiated with following three steps:
+
+   *  Step 1: A higher level system requests connections with specific
+      characteristics via NBI.
+
+   *  Step 2: This request will be processed by a Transport Slice
+      Controller which specifies a mapping between northbound request to
+      any IETF Services, Tunnels, and paths models.
+
+   *  Step 3: A series of requests for creation of services, tunnels and
       paths will be sent to the network to realize the trasport slice.
 
    It is very clear that regardless of how transport slice is realized
@@ -546,18 +557,7 @@ Internet-Draft      Transport Network Slice Framework         March 2020
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-Gray, Editor, et al.   Expires September 11, 2020              [Page 10]
+Gray & Drake            Expires 13 September 2020              [Page 10]
 
 Internet-Draft      Transport Network Slice Framework         March 2020
 
@@ -613,7 +613,7 @@ Internet-Draft      Transport Network Slice Framework         March 2020
 
 
 
-Gray, Editor, et al.   Expires September 11, 2020              [Page 11]
+Gray & Drake            Expires 13 September 2020              [Page 11]
 
 Internet-Draft      Transport Network Slice Framework         March 2020
 
@@ -669,13 +669,17 @@ Internet-Draft      Transport Network Slice Framework         March 2020
 
 
 
-Gray, Editor, et al.   Expires September 11, 2020              [Page 12]
+Gray & Drake            Expires 13 September 2020              [Page 12]
 
 Internet-Draft      Transport Network Slice Framework         March 2020
 
 
    to preclude acquiring identifying information associated with any
    transport slice consumer.
+
+5.4.  IANA Considerations
+
+   There are no requests to IANA in this framework document.
 
 6.  Acknowledgments
 
@@ -685,8 +689,8 @@ Internet-Draft      Transport Network Slice Framework         March 2020
    which we are grateful.
 
    Significant contributions to this document were gratefully received
-   from Dhruv Dhody, Xufeng Liu, Jie Dong, and Reza Rokui.  Useful
-   comments have also been received from Sergio Belotti and Kiran
+   from Jari Arkko, Dhruv Dhody, Reza Rokui, Xufeng Liu, and Jie Dong.
+   Useful comments have also been received from Sergio Belotti and Kiran
    Makhijani.
 
 7.  References
@@ -695,9 +699,11 @@ Internet-Draft      Transport Network Slice Framework         March 2020
 
    [I-D.nsdt-teas-transport-slice-definition]
               Rokui, R., Homma, S., Makhijani, K., and L. Contreras,
-              "IETF Definition of Transport Slice", draft-nsdt-teas-
-              transport-slice-definition-01 (work in progress), March
-              2020.
+              "IETF Definition of Transport Slice", Work in Progress,
+              Internet-Draft, draft-nsdt-teas-transport-slice-
+              definition-01, 9 March 2020, <http://www.ietf.org/
+              internet-drafts/draft-nsdt-teas-transport-slice-
+              definition-01.txt>.
 
 7.2.  Informative References
 
@@ -709,38 +715,41 @@ Internet-Draft      Transport Network Slice Framework         March 2020
               Lee, Y., Zheng, H., Ceccarelli, D., Yoon, B., Dios, O.,
               Shin, J., and S. Belotti, "Applicability of YANG models
               for Abstraction and Control of Traffic Engineered
-              Networks", draft-ietf-teas-actn-yang-05 (work in
-              progress), February 2020.
+              Networks", Work in Progress, Internet-Draft, draft-ietf-
+              teas-actn-yang-05, 19 February 2020, <http://www.ietf.org/
+              internet-drafts/draft-ietf-teas-actn-yang-05.txt>.
 
    [I-D.ietf-teas-enhanced-vpn]
               Dong, J., Bryant, S., Li, Z., Miyasaka, T., and Y. Lee, "A
               Framework for Enhanced Virtual Private Networks (VPN+)
-              Services", draft-ietf-teas-enhanced-vpn-05 (work in
-              progress), February 2020.
 
 
 
-
-
-
-
-
-Gray, Editor, et al.   Expires September 11, 2020              [Page 13]
+Gray & Drake            Expires 13 September 2020              [Page 13]
 
 Internet-Draft      Transport Network Slice Framework         March 2020
 
 
+              Services", Work in Progress, Internet-Draft, draft-ietf-
+              teas-enhanced-vpn-05, 18 February 2020,
+              <http://www.ietf.org/internet-drafts/draft-ietf-teas-
+              enhanced-vpn-05.txt>.
+
    [I-D.ietf-teas-te-service-mapping-yang]
               Lee, Y., Dhody, D., Fioccola, G., WU, Q., Ceccarelli, D.,
               and J. Tantsura, "Traffic Engineering (TE) and Service
-              Mapping Yang Model", draft-ietf-teas-te-service-mapping-
-              yang-03 (work in progress), March 2020.
+              Mapping Yang Model", Work in Progress, Internet-Draft,
+              draft-ietf-teas-te-service-mapping-yang-03, 8 March 2020,
+              <http://www.ietf.org/internet-drafts/draft-ietf-teas-te-
+              service-mapping-yang-03.txt>.
 
    [I-D.openconfig-rtgwg-gnmi-spec]
               Shakir, R., Shaikh, A., Borman, P., Hines, M., Lebsack,
               C., and C. Morrow, "gRPC Network Management Interface
-              (gNMI)", draft-openconfig-rtgwg-gnmi-spec-01 (work in
-              progress), March 2018.
+              (gNMI)", Work in Progress, Internet-Draft, draft-
+              openconfig-rtgwg-gnmi-spec-01, 5 March 2018,
+              <http://www.ietf.org/internet-drafts/draft-openconfig-
+              rtgwg-gnmi-spec-01.txt>.
 
    [NGMN-NS-Concept]
               NGMN Alliance, ., "Description of Network Slicing
@@ -768,6 +777,15 @@ Internet-Draft      Transport Network Slice Framework         March 2020
 
    [RFC3417]  Presuhn, R., Ed., "Transport Mappings for the Simple
               Network Management Protocol (SNMP)", STD 62, RFC 3417,
+
+
+
+
+Gray & Drake            Expires 13 September 2020              [Page 14]
+
+Internet-Draft      Transport Network Slice Framework         March 2020
+
+
               DOI 10.17487/RFC3417, December 2002,
               <https://www.rfc-editor.org/info/rfc3417>.
 
@@ -777,14 +795,6 @@ Internet-Draft      Transport Network Slice Framework         March 2020
               Traffic Engineering (RSVP-TE) Support for the Overlay
               Model", RFC 4208, DOI 10.17487/RFC4208, October 2005,
               <https://www.rfc-editor.org/info/rfc4208>.
-
-
-
-
-Gray, Editor, et al.   Expires September 11, 2020              [Page 14]
-
-Internet-Draft      Transport Network Slice Framework         March 2020
-
 
    [RFC4397]  Bryskin, I. and A. Farrel, "A Lexicography for the
               Interpretation of Generalized Multiprotocol Label
@@ -825,6 +835,13 @@ Internet-Draft      Transport Network Slice Framework         March 2020
               RFC 7950, DOI 10.17487/RFC7950, August 2016,
               <https://www.rfc-editor.org/info/rfc7950>.
 
+
+
+Gray & Drake            Expires 13 September 2020              [Page 15]
+
+Internet-Draft      Transport Network Slice Framework         March 2020
+
+
    [RFC8040]  Bierman, A., Bjorklund, M., and K. Watsen, "RESTCONF
               Protocol", RFC 8040, DOI 10.17487/RFC8040, January 2017,
               <https://www.rfc-editor.org/info/rfc8040>.
@@ -833,14 +850,6 @@ Internet-Draft      Transport Network Slice Framework         March 2020
               Service API Version 2: Java Bindings Update", RFC 8353,
               DOI 10.17487/RFC8353, May 2018,
               <https://www.rfc-editor.org/info/rfc8353>.
-
-
-
-
-Gray, Editor, et al.   Expires September 11, 2020              [Page 15]
-
-Internet-Draft      Transport Network Slice Framework         March 2020
-
 
    [RFC8453]  Ceccarelli, D., Ed. and Y. Lee, Ed., "Framework for
               Abstraction and Control of TE Networks (ACTN)", RFC 8453,
@@ -853,18 +862,20 @@ Internet-Draft      Transport Network Slice Framework         March 2020
    [TS28530]  3GPP, ., "Management and orchestration; Concepts, use
               cases and requirements", 3GPP TS 28.530 , 2019.
 
-Authors' Addresses
+Contributors
 
-   Eric Gray
+   The following authors contributed significantly to this document:
+
+   Jari Arkko
    Ericsson
 
-   Email: eric.gray@ericsson.com
+   Email: jari.arkko@piuha.net
 
 
-   John Drake
-   Juniper Networks
+   Dhruv Dhody
+   Huawei, India
 
-   Email: jdrake@juniper.net
+   Email: dhruv.ietf@gmail.com
 
 
    Reza Rokui
@@ -873,10 +884,38 @@ Authors' Addresses
    Email: reza.rokui@nokia.com
 
 
-   Dhruv Dhody
+   Xufeng Liu
+
+   Email: xufeng.liu.ietf@gmail.com
+
+
+
+
+
+
+Gray & Drake            Expires 13 September 2020              [Page 16]
+
+Internet-Draft      Transport Network Slice Framework         March 2020
+
+
+   Jie Dong
    Huawei
 
-   Email: dhruv.ietf@gmail.com
+   Email: jie.dong@huawei.com
+
+
+Authors' Addresses
+
+   Eric Gray (editor)
+   Ericsson
+
+   Email: eric.gray@ericsson.com
+
+
+   John Drake (editor)
+   Juniper Networks
+
+   Email: jdrake@juniper.net
 
 
 
@@ -893,4 +932,21 @@ Authors' Addresses
 
 
 
-Gray, Editor, et al.   Expires September 11, 2020              [Page 16]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Gray & Drake            Expires 13 September 2020              [Page 17]

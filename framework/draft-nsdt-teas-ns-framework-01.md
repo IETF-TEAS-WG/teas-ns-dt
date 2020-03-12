@@ -13,25 +13,17 @@ pi: [toc, sortrefs, symrefs]
 
 author:
   -
-    ins: E. Gray, Editor
+    ins: E. Gray
     name: Eric Gray
     org: Ericsson
+    role: editor
     email: eric.gray@ericsson.com
   -
-    ins: J. Drake, Editor
+    ins: J. Drake
     name: John Drake
     org: Juniper Networks
+    role: editor
     email: jdrake@juniper.net
-  -
-    ins: R. Rokui
-    name: Reza Rokui
-    org: Nokia
-    email: reza.rokui@nokia.com
-  -
-    ins: D. Dhody
-    name: Dhruv Dhody
-    org: Huawei
-    email: dhruv.ietf@gmail.com
 
 contributor:
   -
@@ -39,10 +31,22 @@ contributor:
     name: Jari Arkko
     org: Ericsson
     email: jari.arkko@piuha.net
-  - ins: X. Liu
+  -
+    ins: D. Dhody
+    name: Dhruv Dhody
+    org: Huawei, India
+    email: dhruv.ietf@gmail.com
+  -
+    ins: R. Rokui
+    name: Reza Rokui
+    org: Nokia
+    email: reza.rokui@nokia.com
+  -
+    ins: X. Liu
     name: Xufeng Liu
     email: xufeng.liu.ietf@gmail.com
-  - ins: J. Dong
+  -
+    ins: J. Dong
     name: Jie Dong
     org: Huawei
     email: jie.dong@huawei.com
@@ -94,6 +98,10 @@ informative:
     - ins: Broadband Forum
    seriesinfo: BBF SD-406
   
+--- contributor
+
+The following authors contributed significantly to this document:
+
 --- abstract
 
 This memo discusses setting up special-purpose transport connections using
@@ -557,6 +565,9 @@ protection mechanism defined for the specific underlying technologies used,
 including in particular those mechanisms designed to preclude acquiring
 identifying information associated with any transport slice consumer.
 
+## IANA Considerations
+There are no requests to IANA in this framework document.
+
 # Acknowledgments
 
 The entire TEAS NS design team and everyone participating in related
@@ -565,5 +576,6 @@ have been copied from the {{I-D.ietf-teas-enhanced-vpn}}, for which we are
 grateful.
 
 Significant contributions to this document were gratefully received from
-Dhruv Dhody, Xufeng Liu, Jie Dong, and Reza Rokui.  Useful comments have also
-been received from Sergio Belotti and Kiran Makhijani.
+Jari Arkko, Dhruv Dhody, Reza Rokui, Xufeng Liu, and Jie Dong.
+Useful comments have also been received from Sergio Belotti and Kiran Makhijani.
+
