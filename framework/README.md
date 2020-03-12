@@ -15,9 +15,9 @@ Before you can do this, you will need to download the latest MD format file, and
 This requires that you have the necessary software installed. Namely, you will need "make", "kramdown-rfc2629" and "xml2rfc". See
 [the instructions](https://github.com/martinthomson/i-d-template/blob/master/doc/SETUP.md) for setting these tools up.
 
-To use "make" with the .01 version (and subsequent versions), you will need to update kramdown-rfc2629 which is used by "kdrfc" (kdrfc creates both the XML and Text versions with the same base name).
+To use "make" with the -01 version (and subsequent versions), you will need to update kramdown-rfc2629 which is used by "kdrfc" (kdrfc creates both the XML and Text versions with the same base name).
 
-If you wish to use xml2rfc on the XML version, you may have to find the latest update for xml2rfc, or use whatever the flag (or option) is to use the right processing rules *i.e. - those used by "kdrfc -3" - but that step is not strictly needed.
+If you wish to use xml2rfc on the XML version, use: "xml2rfc --v3 ..."
 
 Note also that - depending on your OS and development environment - you may have to get (download) other tools to make the above tools work.  Mostly, remember "google is your friend."
 
