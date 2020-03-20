@@ -405,9 +405,10 @@ Internet-Draft      Transport Network Slice Framework         March 2020
    vendor environment.
 
    A TSC northbound interface (NBI) is needed for communicating details
-   of a transport slice, as well as providing information to a slice
-   requester/consumer about transport slice status and performance.  The
-   details for this NBI are not in scope for this document.
+   of a transport slice (configuration, selected policies, operational
+   state, etc.), as well as providing information to a slice requester/
+   consumer about transport slice status and performance.  The details
+   for this NBI are not in scope for this document.
 
    The controller provides the following functions:
 
@@ -441,7 +442,6 @@ Internet-Draft      Transport Network Slice Framework         March 2020
       current performance against transport slice SLO parameters and
       exposes them to the transport slice consumer via the NBI.  The TSC
       NBI may also include a capability to provide notification in case
-
 
 
 

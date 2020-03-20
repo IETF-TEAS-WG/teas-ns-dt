@@ -342,7 +342,8 @@ optimization of transport Slices in a multi-domain, a
 multi-technology and multi-vendor environment.
 
 A TSC northbound interface (NBI) is needed for communicating
-details of a transport slice, as well as providing information
+details of a transport slice (configuration, selected policies,
+operational state, etc.), as well as providing information
 to a slice requester/consumer about transport slice status
 and performance. The details for this NBI are not in scope
 for this document.
