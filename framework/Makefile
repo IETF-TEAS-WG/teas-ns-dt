@@ -1,5 +1,8 @@
 
-base:	draft-nsdt-teas-ns-framework-01.txt
+base:	draft-nsdt-teas-ns-framework-02.txt
+
+draft-nsdt-teas-ns-framework-02.txt:	draft-nsdt-teas-ns-framework-02.md
+	kdrfc -3 draft-nsdt-teas-ns-framework-02.md > /dev/null
 
 draft-nsdt-teas-ns-framework-01.txt:	draft-nsdt-teas-ns-framework-01.md
 	kdrfc -3 draft-nsdt-teas-ns-framework-01.md > /dev/null
