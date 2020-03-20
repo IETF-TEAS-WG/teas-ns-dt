@@ -576,6 +576,24 @@ have been copied from the {{I-D.ietf-teas-enhanced-vpn}}, for which we are
 grateful.
 
 Significant contributions to this document were gratefully received from
-Jari Arkko, Dhruv Dhody, Reza Rokui, Xufeng Liu, and Jie Dong.
-Useful comments have also been received from Sergio Belotti and Kiran Makhijani.
+the contributing authors listed in the "Contributors" section.  In addition
+we would like to also thank those others who have attended one or more of
+the design team meetings, including:
+
+- Aihua Guo
+- Bo Wu
+- Greg Mirsky
+- Jeff Tantsura
+- Jie Dong
+- Kiran Makhijani
+- Lou Berger
+- Luis M. Contreras
+- Rakesh Gandhi
+- Ren Chen
+- Sergio Belotti
+- Shunsuke Homma
+- Stewart Bryant
+- Tomonobu Niwa
+- Xuesong Geng
+- Xufeng Liu
 
