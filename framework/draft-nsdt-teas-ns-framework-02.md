@@ -1,7 +1,7 @@
 ---
 title: Framework for Transport Network Slices
 abbrev: Transport Network Slice Framework
-docname: draft-nsdt-teas-ns-framework-01
+docname: draft-nsdt-teas-ns-framework-02
 date:
 category: info
 
@@ -199,7 +199,7 @@ reference) modified and potential new technologies, as they develop (such as
 candidate technologies described in section 5 of
 {{I-D.ietf-teas-enhanced-vpn}}).
 
-# Requirements
+# Transport Slice Objectives
 
 It is intended that transport slices can be created to meet specific
 requirements, typically expressed as bandwidth, latency, latency variation,
@@ -214,7 +214,7 @@ It is also intended that applications and components will be able to use
 these transport slices to move packets between the specified end-points in
 accordance with specified characteristics.
 
-As an example of additional requirements that might apply to transport slices,
+As an example of requirements that might apply to transport slices,
 see {{I-D.ietf-teas-enhanced-vpn}} (in particular, section 3).
 
 # Framework
@@ -228,24 +228,32 @@ technologies, the integration between the overlay and various underlay
 resources is needed to ensure the guaranteed performance requested for
 different transport slices.
 
-  ** Align with definitions draft **
-
-The users of transport slices are:
-
-- The management system or other application that creates and manages them.
-- The applications and components wishing to use these slices.
-
-Transport users are served by the system that can build transport slices, as
+Transport Slice Definition
+({{I-D.nsdt-teas-transport-slice-definition}})
+defines the role of a Customer (or User) and a Transport Slice Controller.
+That draft also defines a TSC Northbound Interface (NBI).
+ 
+A transport slice user is served by the Transport Slice Controller (TSC), as
 follows:
-
-- A controller takes requests from a management system or other application,
-which are then communicated via an abstracted northbound interface. This
-interface transmits data objects that describe the needed transport slices in
-terms of topology and service level objectives (SLO).
+ 
+- The TSC takes requests from a management system or other application, which
+are then communicated via an NBI.  This interface carries data objects the
+transport slice user provides, describing the needed transport slices in
+terms of topology, applicable service level objectives (SLO), and any
+monitoring and reporting requirements that may apply.  Note that - in this
+context - “topology” means what the transport slice connectivity is meant to
+look like from the users perspective; it may be as simple as a list of
+mutually (and symmetrically) connected end points, or it may be complicated
+by details of connection asymmetry, per-connection SLO requirements, etc.
+ 
 - These requests are assumed to be translated by one or more underlying
-systems, which establish specific transport slice instances, using specific
-implementation techniques (such as IP and MPLS) implemented on top of the underlying
-network infrastructure.
+systems, which are used to establish specific transport slice instances on
+top of an underlying network infrastructure.
+ 
+- The TSC maintains a record of the mapping from user requests to slice
+instantiations, as needed to allow for subsequent control functions (such
+as modification or deletion of the requested slices), and as needed for
+any requested monitoring and reporting functions.
 
 Section 3 of {{I-D.ietf-teas-enhanced-vpn}} provides an example architecture
 that might apply in using the technology described in that document.
@@ -342,7 +350,8 @@ optimization of transport Slices in a multi-domain, a
 multi-technology and multi-vendor environment.
 
 A TSC northbound interface (NBI) is needed for communicating
-details of a transport slice, as well as providing information
+details of a transport slice (configuration, selected policies,
+operational state, etc.), as well as providing information
 to a slice requester/consumer about transport slice status
 and performance. The details for this NBI are not in scope
 for this document.
