@@ -1,7 +1,7 @@
 ---
 title: Framework for Transport Network Slices
 abbrev: Transport Network Slice Framework
-docname: draft-nsdt-teas-ns-framework-02
+docname: draft-nsdt-teas-ns-framework-03
 date:
 category: info
 
@@ -593,7 +593,6 @@ the design team meetings, including:
 - Bo Wu
 - Greg Mirsky
 - Jeff Tantsura
-- Jie Dong
 - Kiran Makhijani
 - Lou Berger
 - Luis M. Contreras
@@ -604,5 +603,4 @@ the design team meetings, including:
 - Stewart Bryant
 - Tomonobu Niwa
 - Xuesong Geng
-- Xufeng Liu
 
