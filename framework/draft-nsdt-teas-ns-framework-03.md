@@ -130,11 +130,12 @@ be replaced by draft-rokui-teas-transport-slice-definition).  It is the
 intention in this document to use terminology consistent with this and other
 definitions provided in that draft.
 
-In particular, this document uses the following terminology defined in the defintions document:
+In particular, this document uses the following terminology defined in the definitions document:
+
 - Transport Slice
 - Transport Slice Controller (TSC)
 - Transport Network Controller (TNC)
-- Nothrbound Interface (NBI)
+- Northbound Interface (NBI)
 - Southbound Interface (SBI)
 
 This framework is intended as a structure for discussing interfaces and
@@ -564,7 +565,7 @@ their own security needs, possibly by encrypting traffic before hand-off to a
 service provider.
 
 ## Privacy Considerations
-Privacy of transport nework slice service consumers must be preserved.  It
+Privacy of transport network slice service consumers must be preserved.  It
 should not be possible for one transport slice consumer to discover the presence
 of other consumers, nor should sites that are members of one transport slice
 be visible outside the context of that transport slice.
