@@ -5,12 +5,12 @@
 teas                                                            R. Rokui
 Internet-Draft                                                     Nokia
 Intended status: Informational                                  S. Homma
-Expires: September 23, 2020                                          NTT
+Expires: October 16, 2020                                            NTT
                                                             K. Makhijani
                                                                Futurewei
                                                            LM. Contreras
                                                               Telefonica
-                                                          March 22, 2020
+                                                          April 14, 2020
 
 
                    IETF Definition of Transport Slice
@@ -39,7 +39,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on September 23, 2020.
+   This Internet-Draft will expire on October 16, 2020.
 
 Copyright Notice
 
@@ -53,9 +53,9 @@ Copyright Notice
 
 
 
-Rokui, et al.          Expires September 23, 2020               [Page 1]
+Rokui, et al.           Expires October 16, 2020                [Page 1]
 
-Internet-Draft    draft-nsdt-transport-slice-definition       March 2020
+Internet-Draft    draft-nsdt-transport-slice-definition       April 2020
 
 
    carefully, as they describe your rights and restrictions with respect
@@ -75,18 +75,18 @@ Table of Contents
      4.2.  Endpoint Variation  . . . . . . . . . . . . . . . . . . .   8
        4.2.1.  Types of Endpoints  . . . . . . . . . . . . . . . . .   8
        4.2.2.  Connectivity Patterns . . . . . . . . . . . . . . . .   8
-     4.3.  Vertical Transport Slice  . . . . . . . . . . . . . . . .   8
+     4.3.  Vertical Transport Slice  . . . . . . . . . . . . . . . .   9
      4.4.  Horizontal Composition of Transport slice . . . . . . . .  10
    5.  Transport Slice Structure . . . . . . . . . . . . . . . . . .  10
      5.1.  Stakeholders  . . . . . . . . . . . . . . . . . . . . . .  12
      5.2.  Transport Slice Controller Interfaces . . . . . . . . . .  12
-     5.3.  Transport slice Realization . . . . . . . . . . . . . . .  13
+     5.3.  Transport slice Realization . . . . . . . . . . . . . . .  14
    6.  Relationship with End-to-End Network Slicing  . . . . . . . .  14
    7.  Security Considerations . . . . . . . . . . . . . . . . . . .  16
    8.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .  16
-   9.  Acknowledgment  . . . . . . . . . . . . . . . . . . . . . . .  16
-   10. Informative References  . . . . . . . . . . . . . . . . . . .  16
-   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  17
+   9.  Acknowledgment  . . . . . . . . . . . . . . . . . . . . . . .  17
+   10. Informative References  . . . . . . . . . . . . . . . . . . .  17
+   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  18
 
 1.  Introduction
 
@@ -109,9 +109,9 @@ Table of Contents
 
 
 
-Rokui, et al.          Expires September 23, 2020               [Page 2]
+Rokui, et al.           Expires October 16, 2020                [Page 2]
 
-Internet-Draft    draft-nsdt-transport-slice-definition       March 2020
+Internet-Draft    draft-nsdt-transport-slice-definition       April 2020
 
 
    This document defines the concept of transport slices that provide
@@ -165,9 +165,9 @@ Internet-Draft    draft-nsdt-transport-slice-definition       March 2020
 
 
 
-Rokui, et al.          Expires September 23, 2020               [Page 3]
+Rokui, et al.           Expires October 16, 2020                [Page 3]
 
-Internet-Draft    draft-nsdt-transport-slice-definition       March 2020
+Internet-Draft    draft-nsdt-transport-slice-definition       April 2020
 
 
 3.  Definition and Scope of Transport slice
@@ -221,9 +221,9 @@ Internet-Draft    draft-nsdt-transport-slice-definition       March 2020
 
 
 
-Rokui, et al.          Expires September 23, 2020               [Page 4]
+Rokui, et al.           Expires October 16, 2020                [Page 4]
 
-Internet-Draft    draft-nsdt-transport-slice-definition       March 2020
+Internet-Draft    draft-nsdt-transport-slice-definition       April 2020
 
 
       delay between selected packets in a flow.  Minimizing variations
@@ -277,9 +277,9 @@ Internet-Draft    draft-nsdt-transport-slice-definition       March 2020
 
 
 
-Rokui, et al.          Expires September 23, 2020               [Page 5]
+Rokui, et al.           Expires October 16, 2020                [Page 5]
 
-Internet-Draft    draft-nsdt-transport-slice-definition       March 2020
+Internet-Draft    draft-nsdt-transport-slice-definition       April 2020
 
 
       Note also that the hard and soft guarantees do not say anything
@@ -294,8 +294,9 @@ Internet-Draft    draft-nsdt-transport-slice-definition       March 2020
 
    o  etc.
 
-   The framework may further specify mechanisms for the performance,
-   assurance and monitoring of these objectives.
+   The framework [I-D.nsdt-teas-ns-framework] may further specify
+   mechanisms for the performance, assurance and monitoring of these
+   objectives.
 
    Note: Additional objectives may be necessary to capture, such as
    specifying well defined paths or domains that a slice may transit.  A
@@ -328,15 +329,17 @@ Internet-Draft    draft-nsdt-transport-slice-definition       March 2020
    Providing a hard resolution of guarantee for the characteristics of a
    transport slice means that the behavior and performance of other
    transport slices should not impact that slice, even if they run over
+
+
+
+
+Rokui, et al.           Expires October 16, 2020                [Page 6]
+
+Internet-Draft    draft-nsdt-transport-slice-definition       April 2020
+
+
    the same underlying infrastructure or use logically shared network
    resources.
-
-
-
-Rokui, et al.          Expires September 23, 2020               [Page 6]
-
-Internet-Draft    draft-nsdt-transport-slice-definition       March 2020
-
 
    In the context of soft resolution of guarantees, since the transport
    slices are logically partitioned over the shared resources, a certain
@@ -383,16 +386,16 @@ Internet-Draft    draft-nsdt-transport-slice-definition       March 2020
          service restoration takes no longer than some number of
          seconds.  This is specified by Availability SLO.
 
+
+
+
+Rokui, et al.           Expires October 16, 2020                [Page 7]
+
+Internet-Draft    draft-nsdt-transport-slice-definition       April 2020
+
+
       *  Protection isolation: the network path is protected with
          specified backup path.  This is specified by Availability SLO.
-
-
-
-
-Rokui, et al.          Expires September 23, 2020               [Page 7]
-
-Internet-Draft    draft-nsdt-transport-slice-definition       March 2020
-
 
 4.2.  Endpoint Variation
 
@@ -436,20 +439,23 @@ Internet-Draft    draft-nsdt-transport-slice-definition       March 2020
       for each logical link to have different SLO than the other link in
       the same graph.
 
+
+
+
+
+
+
+Rokui, et al.           Expires October 16, 2020                [Page 8]
+
+Internet-Draft    draft-nsdt-transport-slice-definition       April 2020
+
+
 4.3.  Vertical Transport Slice
 
    Transport slice may follow a hierarchical relationship that would
    provide a vertical structure to it.  This is used for building multi-
    layer slices in which each layer provides an abstraction, as well as
    an independent monitoring, performance, control and management of the
-
-
-
-Rokui, et al.          Expires September 23, 2020               [Page 8]
-
-Internet-Draft    draft-nsdt-transport-slice-definition       March 2020
-
-
    resources.  The vertical transport slice characteristic maybe used in
    2 forms:
 
@@ -492,20 +498,20 @@ Internet-Draft    draft-nsdt-transport-slice-definition       March 2020
 
    Figure 1 shows the transport slice hierarchy.  Slices TS11 and TS12
    are composed together to form TS1 that is the top level transport
+
+
+
+Rokui, et al.           Expires October 16, 2020                [Page 9]
+
+Internet-Draft    draft-nsdt-transport-slice-definition       April 2020
+
+
    slice definition, TS121 and TS122 collectively define TS12.  The SLO
    for bandwidth guarantee will be shared and latency guarantee will be
    split into latency in networks 2 and 3.  To emphasize the
    hierarchical structure, consider Network-2 and Network-3 are in the
    same administrative domain but use different transport technologies
    SR and L2VPN respectively.  Then instead of presenting 2 transport
-
-
-
-Rokui, et al.          Expires September 23, 2020               [Page 9]
-
-Internet-Draft    draft-nsdt-transport-slice-definition       March 2020
-
-
    slices, Operator-z can expose only one transport slice TS12
    abstracting the underlying transport technology details.
 
@@ -551,15 +557,9 @@ Internet-Draft    draft-nsdt-transport-slice-definition       March 2020
 
 
 
-
-
-
-
-
-
-Rokui, et al.          Expires September 23, 2020              [Page 10]
+Rokui, et al.           Expires October 16, 2020               [Page 10]
 
-Internet-Draft    draft-nsdt-transport-slice-definition       March 2020
+Internet-Draft    draft-nsdt-transport-slice-definition       April 2020
 
 
                         ____________________________
@@ -613,9 +613,9 @@ Internet-Draft    draft-nsdt-transport-slice-definition       March 2020
 
 
 
-Rokui, et al.          Expires September 23, 2020              [Page 11]
+Rokui, et al.           Expires October 16, 2020               [Page 11]
 
-Internet-Draft    draft-nsdt-transport-slice-definition       March 2020
+Internet-Draft    draft-nsdt-transport-slice-definition       April 2020
 
 
    In the context of network slices, the term sub-slice or slice-subnet
@@ -669,9 +669,9 @@ Internet-Draft    draft-nsdt-transport-slice-definition       March 2020
 
 
 
-Rokui, et al.          Expires September 23, 2020              [Page 12]
+Rokui, et al.           Expires October 16, 2020               [Page 12]
 
-Internet-Draft    draft-nsdt-transport-slice-definition       March 2020
+Internet-Draft    draft-nsdt-transport-slice-definition       April 2020
 
 
    TSC Northbound Interface (NBI):  The TSC Northbound Interface is an
@@ -687,6 +687,47 @@ Internet-Draft    draft-nsdt-transport-slice-definition       March 2020
       utilize many of the existing data models such as L2SM, L3SM, VPN,
       etc.  TSC may request for network resources or request of their
       current state for SLO assurance.
+
+      Note on technology -agnostic vs -specific use: These terms are
+      used in a transport slice's context.  A transport slice from
+      customer level in TSC, is not concerned with the underlying
+      network protocol or technology (such as L2VPN, L2VPN, etc.) or
+      corresponding service model (L2SM, L3SM, etc.) representing that
+      protocol.  Therefore, for example, both L2VPN, L2SM are
+      technology-specific from a customer of a slice's view.
+      Technology-agnostic simply means representing a transport slice
+      completely as a logical entity.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Rokui, et al.           Expires October 16, 2020               [Page 13]
+
+Internet-Draft    draft-nsdt-transport-slice-definition       April 2020
 
 
                    +------------------------------------------+
@@ -721,15 +762,6 @@ Internet-Draft    draft-nsdt-transport-slice-definition       March 2020
    infrastructure with its definition.  It is technology specific entity
    that is created and maintained over southbound interfaces.  The
    Network controller(s) export the connectivity and resource mappings
-
-
-
-
-Rokui, et al.          Expires September 23, 2020              [Page 13]
-
-Internet-Draft    draft-nsdt-transport-slice-definition       March 2020
-
-
    to the TSC.  The network controller abstracts the details of
    underlying resources from the TSC.
 
@@ -746,6 +778,14 @@ Internet-Draft    draft-nsdt-transport-slice-definition       March 2020
    customer.  A transport slice concerns with those assurance aspects
    only within the transport networks.  Consider Figure 4, where a
    network operator has an E2E network slice that traverses multiple
+
+
+
+Rokui, et al.           Expires October 16, 2020               [Page 14]
+
+Internet-Draft    draft-nsdt-transport-slice-definition       April 2020
+
+
    technology-specific networks.  Each of these networks might use any
    number of technologies, including but not limited to IP, MPLS, Fiber-
    Optics (e.g.  WDM, DWDM), Passive Optical Networking (PON),
@@ -778,19 +818,28 @@ Internet-Draft    draft-nsdt-transport-slice-definition       March 2020
    o  Network 1 might contain multiple 5G RAN nodes connected to a few
       Cell Site Gateways (CSG) routers.
 
-
-
-
-Rokui, et al.          Expires September 23, 2020              [Page 14]
-
-Internet-Draft    draft-nsdt-transport-slice-definition       March 2020
-
-
    o  Network 2 might have one or more layer-3 routers and layer-2
       switches which may run on top of an optical network.
 
    o  Network 3 might have a number of 5G RAN nodes connected to Passive
       Optical Network (PON) switches.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Rokui, et al.           Expires October 16, 2020               [Page 15]
+
+Internet-Draft    draft-nsdt-transport-slice-definition       April 2020
 
 
            <======================= E2E NS ======================>
@@ -830,18 +879,6 @@ Internet-Draft    draft-nsdt-transport-slice-definition       March 2020
    between EU-x to EU-y and is associated with a customer and a specific
    service type.
 
-
-
-
-
-
-
-
-Rokui, et al.          Expires September 23, 2020              [Page 15]
-
-Internet-Draft    draft-nsdt-transport-slice-definition       March 2020
-
-
 7.  Security Considerations
 
    TBD
@@ -849,6 +886,17 @@ Internet-Draft    draft-nsdt-transport-slice-definition       March 2020
 8.  IANA Considerations
 
    This memo includes no request to IANA.
+
+
+
+
+
+
+
+Rokui, et al.           Expires October 16, 2020               [Page 16]
+
+Internet-Draft    draft-nsdt-transport-slice-definition       April 2020
+
 
 9.  Acknowledgment
 
@@ -877,6 +925,11 @@ Internet-Draft    draft-nsdt-transport-slice-definition       March 2020
               YANG Model", draft-ietf-teas-sf-aware-topo-model-04 (work
               in progress), November 2019.
 
+   [I-D.nsdt-teas-ns-framework]
+              Gray, E. and J. Drake, "Framework for Transport Network
+              Slices", draft-nsdt-teas-ns-framework-02 (work in
+              progress), March 2020.
+
    [NFVGST]   ETSI, "NFVI Compute and Network Metrics Specification",
               Febuary 2018, <https://www.etsi.org/deliver/etsi_gs/NFV-
               TST/001_099/008/02.04.01_60/gs_nfv-tst008v020401p.pdf>.
@@ -893,9 +946,12 @@ Internet-Draft    draft-nsdt-transport-slice-definition       March 2020
 
 
 
-Rokui, et al.          Expires September 23, 2020              [Page 16]
+
+
+
+Rokui, et al.           Expires October 16, 2020               [Page 17]
 
-Internet-Draft    draft-nsdt-transport-slice-definition       March 2020
+Internet-Draft    draft-nsdt-transport-slice-definition       April 2020
 
 
    [RFC7679]  Almes, G., Kalidindi, S., Zekauskas, M., and A. Morton,
@@ -949,4 +1005,4 @@ Authors' Addresses
 
 
 
-Rokui, et al.          Expires September 23, 2020              [Page 17]
+Rokui, et al.           Expires October 16, 2020               [Page 18]
