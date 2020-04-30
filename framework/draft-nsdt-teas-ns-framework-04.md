@@ -1,7 +1,7 @@
 ---
 title: Framework for Transport Network Slices
 abbrev: Transport Network Slice Framework
-docname: draft-nsdt-teas-ns-framework-03
+docname: draft-nsdt-teas-ns-framework-04
 date:
 category: info
 
@@ -115,7 +115,7 @@ This memo is intended for discussing interfaces and technologies. It is not
 intended to be a new set of concrete interfaces or technologies. Rather, it
 should be seen as an explanation of how some existing, concrete IETF VPN and
 traffic-engineering technologies can be used to create transport slices. Note
-that there are is a rather large of these technologies, and new technologies
+that there are a number of these technologies, and new technologies
 or capabilities keep being added. This memo is also not intended presume any
 particular technology choice.
 
@@ -380,11 +380,11 @@ In other words, it will use the mapping functions that:
    map filtering/selection information as necessary to entities in the
 underlay network.
 
-- Via an SBI, the controller collects Telemetry data (e.g. OAM results,
-Statistics, States etc.) for all elements in the abstract topology used
+- Via an SBI, the controller collects telemetry data (e.g. OAM results,
+statistics, states etc.) for all elements in the abstract topology used
 to realize the transport slice.
 
-- Using the Telemetry data from the underlying realization of a
+- Using the telemetry data from the underlying realization of a
 transport slice (i.e. services/paths/tunnels), evaluates the
 current performance against transport slice SLO parameters and
 exposes them to the transport slice consumer via the NBI. The
@@ -408,7 +408,7 @@ storage, software, protocol, or platform used to realize physical or
 virtual network connectivity or functions in support of transport
 slices.
  
-The NBI uses protocol mechanisms and information passed over
+The NBI uses protocol mechanisms and information 
 passed over those mechanisms to convey desired attributes for
 transport slices and their status. The information is expected to be
 represented as a well-defined data model, and should include at
