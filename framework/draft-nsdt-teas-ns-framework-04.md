@@ -68,8 +68,8 @@ informative:
   RFC7926:
   RFC7950:
   RFC8040:
-  RFC8353:
   RFC8453:
+  RFC8454:
   I-D.ietf-teas-enhanced-vpn: 
   I-D.ietf-teas-actn-yang:
   I-D.ietf-teas-te-service-mapping-yang:
@@ -311,7 +311,7 @@ layers.
 
 Layered virtual connections are comprehensively discussed in IETF documents
 and are widely supported.  See, for instance, GMPLS-based networks ({{RFC5212}}
-and {{RFC4397}}), or ACTN ({{RFC8353}} and {{RFC8353}}).  The principles and
+and {{RFC4397}}), or ACTN ({{RFC8453}} and {{RFC8454}}).  The principles and
 mechanisms associated with layered networking are applicable to transport
 slices.
 
