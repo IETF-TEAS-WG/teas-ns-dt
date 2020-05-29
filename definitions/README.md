@@ -60,3 +60,7 @@ Note: you may have to do "git pull" first, if someone else (possibly yourself) h
 In the event that the same files have been altered during the pull, this is the point at which merging will occur.
 
 If "git push" fails due to unmerged files (i.e. - "git pull" was not run successfully first), you will need to use "git push" again.
+
+## Link to Google Docs
+
+https://docs.google.com/document/d/1dQl12DbtDwd0aKhckexupfUjFrhCE2JFgZhjZ9UKczM/edit?usp=sharing
