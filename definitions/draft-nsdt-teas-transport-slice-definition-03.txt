@@ -5,12 +5,14 @@
 teas                                                            R. Rokui
 Internet-Draft                                                     Nokia
 Intended status: Informational                                  S. Homma
-Expires: November 28, 2020                                           NTT
+Expires: December 4, 2020                                            NTT
                                                             K. Makhijani
                                                                Futurewei
                                                            LM. Contreras
                                                               Telefonica
-                                                            May 27, 2020
+                                                             J. Tantsura
+                                                            Apstra, Inc.
+                                                            June 2, 2020
 
 
                    IETF Definition of Transport Slice
@@ -39,7 +41,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on November 28, 2020.
+   This Internet-Draft will expire on December 4, 2020.
 
 Copyright Notice
 
@@ -48,16 +50,16 @@ Copyright Notice
 
    This document is subject to BCP 78 and the IETF Trust's Legal
    Provisions Relating to IETF Documents
+
+
+
+Rokui, et al.           Expires December 4, 2020                [Page 1]
+
+Internet-Draft    draft-nsdt-transport-slice-definition        June 2020
+
+
    (https://trustee.ietf.org/license-info) in effect on the date of
    publication of this document.  Please review these documents
-
-
-
-Rokui, et al.           Expires November 28, 2020               [Page 1]
-
-Internet-Draft    draft-nsdt-transport-slice-definition         May 2020
-
-
    carefully, as they describe your rights and restrictions with respect
    to this document.  Code Components extracted from this document must
    include Simplified BSD License text as described in Section 4.e of
@@ -85,10 +87,10 @@ Table of Contents
    7.  Security Considerations . . . . . . . . . . . . . . . . . . .  15
    8.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .  15
    9.  Acknowledgment  . . . . . . . . . . . . . . . . . . . . . . .  16
-   10. Appendix A  . . . . . . . . . . . . . . . . . . . . . . . . .  16
-     10.1.  On Meeting guarantees of service objectives (tbd)  . . .  16
-     10.2.  level of confidence  . . . . . . . . . . . . . . . . . .  17
-   11. Informative References  . . . . . . . . . . . . . . . . . . .  18
+   10. Informative References  . . . . . . . . . . . . . . . . . . .  16
+   Appendix A.  Discussions  . . . . . . . . . . . . . . . . . . . .  17
+     A.1.  On Meeting guarantees of service objectives (tbd) . . . .  17
+     A.2.  level of confidence . . . . . . . . . . . . . . . . . . .  19
    Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  19
 
 1.  Introduction
@@ -104,15 +106,15 @@ Table of Contents
 
    o  Network wholesale services
 
-   o  Network infrastructure sharing among operators
 
 
 
-
-Rokui, et al.           Expires November 28, 2020               [Page 2]
+Rokui, et al.           Expires December 4, 2020                [Page 2]
 
-Internet-Draft    draft-nsdt-transport-slice-definition         May 2020
+Internet-Draft    draft-nsdt-transport-slice-definition        June 2020
 
+
+   o  Network infrastructure sharing among operators
 
    o  NFV connectivity and Data Center Interconnec
 
@@ -161,14 +163,14 @@ Internet-Draft    draft-nsdt-transport-slice-definition         May 2020
 
    o  E2E NS: End to End Network Slice
 
-   o  TS: Transport Slice
 
 
-
-Rokui, et al.           Expires November 28, 2020               [Page 3]
+Rokui, et al.           Expires December 4, 2020                [Page 3]
 
-Internet-Draft    draft-nsdt-transport-slice-definition         May 2020
+Internet-Draft    draft-nsdt-transport-slice-definition        June 2020
 
+
+   o  TS: Transport Slice
 
    o  TSC: Transport Slice Controller
 
@@ -209,23 +211,22 @@ Internet-Draft    draft-nsdt-transport-slice-definition         May 2020
    following sections.
 
    The term "transport" in transport slice is derived from the
-   definition of Transport Network in the section 1.3.1 of RFC5921: A
+   definition of Transport Network in the section 1.3.1 of [RFC5921] : A
    Transport Network provides transparent transmission of user traffic
    between attached client devices by establishing and maintaining
    point-to-point or point-to-multipoint connections between such
    devices.  "Slice" refers to the characteristics that separate one
    type of user-traffic from other types of traffic.  Thus, transport
    slice assumes that an underlying transport network has capability to
-   change the configurations of the network nodes dynamically via
 
 
 
-
-Rokui, et al.           Expires November 28, 2020               [Page 4]
+Rokui, et al.           Expires December 4, 2020                [Page 4]
 
-Internet-Draft    draft-nsdt-transport-slice-definition         May 2020
+Internet-Draft    draft-nsdt-transport-slice-definition        June 2020
 
 
+   change the configurations of the network nodes dynamically via
    controller(s) and to provide transport transmissions with fulfilling
    all or some of SLOs to specific flows.
 
@@ -276,10 +277,9 @@ Internet-Draft    draft-nsdt-transport-slice-definition         May 2020
 
 
 
-
-Rokui, et al.           Expires November 28, 2020               [Page 5]
+Rokui, et al.           Expires December 4, 2020                [Page 5]
 
-Internet-Draft    draft-nsdt-transport-slice-definition         May 2020
+Internet-Draft    draft-nsdt-transport-slice-definition        June 2020
 
 
    o  Availability
@@ -314,11 +314,11 @@ Internet-Draft    draft-nsdt-transport-slice-definition         May 2020
       provide specification for virtual network functions which are part
       of the transport slice endpoints.  See [NFVGST].
 
-   o  Availability: It a measure of how often a customer defined service
-      is lost or degraded to the point of unacceptable performance due
-      to any fault in the network.  It is a ratio of time the transport
-      slice meets agreed SLO over the total time where the transport
-      slice is contracted.
+   o  Availability: It is a measure of how often a customer defined
+      service is lost or degraded to the point of unacceptable
+      performance due to any fault in the network.  It is a ratio of
+      time the transport slice meets agreed SLO over the total time
+      where the transport slice is contracted.
 
    o  Security: This objective may request for encryption [RFC4303]
       between two end-points explicitly to meet architecture
@@ -333,9 +333,9 @@ Internet-Draft    draft-nsdt-transport-slice-definition         May 2020
 
 
 
-Rokui, et al.           Expires November 28, 2020               [Page 6]
+Rokui, et al.           Expires December 4, 2020                [Page 6]
 
-Internet-Draft    draft-nsdt-transport-slice-definition         May 2020
+Internet-Draft    draft-nsdt-transport-slice-definition        June 2020
 
 
          traffic.  For this purpose [i2nsf-nsf-monitoring-data-model-06]
@@ -389,9 +389,9 @@ Internet-Draft    draft-nsdt-transport-slice-definition         May 2020
 
 
 
-Rokui, et al.           Expires November 28, 2020               [Page 7]
+Rokui, et al.           Expires December 4, 2020                [Page 7]
 
-Internet-Draft    draft-nsdt-transport-slice-definition         May 2020
+Internet-Draft    draft-nsdt-transport-slice-definition        June 2020
 
 
    The term Network Function (NF) covers both service and transport
@@ -445,9 +445,9 @@ Internet-Draft    draft-nsdt-transport-slice-definition         May 2020
 
 
 
-Rokui, et al.           Expires November 28, 2020               [Page 8]
+Rokui, et al.           Expires December 4, 2020                [Page 8]
 
-Internet-Draft    draft-nsdt-transport-slice-definition         May 2020
+Internet-Draft    draft-nsdt-transport-slice-definition        June 2020
 
 
            <======================== TS1 ========================>
@@ -501,9 +501,9 @@ Internet-Draft    draft-nsdt-transport-slice-definition         May 2020
 
 
 
-Rokui, et al.           Expires November 28, 2020               [Page 9]
+Rokui, et al.           Expires December 4, 2020                [Page 9]
 
-Internet-Draft    draft-nsdt-transport-slice-definition         May 2020
+Internet-Draft    draft-nsdt-transport-slice-definition        June 2020
 
 
 5.  Transport Slice Structure
@@ -557,9 +557,9 @@ Internet-Draft    draft-nsdt-transport-slice-definition         May 2020
 
 
 
-Rokui, et al.           Expires November 28, 2020              [Page 10]
+Rokui, et al.           Expires December 4, 2020               [Page 10]
 
-Internet-Draft    draft-nsdt-transport-slice-definition         May 2020
+Internet-Draft    draft-nsdt-transport-slice-definition        June 2020
 
 
    the transport slice definiton addresses the set of connectivities
@@ -613,9 +613,9 @@ Internet-Draft    draft-nsdt-transport-slice-definition         May 2020
 
 
 
-Rokui, et al.           Expires November 28, 2020              [Page 11]
+Rokui, et al.           Expires December 4, 2020               [Page 11]
 
-Internet-Draft    draft-nsdt-transport-slice-definition         May 2020
+Internet-Draft    draft-nsdt-transport-slice-definition        June 2020
 
 
    Transport Network Controller:  is some form of network infrastructure
@@ -669,9 +669,9 @@ Internet-Draft    draft-nsdt-transport-slice-definition         May 2020
 
 
 
-Rokui, et al.           Expires November 28, 2020              [Page 12]
+Rokui, et al.           Expires December 4, 2020               [Page 12]
 
-Internet-Draft    draft-nsdt-transport-slice-definition         May 2020
+Internet-Draft    draft-nsdt-transport-slice-definition        June 2020
 
 
                    +------------------------------------------+
@@ -725,9 +725,9 @@ Internet-Draft    draft-nsdt-transport-slice-definition         May 2020
 
 
 
-Rokui, et al.           Expires November 28, 2020              [Page 13]
+Rokui, et al.           Expires December 4, 2020               [Page 13]
 
-Internet-Draft    draft-nsdt-transport-slice-definition         May 2020
+Internet-Draft    draft-nsdt-transport-slice-definition        June 2020
 
 
    technology-specific networks.  Each of these networks might use any
@@ -781,9 +781,9 @@ Internet-Draft    draft-nsdt-transport-slice-definition         May 2020
 
 
 
-Rokui, et al.           Expires November 28, 2020              [Page 14]
+Rokui, et al.           Expires December 4, 2020               [Page 14]
 
-Internet-Draft    draft-nsdt-transport-slice-definition         May 2020
+Internet-Draft    draft-nsdt-transport-slice-definition        June 2020
 
 
            <======================= E2E NS ======================>
@@ -837,127 +837,19 @@ Internet-Draft    draft-nsdt-transport-slice-definition         May 2020
 
 
 
-Rokui, et al.           Expires November 28, 2020              [Page 15]
+Rokui, et al.           Expires December 4, 2020               [Page 15]
 
-Internet-Draft    draft-nsdt-transport-slice-definition         May 2020
+Internet-Draft    draft-nsdt-transport-slice-definition        June 2020
 
 
 9.  Acknowledgment
 
    The entire TEAS NS design team and everyone participating in those
    discussion has contributed to this draft.  Particularly, Eric Gray,
-   Xufeng Liu, Jie Dong, Jeff Tantsura, and Jari Arkko for a thorough
-   review among other contributions.
+   Xufeng Liu, Jie Dong, and Jari Arkko for a thorough review among
+   other contributions.
 
-10.  Appendix A
-
-10.1.  On Meeting guarantees of service objectives (tbd)
-
-   Due to overloading of the term, a further discussion is added to
-   highlight two aspects of isolation, first the resolution of isolation
-   of an objective (as described above) and second, the dedicated use or
-   a hard-separation perspective of the resource.
-
-   Providing a hard resolution of guarantee for the characteristics of a
-   transport slice means that the behavior and performance of other
-   transport slices should not impact that slice, even if they run over
-   the same underlying infrastructure or use logically shared network
-   resources.
-
-   In the context of soft resolution of guarantees, since the transport
-   slices are logically partitioned over the shared resources, a certain
-   degree of commitment to the guarantee is expected even when it is not
-   hard.  When the shared resource pools begin to become saturated, SLO
-   violations can happen, however, impacting only the performance or
-   operation of service associated with the transport slice.
-
-   This degree of isolation can be derived from availability
-   characteristics requested, such as whether a hard or soft guarantee
-   was requested.  Requesting a hard guarantee may commit more resources
-   than would be required for a softer limit.
-
-   In addition, resource isolation may be applied to ensure dedicated
-   access to a particular node, for instance.  In such requests a
-   dedicated allocation to a link, node and/or other resources to create
-   a transport slice for a particular service.  For example, a mission-
-   critical service may ask for a dedicated router and/or a link or port
-   for complete isolation from other services.
-
-   When realizing a transport slice, a network controller should be
-   responsible for allocating and providing resources according to the
-   specified objectives.
-
-   SLO violations can occur for two reasons and corresponding statements
-   apply
-
-
-
-
-Rokui, et al.           Expires November 28, 2020              [Page 16]
-
-Internet-Draft    draft-nsdt-transport-slice-definition         May 2020
-
-
-   o  Shared resource interference: i.e. multiple transport slices
-      simultaneously share the same resource, and one of them consume
-      the resource in surplus.  If the SLO guarantees are strictly
-      required, then the network controller can be informed of this by
-      requesting a hard guarantee.  Note that the terms hard and soft
-      limit are requirement oriented and different from what is
-      specified in, [I-D.ietf-teas-enhanced-vpn]).
-
-   o  Resource failure or fault occurs, such as a link or node failure.
-      Where it is important to defend against these, the relevant
-      characteristics on resource redundancy (and perhaps some other
-      characteristics on restoration speed and other factors) need to be
-      specified.
-
-      *  Restoration isolation: the network is not impacted for a period
-         longer than the given time.  For example, failover or the
-         service restoration takes no longer than some number of
-         seconds.  This is specified by Availability SLO.
-
-      *  Protection isolation: the network path is protected with
-         specified backup path.  This is specified by Availability SLO.
-
-   SLA vs SLO discussion: In defining transport slices, the term SLO
-   instead of SLA is used even though SLAs are more commonly used term
-   by the operators.  SLOs are definitive and measurable parameters
-   associated with a service, therefore, network resource and
-   connectivity requirements are defined accurately.  In contrast,
-   service level agreements represent contracts for a service between a
-   service provider and a service consumer (or subscriber).  Providers
-   then translate SLA into SLO; these translations vary from one service
-   provider to the other.  Therefore, all through within the scope of
-   transport slices term SLO will be used.
-
-10.2.  level of confidence
-
-   Additionally, transport slices should be able to specify 'level of
-   confidence'.  It the ability to satisfy a "guarantee" of an
-   objective.  The confidence level (or level of commitment) may be
-   expressed separately for each of the above objectives.  For example
-   packet loss objective can be no more than 10% loss - 99.9999% of the
-   time, while bandwidth can not go below 1% 99.99% of the time.
-
-   Since no guarantee can prevent from hardware failures (such as losing
-   a node), additional protection against such issues is possible by
-   specifying confidence level characteristics.  The confidence does not
-   say anything about the specific implementation of how it is are
-   achieved.  Different implementations might use different techniques,
-
-
-
-
-Rokui, et al.           Expires November 28, 2020              [Page 17]
-
-Internet-Draft    draft-nsdt-transport-slice-definition         May 2020
-
-
-   from avoiding oversubsription to dedicating particular links or their
-   virtual fractions to particular transport slices.
-
-11.  Informative References
+10.  Informative References
 
    [I-D.contreras-teas-slice-nbi]
               Contreras, L., Homma, S., and J. Ordonez-Lucena,
@@ -995,20 +887,26 @@ Internet-Draft    draft-nsdt-transport-slice-definition         May 2020
               DOI 10.17487/RFC3022, January 2001,
               <https://www.rfc-editor.org/info/rfc3022>.
 
+
+
+
+
+
+
+Rokui, et al.           Expires December 4, 2020               [Page 16]
+
+Internet-Draft    draft-nsdt-transport-slice-definition        June 2020
+
+
    [RFC3393]  Demichelis, C. and P. Chimento, "IP Packet Delay Variation
               Metric for IP Performance Metrics (IPPM)", RFC 3393,
               DOI 10.17487/RFC3393, November 2002,
               <https://www.rfc-editor.org/info/rfc3393>.
 
-
-
-
-
-
-Rokui, et al.           Expires November 28, 2020              [Page 18]
-
-Internet-Draft    draft-nsdt-transport-slice-definition         May 2020
-
+   [RFC5921]  Bocci, M., Ed., Bryant, S., Ed., Frost, D., Ed., Levrau,
+              L., and L. Berger, "A Framework for MPLS in Transport
+              Networks", RFC 5921, DOI 10.17487/RFC5921, July 2010,
+              <https://www.rfc-editor.org/info/rfc5921>.
 
    [RFC6146]  Bagnulo, M., Matthews, P., and I. van Beijnum, "Stateful
               NAT64: Network Address and Protocol Translation from IPv6
@@ -1032,6 +930,114 @@ Internet-Draft    draft-nsdt-transport-slice-definition         May 2020
               <http://www.3gpp.org/ftp//Specs/
               archive/23_series/23.501/23501-g20.zip>.
 
+Appendix A.  Discussions
+
+A.1.  On Meeting guarantees of service objectives (tbd)
+
+   Due to overloading of the term, a further discussion is added to
+   highlight two aspects of isolation, first the resolution of isolation
+   of an objective (as described above) and second, the dedicated use or
+   a hard-separation perspective of the resource.
+
+   Providing a hard resolution of guarantee for the characteristics of a
+   transport slice means that the behavior and performance of other
+   transport slices should not impact that slice, even if they run over
+   the same underlying infrastructure or use logically shared network
+   resources.
+
+
+
+
+
+Rokui, et al.           Expires December 4, 2020               [Page 17]
+
+Internet-Draft    draft-nsdt-transport-slice-definition        June 2020
+
+
+   In the context of soft resolution of guarantees, since the transport
+   slices are logically partitioned over the shared resources, a certain
+   degree of commitment to the guarantee is expected even when it is not
+   hard.  When the shared resource pools begin to become saturated, SLO
+   violations can happen, however, impacting only the performance or
+   operation of service associated with the transport slice.
+
+   This degree of isolation can be derived from availability
+   characteristics requested, such as whether a hard or soft guarantee
+   was requested.  Requesting a hard guarantee may commit more resources
+   than would be required for a softer limit.
+
+   In addition, resource isolation may be applied to ensure dedicated
+   access to a particular node, for instance.  In such requests a
+   dedicated allocation to a link, node and/or other resources to create
+   a transport slice for a particular service.  For example, a mission-
+   critical service may ask for a dedicated router and/or a link or port
+   for complete isolation from other services.
+
+   When realizing a transport slice, a network controller should be
+   responsible for allocating and providing resources according to the
+   specified objectives.
+
+   SLO violations can occur for two reasons and corresponding statements
+   apply
+
+   o  Shared resource interference: i.e. multiple transport slices
+      simultaneously share the same resource, and one of them consume
+      the resource in surplus.  If the SLO guarantees are strictly
+      required, then the network controller can be informed of this by
+      requesting a hard guarantee.  Note that the terms hard and soft
+      limit are requirement oriented and different from what is
+      specified in, [I-D.ietf-teas-enhanced-vpn]).
+
+   o  Resource failure or fault occurs, such as a link or node failure.
+      Where it is important to defend against these, the relevant
+      characteristics on resource redundancy (and perhaps some other
+      characteristics on restoration speed and other factors) need to be
+      specified.
+
+      *  Restoration isolation: the network is not impacted for a period
+         longer than the given time.  For example, failover or the
+         service restoration takes no longer than some number of
+         seconds.  This is specified by Availability SLO.
+
+      *  Protection isolation: the network path is protected with
+         specified backup path.  This is specified by Availability SLO.
+
+
+
+
+Rokui, et al.           Expires December 4, 2020               [Page 18]
+
+Internet-Draft    draft-nsdt-transport-slice-definition        June 2020
+
+
+   SLA vs SLO discussion: In defining transport slices, the term SLO
+   instead of SLA is used even though SLAs are more commonly used term
+   by the operators.  SLOs are definitive and measurable parameters
+   associated with a service, therefore, network resource and
+   connectivity requirements are defined accurately.  In contrast,
+   service level agreements represent contracts for a service between a
+   service provider and a service consumer (or subscriber).  Providers
+   then translate SLA into SLO; these translations vary from one service
+   provider to the other.  Therefore, all through within the scope of
+   transport slices term SLO will be used.
+
+A.2.  level of confidence
+
+   Additionally, transport slices should be able to specify 'level of
+   confidence'.  It the ability to satisfy a "guarantee" of an
+   objective.  The confidence level (or level of commitment) may be
+   expressed separately for each of the above objectives.  For example
+   packet loss objective can be no more than 10% loss - 99.9999% of the
+   time, while bandwidth can not go below 1% 99.99% of the time.
+
+   Since no guarantee can prevent from hardware failures (such as losing
+   a node), additional protection against such issues is possible by
+   specifying confidence level characteristics.  The confidence does not
+   say anything about the specific implementation of how it is are
+   achieved.  Different implementations might use different techniques,
+   from avoiding oversubsription to dedicating particular links or their
+   virtual fractions to particular transport slices.
+
 Authors' Addresses
 
    Reza Rokui
@@ -1048,22 +1054,23 @@ Authors' Addresses
    Email: shunsuke.homma.fp@hco.ntt.co.jp
 
 
+
+
+
+
+
+
+
+Rokui, et al.           Expires December 4, 2020               [Page 19]
+
+Internet-Draft    draft-nsdt-transport-slice-definition        June 2020
+
+
    Kiran Makhijani
    Futurewei
    USA
 
    Email: kiranm@futurewei.com
-
-
-
-
-
-
-
-
-Rokui, et al.           Expires November 28, 2020              [Page 19]
-
-Internet-Draft    draft-nsdt-transport-slice-definition         May 2020
 
 
    Luis M. Contreras
@@ -1073,6 +1080,10 @@ Internet-Draft    draft-nsdt-transport-slice-definition         May 2020
    Email: luismiguel.contrerasmurillo@telefonica.com
 
 
+   Jeff Tantsura
+   Apstra, Inc.
+
+   Email: jefftant.ietf@gmail.com
 
 
 
@@ -1106,15 +1117,4 @@ Internet-Draft    draft-nsdt-transport-slice-definition         May 2020
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-Rokui, et al.           Expires November 28, 2020              [Page 20]
+Rokui, et al.           Expires December 4, 2020               [Page 20]
