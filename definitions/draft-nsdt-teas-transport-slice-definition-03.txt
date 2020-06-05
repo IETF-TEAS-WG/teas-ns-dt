@@ -5,14 +5,14 @@
 teas                                                            R. Rokui
 Internet-Draft                                                     Nokia
 Intended status: Informational                                  S. Homma
-Expires: December 4, 2020                                            NTT
+Expires: December 6, 2020                                            NTT
                                                             K. Makhijani
                                                                Futurewei
                                                            LM. Contreras
                                                               Telefonica
                                                              J. Tantsura
                                                             Apstra, Inc.
-                                                            June 2, 2020
+                                                            June 4, 2020
 
 
                    IETF Definition of Transport Slice
@@ -41,7 +41,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on December 4, 2020.
+   This Internet-Draft will expire on December 6, 2020.
 
 Copyright Notice
 
@@ -53,7 +53,7 @@ Copyright Notice
 
 
 
-Rokui, et al.           Expires December 4, 2020                [Page 1]
+Rokui, et al.           Expires December 6, 2020                [Page 1]
 
 Internet-Draft    draft-nsdt-transport-slice-definition        June 2020
 
@@ -99,7 +99,7 @@ Table of Contents
    providing transport and assurance of a specific set of network
    resources.  In this document, as detailed in subsequent sections, we
    refer to this connectivity and resource commitment as transport
-   slices.  Services which might benefit from the transport slices
+   slices.  Services that might benefit from the transport slices
    include:
 
    o  5G services (e.g. eMBB, URLLC, mMTC)(See [TS.23.501-3GPP])
@@ -109,7 +109,7 @@ Table of Contents
 
 
 
-Rokui, et al.           Expires December 4, 2020                [Page 2]
+Rokui, et al.           Expires December 6, 2020                [Page 2]
 
 Internet-Draft    draft-nsdt-transport-slice-definition        June 2020
 
@@ -141,17 +141,17 @@ Internet-Draft    draft-nsdt-transport-slice-definition        June 2020
    requirements.  Transport slices are unaware of any underlying
    infrastructure connectivity (hence, the term "transport").  The types
    of underlying provider networks can be based on any combination of
-   IP, Ethernet, MPLS, Optical technologies.
+   IP, Ethernet, MPLS and Optical technologies.
 
    Existing VPN (L2 or L3) network and particularly service models come
    close to satisfying similar requirements.  The difference is that a
-   user of transport slice does not concern with the details relating to
-   connections, such as what are the provider addresses, VRFs, or what
-   routing protocols to use, and so on.  In cases where customers need
-   more control over network technology aspects, direct use of VPN
-   technologies or service models will be more suitable.
+   user of transport slice does not concern with the specific details
+   related to the connectivity, such as what are the provider addresses,
+   VRFs, or what routing protocols to use, and so on.  In cases where
+   customers need more control over network technology aspects, direct
+   use of VPN technologies or service models will be more suitable.
 
-   Transport slices also include specification of resources relating to
+   Transport slices also include specification of resources related to
    network functions that are necessary for several customer
    applications.  Thus, the goal of transport slice is to serve as a
    generic SLO-assured connectivity construct over different kinds of
@@ -165,7 +165,7 @@ Internet-Draft    draft-nsdt-transport-slice-definition        June 2020
 
 
 
-Rokui, et al.           Expires December 4, 2020                [Page 3]
+Rokui, et al.           Expires December 6, 2020                [Page 3]
 
 Internet-Draft    draft-nsdt-transport-slice-definition        June 2020
 
@@ -182,7 +182,11 @@ Internet-Draft    draft-nsdt-transport-slice-definition        June 2020
 
    o  SBI: SouthBound Interface
 
+   o  SLI: Service Level Indicator
+
    o  SLO: Service Level Objective
+
+   o  SLA: Service Level Agreement
 
    The above terminology is described in greater detail in the remainder
    of this document.
@@ -198,10 +202,11 @@ Internet-Draft    draft-nsdt-transport-slice-definition        June 2020
    The text below describes transport slices in more detail.
 
    A transport slice consists of a set of connections between multiple
-   endpoints with a specified connectivity type and one or more SLOs.
-   SLOs are used to describe different network resources associated with
-   the service delivered and corresponding parameters necessary to
-   realize the transport slice.
+   endpoints with a specified connectivity type and one or more SLOs
+   associated with it.  SLOs are used to describe different
+   characteristics of network resources associated with the service
+   delivered and corresponding parameters necessary to realize the
+   transport slice.
 
    Transport slice specification should be technology-agnostic, and the
    means for transport slice realization can be chosen depending on
@@ -213,22 +218,22 @@ Internet-Draft    draft-nsdt-transport-slice-definition        June 2020
    The term "transport" in transport slice is derived from the
    definition of Transport Network in the section 1.3.1 of [RFC5921] : A
    Transport Network provides transparent transmission of user traffic
+
+
+
+Rokui, et al.           Expires December 6, 2020                [Page 4]
+
+Internet-Draft    draft-nsdt-transport-slice-definition        June 2020
+
+
    between attached client devices by establishing and maintaining
    point-to-point or point-to-multipoint connections between such
    devices.  "Slice" refers to the characteristics that separate one
    type of user-traffic from other types of traffic.  Thus, transport
    slice assumes that an underlying transport network has capability to
-
-
-
-Rokui, et al.           Expires December 4, 2020                [Page 4]
-
-Internet-Draft    draft-nsdt-transport-slice-definition        June 2020
-
-
-   change the configurations of the network nodes dynamically via
-   controller(s) and to provide transport transmissions with fulfilling
-   all or some of SLOs to specific flows.
+   change the configurations of the network nodes on demand, through in-
+   band signalling or via controller(s) and to provide transport
+   transmissions with fulfilling all or some of SLOs to specific flows.
 
 4.  Transport Slice System Characteristics
 
@@ -237,25 +242,25 @@ Internet-Draft    draft-nsdt-transport-slice-definition        June 2020
 
 4.1.  Service Level Objectives for Transport Slices
 
-   A transport slice is defined in terms of several quantifiable or
-   service-level objectives (SLOs).  These objectives define a set of
-   network resource parameters or values necessary to provide a service
-   as requested for a given transport slice.  SLOs will not describe
-   'how' will trasnport slices will be implemented or realized in the
-   underlying networks.  They will instead be defined in terms of
-   dimensions of operations (time, capacity,...), availability and other
-   attributes.  A transport slice can have one or more set of SLOs.  The
-   SLO values can be defined in each direction and for specific subsets
-   of two or more endpoints (i.e. for a subset of connections in
-   transport slice).
+   A transport slice is defined in terms of several quantifiable
+   characteristics or service-level objectives (SLOs).  These objectives
+   define a set of network resource parameters or values necessary to
+   provide a service as requested for a given transport slice.  SLOs
+   will not describe 'how' will trasnport slices will be implemented or
+   realized in the underlying networks.  They will instead be defined in
+   terms of dimensions of operations (time, capacity,...), availability
+   and other attributes.  A transport slice can have one or more SLOs
+   associated with it.  The SLO values can be defined in each direction
+   and for specific subsets of two or more endpoints (i.e. for a subset
+   of connections in transport slice).
 
    The values of requested SLOs should be clearly specified.  It should
    be possible to monitor and measure the performance of transport
    slices against the requested SLOs and verify that they are being met.
-   Some SLOs can be measured directly through metrics or statistics
-   collected from the network,while others are deduced from measurable
+   Some SLOs can be measured directly through collection of metrics or
+   statistics from the network,while others are deduced from measurable
    objectives and may require additional tools or mechanisms to measure
-   their target value over.  Accordingly, SLOs can be categorized in to
+   their target values.  Accordingly, SLOs can be categorized in to
    'Directly Measurable Objectives' or 'Indirectly Measurable
    Objectives' as follows:
 
@@ -267,6 +272,16 @@ Internet-Draft    draft-nsdt-transport-slice-definition        June 2020
 
    o  Maximum permissible delay variation
 
+   o  Availability
+
+
+
+
+Rokui, et al.           Expires December 6, 2020                [Page 5]
+
+Internet-Draft    draft-nsdt-transport-slice-definition        June 2020
+
+
    o  Maximum permissible packet loss rate
 
    o  NF resources
@@ -275,14 +290,7 @@ Internet-Draft    draft-nsdt-transport-slice-definition        June 2020
 
    Some of the 'Indirectly Measurable Objectives' are:
 
-
-
-Rokui, et al.           Expires December 4, 2020                [Page 5]
-
-Internet-Draft    draft-nsdt-transport-slice-definition        June 2020
-
-
-   o  Availability
+   o  Shared fate resources
 
    o  Security
 
@@ -306,47 +314,44 @@ Internet-Draft    draft-nsdt-transport-slice-definition        June 2020
       way delay between sequential packets in a flow.  Minimizing
       variations in the delay are important for real-time applications.
 
-   o  Maximum permissible packet loss rate: is defined by ratio of
-      received packets over transmitted packets between two endpoints.
-      See [RFC7680]
+   o  Maximum permissible packet loss rate: is defined by the ratio of
+      packets dropped to packets transmitted between two endpoints.  See
+      [RFC7680]
 
    o  NF resources: These resources may be optionally used in order to
       provide specification for virtual network functions which are part
       of the transport slice endpoints.  See [NFVGST].
 
-   o  Availability: It is a measure of how often a customer defined
-      service is lost or degraded to the point of unacceptable
-      performance due to any fault in the network.  It is a ratio of
-      time the transport slice meets agreed SLO over the total time
-      where the transport slice is contracted.
+   o  Availability: is defined as the ratio of uptime to
+      total_time(uptime+downtime).
 
    o  Security: This objective may request for encryption [RFC4303]
       between two end-points explicitly to meet architecture
       recommendations as in [TS33.210] or for compliance [HIPAA][PCI].
       Other security requests can be made as specified in [I2NSF]
 
-      *  Note: Security violations are difficult to observe and cannot
-         be measured as quantifiable metric.  Still, the user of
-         transport slice should be able to request certain criteria for
-         compliance and be able to identify exceptions and unexpected
 
 
 
-
-Rokui, et al.           Expires December 4, 2020                [Page 6]
+Rokui, et al.           Expires December 6, 2020                [Page 6]
 
 Internet-Draft    draft-nsdt-transport-slice-definition        June 2020
 
 
+      *  Note: Security violations are difficult to observe and cannot
+         be measured as quantifiable metric.  Still, the user of
+         transport slice should be able to request certain criteria for
+         compliance and be able to identify exceptions and unexpected
          traffic.  For this purpose [i2nsf-nsf-monitoring-data-model-06]
          can be leveraged.
 
-   Additional objectives may be necessary, such as specifying well
-   defined paths or domains that a slice may transit.  A transport slice
-   carries multiple flows between the 2 endpoints, therefore objectives
-   should also say if they are aggregates or on per flow basis and in
-   such case to be specific enough for the system to be able to identify
-   these specifics (subset of flows).
+   Additional objectives may be necessary, such as specifying specific
+   characteristics/ well defined paths or domains that a slice may
+   transit.  A transport slice carries multiple flows between the 2
+   endpoints, therefore objectives should also say if they are
+   aggregates or on per flow basis and in such case to be specific
+   enough for the system to be able to identify these specifics (subset
+   of flows).
 
    Optionally, other traffic characteristics may be requested.  These
    include for example MTU, traffic type (e.g., IPv4, IPv6, Ethernet,
@@ -354,7 +359,9 @@ Internet-Draft    draft-nsdt-transport-slice-definition        June 2020
    endpoints, therefore objectives should also say if they are for the
    entire connection, group of flows or on per flow basis.  Flow
    characteristics of a transport slice should specify the scale of the
-   flows (i.e. maximum number of accommodatable flows).
+   flows (i.e. maximum number of accommodatable flows) and optionally a
+   maximum number of countable rosurce units, e.g IP or MAC addresses a
+   slice might consume.
 
    Further description of a set of measurable attributes is captured in
    [I-D.contreras-teas-slice-nbi].  [Reza's comment: which section of
@@ -363,36 +370,35 @@ Internet-Draft    draft-nsdt-transport-slice-definition        June 2020
 4.2.  Endpoint Variation
 
    Transport slice endpoints are the terminating or originating nodes
-   requiring connectivity with specific SLO.  Endpoints may be
+   requiring connectivity with a set of specific SLOs.  Endpoints may be
    termination points on devices or functions.
 
 4.2.1.  Types of Endpoints
 
    There are two types of endpoints based on the functions they perform.
 
-   Transport type endpoint:  These endpoints are the source and
+   Transport type endpoint:  These endpoints function as the source and
       destination of connections in transport slice where they perform
-      the forwarding of the customer payload.
+      the forwarding of the user payload.
 
    Service type endpoint:  These endpoints are related to the transport
       slice realizaton where they manipulate, processe or modifie the
-      user data payload (based on policies).  In some scenario the
+      user data payload (based on policies).  In some scenarios the
       service endpoints are identical to transport slice endpoints.  A
       non-exhaustive list of devices which contains service endpoints
+
+
+
+Rokui, et al.           Expires December 6, 2020                [Page 7]
+
+Internet-Draft    draft-nsdt-transport-slice-definition        June 2020
+
+
       are routers, switches, roufirewalls, WAN and application
       acceleration, Deep Packet Inspection (DPI), server load balancers,
       NAT44 [RFC3022], NAT64 [RFC6146], HTTP header enrichment
       functions, and TCP optimizers.  The generic term "L4-L7 services"
       is often used to describe such service functions (SFs).
-
-
-
-
-
-Rokui, et al.           Expires December 4, 2020                [Page 7]
-
-Internet-Draft    draft-nsdt-transport-slice-definition        June 2020
-
 
    The term Network Function (NF) covers both service and transport
    types of endpoints as defined in [I-D.ietf-teas-sf-aware-topo-model].
@@ -439,13 +445,7 @@ Internet-Draft    draft-nsdt-transport-slice-definition        June 2020
 
 
 
-
-
-
-
-
-
-Rokui, et al.           Expires December 4, 2020                [Page 8]
+Rokui, et al.           Expires December 6, 2020                [Page 8]
 
 Internet-Draft    draft-nsdt-transport-slice-definition        June 2020
 
@@ -501,7 +501,7 @@ Internet-Draft    draft-nsdt-transport-slice-definition        June 2020
 
 
 
-Rokui, et al.           Expires December 4, 2020                [Page 9]
+Rokui, et al.           Expires December 6, 2020                [Page 9]
 
 Internet-Draft    draft-nsdt-transport-slice-definition        June 2020
 
@@ -557,7 +557,7 @@ Internet-Draft    draft-nsdt-transport-slice-definition        June 2020
 
 
 
-Rokui, et al.           Expires December 4, 2020               [Page 10]
+Rokui, et al.           Expires December 6, 2020               [Page 10]
 
 Internet-Draft    draft-nsdt-transport-slice-definition        June 2020
 
@@ -613,7 +613,7 @@ Internet-Draft    draft-nsdt-transport-slice-definition        June 2020
 
 
 
-Rokui, et al.           Expires December 4, 2020               [Page 11]
+Rokui, et al.           Expires December 6, 2020               [Page 11]
 
 Internet-Draft    draft-nsdt-transport-slice-definition        June 2020
 
@@ -669,7 +669,7 @@ Internet-Draft    draft-nsdt-transport-slice-definition        June 2020
 
 
 
-Rokui, et al.           Expires December 4, 2020               [Page 12]
+Rokui, et al.           Expires December 6, 2020               [Page 12]
 
 Internet-Draft    draft-nsdt-transport-slice-definition        June 2020
 
@@ -725,7 +725,7 @@ Internet-Draft    draft-nsdt-transport-slice-definition        June 2020
 
 
 
-Rokui, et al.           Expires December 4, 2020               [Page 13]
+Rokui, et al.           Expires December 6, 2020               [Page 13]
 
 Internet-Draft    draft-nsdt-transport-slice-definition        June 2020
 
@@ -781,7 +781,7 @@ Internet-Draft    draft-nsdt-transport-slice-definition        June 2020
 
 
 
-Rokui, et al.           Expires December 4, 2020               [Page 14]
+Rokui, et al.           Expires December 6, 2020               [Page 14]
 
 Internet-Draft    draft-nsdt-transport-slice-definition        June 2020
 
@@ -837,7 +837,7 @@ Internet-Draft    draft-nsdt-transport-slice-definition        June 2020
 
 
 
-Rokui, et al.           Expires December 4, 2020               [Page 15]
+Rokui, et al.           Expires December 6, 2020               [Page 15]
 
 Internet-Draft    draft-nsdt-transport-slice-definition        June 2020
 
@@ -893,7 +893,7 @@ Internet-Draft    draft-nsdt-transport-slice-definition        June 2020
 
 
 
-Rokui, et al.           Expires December 4, 2020               [Page 16]
+Rokui, et al.           Expires December 6, 2020               [Page 16]
 
 Internet-Draft    draft-nsdt-transport-slice-definition        June 2020
 
@@ -949,7 +949,7 @@ A.1.  On Meeting guarantees of service objectives (tbd)
 
 
 
-Rokui, et al.           Expires December 4, 2020               [Page 17]
+Rokui, et al.           Expires December 6, 2020               [Page 17]
 
 Internet-Draft    draft-nsdt-transport-slice-definition        June 2020
 
@@ -1005,7 +1005,7 @@ Internet-Draft    draft-nsdt-transport-slice-definition        June 2020
 
 
 
-Rokui, et al.           Expires December 4, 2020               [Page 18]
+Rokui, et al.           Expires December 6, 2020               [Page 18]
 
 Internet-Draft    draft-nsdt-transport-slice-definition        June 2020
 
@@ -1061,7 +1061,7 @@ Authors' Addresses
 
 
 
-Rokui, et al.           Expires December 4, 2020               [Page 19]
+Rokui, et al.           Expires December 6, 2020               [Page 19]
 
 Internet-Draft    draft-nsdt-transport-slice-definition        June 2020
 
@@ -1117,4 +1117,4 @@ Internet-Draft    draft-nsdt-transport-slice-definition        June 2020
 
 
 
-Rokui, et al.           Expires December 4, 2020               [Page 20]
+Rokui, et al.           Expires December 6, 2020               [Page 20]
