@@ -182,7 +182,7 @@
     	<t>
 		A number of use cases benefit from establishing network connectivity providing transport and assurance of a specific set of 
         network resources. In this document, as detailed in subsequent sections, we refer to this connectivity and resource commitment 
-        as transport slices. Services which might benefit from the transport slices include:
+        as transport slices. Services that might benefit from the transport slices include:
         <list style="symbols">
           <t>5G services (e.g. eMBB, URLLC, mMTC)(See <xref target="TS.23.501-3GPP"/>)</t>
           <t>Network wholesale services</t>
@@ -212,18 +212,18 @@
 		<t>
         Transport slice is described as a construct that specifies connectivity requirements with an emphasis on assurance of those 
         requirements. Transport slices are unaware of any underlying infrastructure connectivity (hence, the term "transport"). The types of 
-        underlying provider networks can be based on any combination of IP, Ethernet, MPLS, Optical technologies. 
+        underlying provider networks can be based on any combination of IP, Ethernet, MPLS and Optical technologies. 
         </t>
 
         <t> 
         Existing VPN (L2 or L3) network and particularly service models come close to satisfying similar requirements. The difference is that 
-        a user of transport slice does not concern with the details relating to connections, such as what are the provider addresses, VRFs, or 
+        a user of transport slice does not concern with the specific details related to the connectivity, such as what are the provider addresses, VRFs, or 
         what routing protocols to use, and so on. In cases where customers need more control over network technology aspects, direct use of 
         VPN technologies or service models will be more suitable. 
         </t>
 
         <t>
-        Transport slices also include specification of resources relating to network functions that are necessary for several customer 
+        Transport slices also include specification of resources related to network functions that are necessary for several customer 
         applications. Thus, the goal of transport slice is to serve as a generic SLO-assured connectivity construct over different kinds of 
         underlying infrastructures.
         </t>
@@ -247,7 +247,9 @@
          <t>SF: Service Function</t>
          <t>DPI: Deep Packet Inspection</t>
          <t>WAF: Web Application Firewall</t> -->
+         <t>SLI: Service Level Indicator</t>
          <t>SLO: Service Level Objective</t>
+         <t>SLA: Service Level Agreement</t>
          <!--<t>SLA: Service Level Agreement</t>-->
  <!--        <t>MTBF: Mean Time Between Failures</t>
          <t>MTTR: Mean Time To Repair</t> -->
@@ -277,8 +279,8 @@
 </t>
 <t>
    A transport slice consists of a set of connections between multiple
-   endpoints with a specified connectivity type and one or more SLOs.
-SLOs are used to describe different network resources associated with the service delivered and corresponding parameters necessary to 
+   endpoints with a specified connectivity type and one or more SLOs associated with it.
+SLOs are used to describe different characteristics of network resources associated with the service delivered and corresponding parameters necessary to 
 realize the transport slice.
       </t>
  <t>
@@ -291,7 +293,7 @@ realize the transport slice.
    A Transport Network provides transparent transmission of user traffic between attached client devices by establishing and maintaining 
    point-to-point or point-to-multipoint connections between such devices. "Slice" refers to the characteristics that separate one type of 
    user-traffic from other types of traffic. Thus, transport slice assumes that an underlying transport network has capability to change 
-   the configurations of the network nodes dynamically via controller(s) and to provide transport transmissions with fulfilling all or some of 
+   the configurations of the network nodes on demand, through in-band signalling or via controller(s) and to provide transport transmissions with fulfilling all or some of 
    SLOs to specific flows.
        </t>
   
@@ -305,17 +307,17 @@ realize the transport slice.
 
         <section title="Service Level Objectives for Transport Slices">
         <t>
-			A transport slice is defined in terms of several quantifiable or service-level objectives (SLOs). These objectives define a set of
+			A transport slice is defined in terms of several quantifiable characteristics or service-level objectives (SLOs). These objectives define a set of
 			network resource parameters or values necessary to provide a service as requested for a given transport slice. SLOs will not describe
 			'how' will trasnport slices will be implemented or realized in the underlying networks. They will instead be defined in terms of dimensions of operations (time, capacity,...), availability and other attributes.
-      A transport slice can have one or more set of SLOs. 
+      A transport slice can have one or more SLOs associated with it. 
       The SLO values can be defined in each direction and for specific subsets of two or more endpoints (i.e. for a subset of connections in transport slice).
     </t>
     <t>      
     The values of requested SLOs should be clearly specified. It should be possible to monitor and measure the performance of transport 
-    slices against the requested SLOs and verify that they are being met. Some SLOs can be measured directly through metrics or statistics 
-    collected from the network,while others are deduced from measurable objectives and may require additional tools or mechanisms to 
-    measure their target value over. Accordingly, SLOs can be categorized in to 'Directly Measurable Objectives' or 'Indirectly Measurable 
+    slices against the requested SLOs and verify that they are being met. Some SLOs can be measured directly through collection of metrics or statistics 
+    from the network,while others are deduced from measurable objectives and may require additional tools or mechanisms to 
+    measure their target values. Accordingly, SLOs can be categorized in to 'Directly Measurable Objectives' or 'Indirectly Measurable 
     Objectives' as follows:
 
     </t>      
@@ -325,14 +327,15 @@ realize the transport slice.
         <t>Guaranteed Bandwidth</t>
         <t>Guaranteed Maximum Latency</t>
         <t>Maximum permissible delay variation</t>
-		<t>Maximum permissible packet loss rate</t>
+        <t>Availability</t>
+		    <t>Maximum permissible packet loss rate</t>
         <t>NF resources</t>
         <t>Other objectives could be specified</t>
       </list>
 
       Some of the 'Indirectly Measurable Objectives' are: 
       <list style="symbols">
-        <t>Availability</t>
+        <t>Shared fate resources
         <t>Security</t>
         <t>others objectives such as geographical restrictions, maximum occupancy level, etc. could be specified</t>
       </list>
@@ -353,16 +356,12 @@ realize the transport slice.
         applications.</t>
 
         <t>Maximum permissible packet loss rate: is defined by
-      ratio of received packets over transmitted packets between two endpoints. See <xref target="RFC7680" /></t>
+          the ratio of packets dropped to packets transmitted between two endpoints. See <xref target="RFC7680" /></t>
 
         <t>NF resources: These resources may be optionally used in order to provide specification for virtual network functions which are part of 
         the transport slice endpoints. See <xref target="NFVGST" />.</t>
 
-        <t> Availability: It is a measure of how often a customer defined service
-      is lost or degraded to the point of unacceptable performance due
-      to any fault in the network.  It is a ratio of time the transport
-      slice meets agreed SLO over the total time where the transport
-      slice is contracted.</t>
+        <t> Availability: is defined as the ratio of uptime to total_time(uptime+downtime).</t>
 
 
 	<t>Security: This objective may request for encryption [RFC4303] between two end-points explicitly to meet architecture recommendations as in [TS33.210] or for compliance [HIPAA][PCI]. Other security requests can be made as specified in [I2NSF] 
@@ -376,7 +375,7 @@ realize the transport slice.
       </t>
       
       <t> 
-      Additional objectives may be necessary, such as specifying well defined paths or domains that a slice may transit. A transport slice carries 
+      Additional objectives may be necessary, such as specifying specific characteristics/ well defined paths or domains that a slice may transit. A transport slice carries 
       multiple flows between the 2 endpoints, therefore objectives should also say if they are aggregates or on per flow basis and in such case to
       be specific enough for the system to be able to identify these specifics (subset of flows).
     </t>
@@ -384,7 +383,7 @@ realize the transport slice.
       Optionally, other traffic characteristics may be requested. These include for example MTU, traffic type (e.g., IPv4, IPv6, Ethernet, 
       unstructured.  A transport slice carries multiple flows between the 2 endpoints, therefore objectives should also say if they are for 
       the entire connection, group of flows or on per flow basis. Flow characteristics of a transport slice should specify the scale of the 
-      flows (i.e. maximum number of accommodatable flows). 
+      flows (i.e. maximum number of accommodatable flows) and optionally a maximum number of countable rosurce  units, e.g IP or MAC addresses a slice might consume.
       </t>
 		  
 	<!-- Luis to justify below sentence -->
@@ -397,16 +396,19 @@ realize the transport slice.
 
     <section anchor="endpvar" title="Endpoint Variation">
 			
-      <t> Transport slice endpoints are the terminating or originating nodes requiring connectivity with specific SLO. Endpoints may be termination points on devices or functions. </t>
+      <t> Transport slice endpoints are the terminating or originating nodes requiring connectivity with a set of specific SLOs. Endpoints may be termination points on devices or functions. </t>
 
       <section title="Types of Endpoints">
         <t> There are two types of endpoints based on the functions they perform.
           <list style="hanging">
             <t hangText="Transport type endpoint:">
-              These endpoints are the source and destination of connections in transport slice where they perform the forwarding of the customer payload.
+              These endpoints function as the source and destination of connections in transport slice where they perform the forwarding of the user payload.
             </t>
             <t hangText="Service type endpoint:">
-              These endpoints are related to the transport slice realizaton where they manipulate, processe or modifie the user data payload (based on policies). In some scenario the service endpoints are identical to transport slice endpoints. A non-exhaustive list of devices which contains service endpoints are routers, switches, roufirewalls, WAN and application acceleration, Deep Packet Inspection (DPI), server load balancers, NAT44 <xref target="RFC3022" />, NAT64 <xref target="RFC6146" />, HTTP header enrichment functions, and TCP optimizers.  The generic term "L4-L7 services" is often used to describe such service functions (SFs).
+              These endpoints are related to the transport slice realizaton where they manipulate, processe or modifie the user data payload (based on policies). 
+              In some scenarios the service endpoints are identical to transport slice endpoints. A non-exhaustive list of devices which contains service endpoints are routers, switches, roufirewalls, WAN and application acceleration, 
+              Deep Packet Inspection (DPI), server load balancers, NAT44 <xref target="RFC3022" />, NAT64 <xref target="RFC6146" />, HTTP header enrichment functions, and TCP optimizers.  
+              The generic term "L4-L7 services" is often used to describe such service functions (SFs).
             </t>
           </list>
 	      </t>
