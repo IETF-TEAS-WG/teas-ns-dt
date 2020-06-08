@@ -361,7 +361,8 @@ realize the transport slice.
         <t>NF resources: These resources may be optionally used in order to provide specification for virtual network functions which are part of 
         the transport slice endpoints. See <xref target="NFVGST" />.</t>
 
-        <t> Availability: is defined as the ratio of uptime to total_time(uptime+downtime).</t>
+        <t> Availability: is defined as the ratio of uptime to total_time(uptime+downtime), where uptime is the time the transport slice is available
+         in accordance with the SLOs.</t>
 
 
 	<t>Security: This objective may request for encryption [RFC4303] between two end-points explicitly to meet architecture recommendations as in [TS33.210] or for compliance [HIPAA][PCI]. Other security requests can be made as specified in [I2NSF] 
