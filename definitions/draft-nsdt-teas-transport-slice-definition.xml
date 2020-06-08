@@ -335,7 +335,6 @@ realize the transport slice.
 
       Some of the 'Indirectly Measurable Objectives' are: 
       <list style="symbols">
-        <t>Shared fate resources</t>
         <t>Security</t>
         <t>others objectives such as geographical restrictions, maximum occupancy level, etc. could be specified</t>
       </list>
