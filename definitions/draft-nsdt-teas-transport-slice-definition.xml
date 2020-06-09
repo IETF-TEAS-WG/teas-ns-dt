@@ -311,21 +311,27 @@ realize the transport slice.
       The SLO values can be defined in each direction and for specific subsets of two or more endpoints (i.e. for a subset of connections in transport slice).
     </t>
     <t>      
-    The values of requested SLOs should be clearly specified. It should be possible to monitor and measure the performance of transport 
-    slices against the requested SLOs and verify that they are being met. Some SLOs can be measured directly through collection of metrics or statistics 
-    from the network,while others are deduced from measurable objectives and may require additional tools or mechanisms to 
-    measure their target values. Accordingly, SLOs can be categorized in to 'Directly Measurable Objectives' or 'Indirectly Measurable 
-    Objectives' as follows:
+      The values of requested SLOs should be clearly specified. It should be possible to monitor and measure the performance of transport 
+    slices against the requested SLOs and verify that they are being met. Some SLOs can be measured directly through collection of metrics or statistics from the network,while others are deduced from measurable objectives and may require additional tools or mechanisms to 
+    measure their target values. 
+    </t>
 
-    </t>      
+    <t>
+      Note that this document defines a minimal set of SLOs and later systems or standards could extend this set and define more SLOs. For example, we included Gauranteed bandwidth which is the mininum requested bandwidth for the transport slice. The later standard might deifine other SLOs related to bandwidth if needed.
+    </t>
+
+    <t>
+      Accordingly, SLOs can be categorized in to 'Directly Measurable Objectives' or 'Indirectly Measurable Objectives' as follows:
+    </t>   
+
     <t>      
       Some of the 'Directly Measurable Objectives' are: Objectives': 
       <list style="symbols">
         <t>Guaranteed Bandwidth</t>
         <t>Guaranteed Maximum Latency</t>
-        <t>Maximum permissible delay variation</t>
-        <t>Availability</t>
+        <t>Maximum permissible delay variation</t>    
 		    <t>Maximum permissible packet loss rate</t>
+        <t>Availability</t>
         <!-- <t>NF resources</t> -->
         <t>Other objectives could be specified</t>
       </list>
@@ -399,7 +405,7 @@ realize the transport slice.
       <section title="Types of Endpoints">
         <t> There are two types of endpoints based on the functions they perform.
           <list style="hanging">
-            <t hangText="Transport type endpoint:">
+            <t hangText="Transport slice type endpoint:">
               These endpoints function as the source and destination of connections in transport slice where they perform the forwarding of the user payload.
             </t>
             <t hangText="Service type endpoint:">
