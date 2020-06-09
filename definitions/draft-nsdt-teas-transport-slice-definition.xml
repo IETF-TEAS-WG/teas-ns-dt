@@ -317,7 +317,7 @@ realize the transport slice.
     </t>
 
     <t>
-      Note that this document defines a minimal set of SLOs and later systems or standards could extend this set and define more SLOs. For example, we included Gauranteed bandwidth which is the mininum requested bandwidth for the transport slice. The later standard might deifine other SLOs related to bandwidth if needed.
+      Note that this document defines a minimal set of SLOs and later systems or standards could extend this set and define more SLOs. For example, we included Guaranteed bandwidth which is the minimum requested bandwidth for the transport slice. The later standard might define other SLOs related to bandwidth if needed.
     </t>
 
     <t>
