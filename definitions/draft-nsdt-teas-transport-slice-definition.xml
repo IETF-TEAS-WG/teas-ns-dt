@@ -178,7 +178,7 @@
 
   <middle>
     <section title="Introduction">
-	<!-- SH-28Jan:  modified the following text for  emphasizing  benefitial features of network slicing. -->
+	<!-- SH-28Jan:  modified the following text for  emphasizing  beneficial features of network slicing. -->
     	<t>
 		A number of use cases benefit from establishing network connectivity providing transport and assurance of a specific set of 
         network resources. In this document, as detailed in subsequent sections, we refer to this connectivity and resource commitment 
@@ -187,7 +187,7 @@
           <t>5G services (e.g. eMBB, URLLC, mMTC)(See <xref target="TS.23.501-3GPP"/>)</t>
           <t>Network wholesale services</t>
           <t>Network infrastructure sharing among operators</t>
-          <t>NFV connectivity and Data Center Interconnec</t>
+          <t>NFV connectivity and Data Center Interconnect</t>
          <!-- <t>VPNs with specific characteristics</t> -->
         </list>
        </t>
@@ -216,10 +216,7 @@
         </t>
 
         <t> 
-        Existing VPN (L2 or L3) network and particularly service models come close to satisfying similar requirements. The difference is that 
-        a user of transport slice does not concern with the specific details related to the connectivity, such as what are the provider addresses, VRFs, or 
-        what routing protocols to use, and so on. In cases where customers need more control over network technology aspects, direct use of 
-        VPN technologies or service models will be more suitable. 
+        Indeep VPNs (L1, L2 or L3) also provide infrastructure connectivity. However their primary goal is to setup and manage 'private networks' with different types of user traffic. While transport slices strictly concern with the same 'SLO guarantees' for each flow in the traffic. When implementing transport slices, many aspects of the VPNs can be used but transport slices can provide a common user interface for describing SLOs independent of VPN description.
         </t>
 
         <t>
@@ -329,13 +326,13 @@ realize the transport slice.
         <t>Maximum permissible delay variation</t>
         <t>Availability</t>
 		    <t>Maximum permissible packet loss rate</t>
-        <t>NF resources</t>
+        <!-- <t>NF resources</t> -->
         <t>Other objectives could be specified</t>
       </list>
 
       Some of the 'Indirectly Measurable Objectives' are: 
       <list style="symbols">
-        <t>Shared fate resources</t>
+        <!-- <t>Shared fate resources</t> commenting for now-->
         <t>Security</t>
         <t>others objectives such as geographical restrictions, maximum occupancy level, etc. could be specified</t>
       </list>
@@ -358,15 +355,17 @@ realize the transport slice.
         <t>Maximum permissible packet loss rate: is defined by
           the ratio of packets dropped to packets transmitted between two endpoints. See <xref target="RFC7680" /></t>
 
+     <!-- ** kiran commented this ***
         <t>NF resources: These resources may be optionally used in order to provide specification for virtual network functions which are part of 
         the transport slice endpoints. See <xref target="NFVGST" />.</t>
+	-->
 
         <t> Availability: is defined as the ratio of uptime to total_time(uptime+downtime).</t>
 
 
-	<t>Security: This objective may request for encryption [RFC4303] between two end-points explicitly to meet architecture recommendations as in [TS33.210] or for compliance [HIPAA][PCI]. Other security requests can be made as specified in [I2NSF] 
-      <list style="">
-	<t> Note: Security violations are difficult to observe and cannot be measured as quantifiable metric. Still, the user of transport slice should be able to request certain criteria for compliance and be able to identify exceptions and unexpected traffic. For this purpose [i2nsf-nsf-monitoring-data-model-06] can be leveraged. </t> 
+	<t>Security: This objective may request for encryption <xref target="RFC4303"/> between two end-points explicitly to meet architecture recommendations as in <xref target="TS33.210"/> or for compliance [HIPAA][PCI]. Other security requests may be made as specified in [draft-ietf-i2nsf-capability].
+      <list>
+	<t> Note: Security violations are difficult to observe and cannot be measured as quantifiable metric. Still, the user of transport slice should be able to request certain criteria for compliance and be able to identify exceptions and unexpected traffic. For this purpose [i2nsf-nsf-monitoring-data-model] can be leveraged. </t> 
     </list>
 </t>
     </list>
@@ -375,14 +374,13 @@ realize the transport slice.
       </t>
       
       <t> 
-      Additional objectives may be necessary, such as specifying specific characteristics/ well defined paths or domains that a slice may transit. A transport slice carries 
-      multiple flows between the 2 endpoints, therefore objectives should also say if they are aggregates or on per flow basis and in such case to
-      be specific enough for the system to be able to identify these specifics (subset of flows).
+      Additional objectives may be necessary, such as certain geographical restrictions or well defined domains that a slice may transit. 
     </t>
       <t> 
-      Optionally, other traffic characteristics may be requested. These include for example MTU, traffic type (e.g., IPv4, IPv6, Ethernet, 
-      unstructured.  A transport slice carries multiple flows between the 2 endpoints, therefore objectives should also say if they are for 
-      the entire connection, group of flows or on per flow basis. Flow characteristics of a transport slice should specify the scale of the 
+      Other traffic characteristics may be optionally, requested. These include for example MTU, traffic type (e.g., IPv4, IPv6, Ethernet or
+      unstructured), or a higher-level behavior to process traffic according to user-application (which may be realized using network functions). </t>
+<t> Maximal occupancy for a transport slice should be provided. Since it carries traffic for multiple flows between the 2 endpoints, the objectives should also say if they are for 
+      the entire connection, group of flows or on per flow basis. Maximal occupancy should specify the scale of the 
       flows (i.e. maximum number of accommodatable flows) and optionally a maximum number of countable rosurce  units, e.g IP or MAC addresses a slice might consume.
       </t>
 		  
@@ -632,7 +630,7 @@ Legend
 <t> kiran: more text. customer view service model and device models are causing confusion
     explain what our customer view is not any service model.
  </t>
-<t> kiran: intersting question on mailer: what  do you do if your customer asks for L2 slice.</t>
+<t> kiran: interesting question on mailer: what  do you do if your customer asks for L2 slice.</t>
 -->
  		</list>
         <figure anchor="fig_interfaces" title="Interface of Transport Slice Controller">
@@ -798,12 +796,15 @@ Legend:
 <!-- &I-D.draft-homma-rtgwg-slice-gateway;-->
     &I-D.draft-ietf-teas-sf-aware-topo-model;
     &I-D.draft-ietf-teas-enhanced-vpn;
+  <!--  &I-D.i2nsf-nsf-monitoring-data-model;
+    &I-D.draft-ietf-i2nsf-capability; -->
     <?rfc include="reference.RFC.2681"?>
     <?rfc include="reference.RFC.7679"?>
     <?rfc include="reference.RFC.7680"?>
     <?rfc include="reference.RFC.3022"?>
     <?rfc include="reference.RFC.6146"?>
     <?rfc include="reference.RFC.5921"?>
+    <?rfc include="reference.RFC.4303"?>
     
 <!--
     <?i-d include="reference.I-D.draft-contreras-teas-slice-nbi"?>
@@ -930,19 +931,51 @@ Legend:
         <author>
         <organization> ETSI </organization>
         </author>
-        <date month="Febuary" year="2018"/>
+        <date month="February" year="2018"/>
         </front>
       </reference>
 
+      <reference anchor='TS33.210' target="https://portal.3gpp.org/desktopmodules/Specifications/SpecificationDetails.aspx?specificationId=2279">
+        <front>
+    <title>
+      3G security; Network Domain Security (NDS); IP network layer security (Release 14).
+    </title>
+        <author>
+        <organization> 3GPP </organization>
+        </author>
+        <date month="December" year="2016"/>
+        </front>
+      
+      </reference>
+        <reference anchor='HIPAA' target="https://www.hhs.gov/hipaa/for-professionals/security/index.html">
+        <front>
+    <title>
+      Health Insurance Portability and Accountability Act - The Security Rule
+    </title>
+       <author>
+        <organization> HHS </organization>
+        </author>
+        <date month="February" year="2003"/>
+        </front>
+      </reference>
+      
     </references>
 
        <section title="Discussions">
-    <section title="On Meeting guarantees of service objectives (tbd)">
+    <section title="On isolation requirements in a transport slice">
 	<t>
-		Due to overloading of the term, a further discussion is added to highlight two
-		aspects of isolation, first the resolution of isolation of an objective (as described above) and second, the dedicated use or 
-        a hard-separation perspective of the resource.
-	</t>
+		Transport slices are perceived as if the services provisioned by a customer were running on a dedicated network. To achieve this a set of SLOs are described. The committed SLOs for a given customer should be maintained along the service life-time even when other customers' networks could misbehave (e.g., by injecting more traffic than initially declared). In some cases, a customer could explicitly ask effective isolation in the sense of strict dedication of some resources because of the nature of the service (e.g., mission critical emergency services). Two situations can motivate the introduction of isolation as proposed:
+ 
+	<list style="">
+<t>SLO commitments: Providing such kind of guarantees in a shared network infrastructure to exploit statistical multiplexing gains is not always achievable, despite the mechanisms availble in some cases to enforce such guarantees: traffic shaping mechanisms, hierarchical queuing, traffic engineering, over-dimensioning of the network capacity, etc. 
+ </t>
+<t> Dedicated resource reservation: Reasons for such situations are not solely related to performance, but others such as security, service continuity, service specialization, etc. The resource reservation and dedication does not imply that the same specific and concrete resources are devoted for a customer, but that the same kind of resources are maintained for that customer along the service lifetime. </t>
+</list>
+</t>
+<t> In this way, customers can request isolation as an additional attribute for the transport slice. Depending on the specific level of isolation requested, the implementation could take different forms, such as diversity on transport network routes (topological isolation), allocation of certain transport capabilities (data plane isolation), etc. The actual implementation of isolation is out of the scope of this document. 
+
+</t>
+<!--
 	<t>
 	Providing a hard resolution of guarantee for the characteristics of a
 	transport slice means that the behavior and performance of other transport slices
@@ -1011,16 +1044,19 @@ Legend:
           these translations vary from one service provider to the other. Therefore, all through within the scope of transport slices term SLO 
           will be used. 
           </t>
+-->
 </section>
+<!--
 <section title="level of confidence">
 	<t> Additionally, transport slices should be able to specify 'level of confidence'. It the ability to satisfy a "guarantee" of an objective. The confidence level (or level of commitment) may be expressed separately for each of the above objectives. For example 
 packet loss objective can be no more than 10% loss - 99.9999% of the time, while bandwidth can not go below 1% 99.99% of the time.
 </t>
 <t>Since no guarantee can prevent from hardware failures (such as losing a node),  additional protection against such issues is possible by specifying confidence level characteristics. 
-The confidence does not say anything about the specific implementation of how it is are achieved. Different implementations might use different techniques, from avoiding oversubsription to dedicating particular links or their virtual fractions to particular transport slices. <!--For further discussion, see Appendix A.--> </t>
+The confidence does not say anything about the specific implementation of how it is are achieved. Different implementations might use different techniques, from avoiding oversubsription to dedicating particular links or their virtual fractions to particular transport slices. For further discussion, see Appendix A. </t>
 	</section>
-</section>
+-->
 
+</section>
 
 
   </back>
