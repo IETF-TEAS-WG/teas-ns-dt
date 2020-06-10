@@ -338,10 +338,7 @@ realize the transport slice.
 
       Some of the 'Indirectly Measurable Objectives' are: 
       <list style="symbols">
-<<<<<<< HEAD
-=======
         <!-- <t>Shared fate resources</t> commenting for now-->
->>>>>>> 2f889c911c3a41d899c30ebae9db9ad291e8299c
         <t>Security</t>
         <t>others objectives such as geographical restrictions, maximum occupancy level, etc. could be specified</t>
       </list>
@@ -409,20 +406,17 @@ realize the transport slice.
       <section title="Types of Endpoints">
         <t> There are two types of endpoints based on the functions they perform.
           <list style="hanging">
-            <t hangText="Transport slice type endpoint:">
-              These endpoints function as the source and destination of connections in transport slice where they perform the forwarding of the user payload.
+            <t hangText="Transport slice endpoint:">
+              These endpoints function as the headend and tailend of connections in transport slice where they perform the forwarding of the user payload.
             </t>
-            <t hangText="Service type endpoint:">
-              These endpoints are related to the transport slice realizaton where they manipulate, processe or modifie the user data payload (based on policies). 
-              In some scenarios the service endpoints are identical to transport slice endpoints. A non-exhaustive list of devices which contains service endpoints are routers, switches, roufirewalls, WAN and application acceleration, 
-              Deep Packet Inspection (DPI), server load balancers, NAT44 <xref target="RFC3022" />, NAT64 <xref target="RFC6146" />, HTTP header enrichment functions, and TCP optimizers.  
-              The generic term "L4-L7 services" is often used to describe such service functions (SFs).
+            <t hangText="Transport slice realization endpoint:">
+              These endpoints are related to the realization of the transport slice where they manipulate, process or modify the user data payload. In some scenarios, it is possible that the 'Transport slice endpoints' and 'Transport slice realization endpoints' are identical. A non-exhaustive list of devices which contains service endpoints are routers, switches, roufirewalls, WAN and application acceleration, Deep Packet Inspection (DPI), server load balancers, NAT44 <xref target="RFC3022" />, NAT64 <xref target="RFC6146" />, HTTP header enrichment functions, and TCP optimizers.  
             </t>
           </list>
 	      </t>
-<!-- Reza: had a comment on NF definition -->
+
         <t>
-         The term Network Function (NF) covers both service and transport types of endpoints as defined in <xref target="I-D.ietf-teas-sf-aware-topo-model"/>.
+         The concept of the transport slice endpoints and transport slice realization endpoints are conceptually similar to the concept of connection points defined in <xref target="I-D.ietf-teas-sf-aware-topo-model"/> and access points defined in <xref target="RFC8453"/> but they are not the same.
         </t>
 		  </section>
 
@@ -815,6 +809,7 @@ Legend:
     <?rfc include="reference.RFC.6146"?>
     <?rfc include="reference.RFC.5921"?>
     <?rfc include="reference.RFC.4303"?>
+    <?rfc include="reference.RFC.8453"?>
     
 <!--
     <?i-d include="reference.I-D.draft-contreras-teas-slice-nbi"?>
