@@ -45,6 +45,7 @@
 <!ENTITY I-D.draft-ietf-teas-sf-aware-topo-model SYSTEM "https://xml2rfc.tools.ietf.org/public/rfc/bibxml3/reference.I-D.draft-ietf-teas-sf-aware-topo-model-05.xml">
 <!ENTITY I-D.draft-ietf-teas-enhanced-vpn SYSTEM "https://xml2rfc.tools.ietf.org/public/rfc/bibxml3/reference.I-D.draft-ietf-teas-enhanced-vpn-05.xml">
 <!ENTITY I-D.draft-nsdt-teas-ns-framework SYSTEM "https://xml2rfc.tools.ietf.org/public/rfc/bibxml3/reference.I-D.draft-nsdt-teas-ns-framework-02.xml">
+<!ENTITY I-D.draft-ietf-teas-yang-te-topo SYSTEM "https://xml2rfc.tools.ietf.org/public/rfc/bibxml3/reference.I-D.draft-ietf-teas-yang-te-topo-22.xml">
 ]>
 <?xml-stylesheet type='text/xsl' href='rfc2629.xslt' ?>
 <!-- used by XSLT processors -->
@@ -424,34 +425,57 @@ realize the transport slice.
     </section>
 		<!--</section>-->
 
+    <section anchor="tse" title="Transport Slice Endpoints">
+      <t>The transport slice endpoints are the conceptual entities that perform any required conversion, or adaptation, and forwarding of the user traffic. The characteristics of the transport slice endpoints (TSE) are:
+        <list style="symbols">
+          <t> They are conceptual points of connection of a network function, device or application to the transport slice</t>
+          <t> They are identified in a request provided by the customer of transport slice (i.e.  higher level operation systems) during the creation of the transport slice</t>
+          <t> They are associated with a device,  application and/or network function nodes . A non-exhaustive list of such nodes are routers, switches, firewalls, WAN, 4G/5G RAN nodes, 4G/5G Core nodes, application acceleration, Deep Packet Inspection (DPI), server load balancers, NAT44 [RFC3022], NAT64 [RFC6146], HTTP header enrichment functions, and TCP optimizers</t>
+          <t> A TSE is identified by its associated node (its IP address, name , ID etc), a unique identifier, a unique name and other data. A non-exhaustive list of other data includes IP address (v4 or v6), VLAN, port, connectivity type (P2P, P2MP, MP2MP). TBD for more</t>
+        </list>
+       </t>
+       
+       <t>Note that TSE concept is similar to the Link Termination Point (LTP) defined in  <xref target="I-D.ietf-teas-yang-te-topo"/> and access points (AP) defined in [RFC8453] with an important difference. The main difference between them is that both LTP and AP are about a specific set of implementations based on characterestics of the TE network while TSE is an effort to hide the details of the underlying realizaion. </t>
 
-    <section anchor="endpvar" title="Endpoint Variation">
-			
-      <t> Transport slice endpoints are the head-end and tail-end points providing connectivity with a set of specific SLOs. Endpoints may be termination points on devices or functions. </t>
+       <t>AP is a common identifier for the TE link (See section 2.1 RFC8453) and LTP is a conceptual point of connection of a TE node to one of the TE links, terminated by the TE node (see section 3.5  <xref target="I-D.ietf-teas-yang-te-topo"/>) whereas TSE is the connectino point to the transports slice. Note that it might be that the trasport slice is realized in a non-TE network and TSE might not be assocaiate to TE network. The TE characteristic of the network might be taken into consideration during the realization of a transport slice in a TE network.</t>
 
-      <section title="Types of Endpoints">
-        <t> There are two types of endpoints based on the functions they perform.
-          <list style="hanging">
-            <t hangText="Transport slice endpoint:">
-              These endpoints function as the head-end and tail-end of connections in transport slice where they perform the forwarding of the user payload.
-            </t>
-            <t hangText="Transport slice realization endpoint:">
-              These endpoints are related to the realization of the transport slice where they manipulate, process or modify the user data payload. In some scenarios, it is possible that the 'Transport slice endpoints' and 'Transport slice realization endpoints' are identical. A non-exhaustive list of devices which contains service endpoints (commonly known as 'middleboxes') are: routers, switches, firewalls, WAN and application acceleration, Deep Packet Inspection (DPI), server load balancers, NAT44 <xref target="RFC3022" />, NAT64 <xref target="RFC6146" />, HTTP header enrichment functions, and TCP optimizers.  
-            </t>
-          </list>
-	      </t>
+       <t>There is another type of the endpoints called "Transport Slice Realization endpoints (TSRE)". These endpoints are allocated and assigned by the network controller during the realization of a transport slice and are technology-specific, i.e. they depends on the network technology which is used during the transport slice realization. They are identified by a node and some associated data. A non-exhaustive list of nodes containing TSRE are routers, switches, PON nodes, Wireless nodes and Optical devices.</t>
 
-        <t>
-         The concept of the transport slice endpoints and transport slice realization endpoints are conceptually similar to the concept of connection points defined in <xref target="I-D.ietf-teas-sf-aware-topo-model"/> and access points defined in <xref target="RFC8453"/> but they are not the same.
-         <!-- Jeff's comments - since we are stating - they are not the same, it is our job to describe the differences -->
-        </t>
-		  </section>
+       <t>Note that there will be a mapping between TSE and TSRE on Transport Slice Controller (TSC). When TSC receives a request via its NBI to create a transport slice between multiple TSEs, it will then find the appropriate TSREs and sends the request via its SBI to realize the transport slice. The detail of this mapping should be addressed in transport slice framework document.</t>
 
-      <section title="Connectivity patterns within Transport Slice">
-        <t> The transport slices are a set of connections among the set of endpoints. These connections can be point to point (P2P), point to multipoint (P2MP), multi-point to point (MP2P), or multi-point to multi-point (MP2MP) based on the connectivity type requested by the customer. </t>
-       </section>
-     </section>
+       <t> <xref target="fig_tse_tsre"/> shows an example of a transport slice and its realization between multiple TSEs and TSREs.</t>
 
+       <figure anchor="fig_tse_tsre" title="A transport slice between TSEs and its realization between TSREs">
+        <artwork align="center"><![CDATA[
+
+  
+                         (-------------------)
+                        (  Transport Network  )
+      DAN1             (                       )                DAN2
+   --------  TSRE1 --------                  -------- TSRE2   --------
+   |    o |-------o|  A   |                  |  B   |o--------| o    |
+   |  TSE1|        --------                  --------         | TSE2 |
+   --------        |   (                        )    |        -------- 
+        |          |    (                      )     |          |
+        |          |     (-------------------)       |          |
+        |          |                                 |          |
+        |          | <=============================> |          |
+        |               Transport slice realization             | 
+        |                 between TSRE1 and TSRE2               |
+        |                                                       |
+        | <===================================================> |
+              Transport slice between TSE1 and TSE2 with SLO1
+ 
+ Legend:
+    DNA: Device, application and/or network function
+      ]]></artwork>
+     </figure>
+
+     <section title="Transport Slice Connectivity Types">
+       <t> The transport slices connection types can be point to point (P2P), point to multipoint (P2MP), multi-point to point (MP2P), or multi-point to  multi-point (MP2MP). The transport slice connectinon type will requested by the higher level operation system. </t>
+     </section> 
+
+    </section>
 
         <section anchor="Vertical-Concept" title="Vertical Composition of Transport Slice">
         <!-- [Reza comment: we need to talk about thissssss]"-->
@@ -647,7 +671,7 @@ Legend
 
 	   	<list style="hanging">
 		 <t hangText="TSC Northbound Interface (NBI):">
-       The TSC Northbound Interface is an interface between a higher level system, e.g. 'E2E network
+       The TSC Northbound Interface is an interface between a higher level operation system, e.g. 'E2E network
        slice orchestrator' and the 'Transport slice controller'. It is a technology agnostic interface. Over this NBI, slice characteristics and 
        other requirements can be communicated to TSC and the operational state of a transport slice may be requested.
 		 </t>
@@ -684,7 +708,7 @@ Legend
                              |
                              V
         +------------------------------------------+
-        |         A higher level system            |
+        |     A higher level operation system      |
         |   (e.g e2e network slice orchestrator)   |
         +------------------------------------------+
                              A
@@ -837,6 +861,7 @@ Legend:
 <!-- &I-D.draft-homma-rtgwg-slice-gateway;-->
     &I-D.draft-ietf-teas-sf-aware-topo-model;
     &I-D.draft-ietf-teas-enhanced-vpn;
+    &I-D.draft-ietf-teas-yang-te-topo;
   <!--  &I-D.i2nsf-nsf-monitoring-data-model;
     &I-D.draft-ietf-i2nsf-capability; -->
     <?rfc include="reference.RFC.2681"?>
