@@ -329,7 +329,7 @@ realize the transport slice.
 
         <section title="Service Level Objectives for Transport Slices">
         <t>
-			A transport slice is defined in terms of several quantifiable characteristics (SLIs) or service level objectives (SLOs). These objectives define a set of
+			A transport slice is defined in terms of several quantifiable characteristics or service level objectives (SLOs). These objectives define a set of
 			network resource parameters or values necessary to provide a service as requested for a given transport slice. SLOs do not describe
 			'how' the transport slices will be implemented or realized in the underlying network layers. They are, instead defined in terms of dimensions of operations (time, capacity,...), availability and other attributes.
       A transport slice can have one or more SLOs associated with it, all SLO's combined form an SLA. 
@@ -413,15 +413,19 @@ realize the transport slice.
     </t>
       <t> 
   <!--Jeff's review - these characteristics are not requested by a client but provided by a client for cases when transport slice is "traffic aware", same goes for "occupancy" EVPN would care about number of MAC addresses while optical transport would not, let's phrase this para differently  -->
-      Other traffic characteristics may be optionally, requested. These include for example MTU, traffic type (e.g., IPv4, IPv6, Ethernet or
+      Other traffic characteristics may be optionally requested. These include for example MTU, traffic type (e.g., IPv4, IPv6, Ethernet or
       unstructured), or a higher-level behavior to process traffic according to user-application (which may be realized using network functions). </t>
 <t> Maximal occupancy for a transport slice should be provided. Since it carries traffic for multiple flows between the 2 endpoints, the objectives should also say if they are for 
       the entire connection, group of flows or on per flow basis. Maximal occupancy should specify the scale of the 
       flows (i.e. maximum number of accommodatable flows) and optionally a maximum number of countable rosurce  units, e.g IP or MAC addresses a slice might consume.
       </t>
 		  
+<t>
+ With these objectives incorporated, a customer sees transport slice as a network which is dedicated for its exclusive use. Achieving this requires different types of isolation techniques in provider networks as described in 
+ <xref target="ApdxIsolation" />.
+</t>
 	<!-- Luis to justify below sentence -->
-      <t> Further description  of set of slice attributes is captured in the section 'Generic network Slice Template' <xref target="I-D.contreras-teas-slice-nbi"/>. </t>
+      <t> Additional description of slice attributes is covered in a broader context of 'Generic Network Slice Template' in <xref target="I-D.contreras-teas-slice-nbi"/>. </t>
 
 </section>
     </section>
@@ -536,7 +540,7 @@ realize the transport slice.
 
       </section>
        <!-- Jeff's comments - for consistency we should call the above para "Vertical Composition of Transport slice-->
-      <section title="Horizontal Composition of Transport slice">
+      <section title="Horizontal Composition of Transport Slice">
 	<t> In contrast, horizontal transport slices enable the composition of multiple realized transport slices. Since transport slices
 		are not necessarily a single  encapsulation tunnel and may traverse through different data planes, each realized transport slice will require
 		a stitching, interworking or mapping function. These stitching functions can be viewed as a type of intermediate network function endpoints.
@@ -1048,7 +1052,7 @@ Legend:
     </references>
 
        <section title="Discussions">
-    <section title="On isolation requirements in a transport slice">
+    <section anchor="ApdxIsolation" title="On Isolation Requirements In a Transport Slice">
 <t>
 Transport slices are perceived as if slice was provisioned for the
 customer as a dedicated network with specific SLOs. These committed
@@ -1087,7 +1091,7 @@ resources, or interference avoidance from other
 traffic. The term &quot;isolation&quot; can refer to any or all of them. 
 
 For instance, dedicated resources can help assure that traffic in other slices does not affect a given slice. Simillarly, traffic separation can be provided by VPN technologies, 
-and interference avoidance may be provided by mechanisms such as technical approaches mentioned in previous paragraph.
+and interference avoidance may be provided by mechanisms such as technical approaches mentioned in previous paragraph (network planning, capacity management, etc).
 Moreover, these are some of the  examples of particular realization of
 requirement for guarantees; other mechanisms may also be used.
 

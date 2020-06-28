@@ -5,14 +5,14 @@
 teas                                                            R. Rokui
 Internet-Draft                                                     Nokia
 Intended status: Informational                                  S. Homma
-Expires: December 27, 2020                                           NTT
+Expires: December 30, 2020                                           NTT
                                                             K. Makhijani
                                                                Futurewei
                                                            LM. Contreras
                                                               Telefonica
                                                              J. Tantsura
                                                             Apstra, Inc.
-                                                           June 25, 2020
+                                                           June 28, 2020
 
 
                    IETF Definition of Transport Slice
@@ -42,7 +42,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on December 27, 2020.
+   This Internet-Draft will expire on December 30, 2020.
 
 Copyright Notice
 
@@ -53,7 +53,7 @@ Copyright Notice
 
 
 
-Rokui, et al.           Expires December 27, 2020               [Page 1]
+Rokui, et al.           Expires December 30, 2020               [Page 1]
 
 Internet-Draft    draft-nsdt-transport-slice-definition        June 2020
 
@@ -81,7 +81,7 @@ Table of Contents
      4.2.  Transport Slice Endpoints . . . . . . . . . . . . . . . .   8
        4.2.1.  Transport Slice Connectivity Types  . . . . . . . . .   9
      4.3.  Vertical Composition of Transport Slice . . . . . . . . .  10
-     4.4.  Horizontal Composition of Transport slice . . . . . . . .  11
+     4.4.  Horizontal Composition of Transport Slice . . . . . . . .  11
    5.  Transport Slice Structure . . . . . . . . . . . . . . . . . .  11
      5.1.  Stakeholders  . . . . . . . . . . . . . . . . . . . . . .  13
      5.2.  Transport Slice Controller Interfaces . . . . . . . . . .  14
@@ -92,7 +92,7 @@ Table of Contents
    9.  Acknowledgment  . . . . . . . . . . . . . . . . . . . . . . .  17
    10. Informative References  . . . . . . . . . . . . . . . . . . .  17
    Appendix A.  Discussions  . . . . . . . . . . . . . . . . . . . .  19
-     A.1.  On isolation requirements in a transport slice  . . . . .  19
+     A.1.  On Isolation Requirements In a Transport Slice  . . . . .  19
    Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  20
 
 1.  Introduction
@@ -109,7 +109,7 @@ Table of Contents
 
 
 
-Rokui, et al.           Expires December 27, 2020               [Page 2]
+Rokui, et al.           Expires December 30, 2020               [Page 2]
 
 Internet-Draft    draft-nsdt-transport-slice-definition        June 2020
 
@@ -165,7 +165,7 @@ Internet-Draft    draft-nsdt-transport-slice-definition        June 2020
 
 
 
-Rokui, et al.           Expires December 27, 2020               [Page 3]
+Rokui, et al.           Expires December 30, 2020               [Page 3]
 
 Internet-Draft    draft-nsdt-transport-slice-definition        June 2020
 
@@ -221,7 +221,7 @@ Internet-Draft    draft-nsdt-transport-slice-definition        June 2020
 
 
 
-Rokui, et al.           Expires December 27, 2020               [Page 4]
+Rokui, et al.           Expires December 30, 2020               [Page 4]
 
 Internet-Draft    draft-nsdt-transport-slice-definition        June 2020
 
@@ -250,17 +250,17 @@ Internet-Draft    draft-nsdt-transport-slice-definition        June 2020
 4.1.  Service Level Objectives for Transport Slices
 
    A transport slice is defined in terms of several quantifiable
-   characteristics (SLIs) or service level objectives (SLOs).  These
-   objectives define a set of network resource parameters or values
-   necessary to provide a service as requested for a given transport
-   slice.  SLOs do not describe 'how' the transport slices will be
-   implemented or realized in the underlying network layers.  They are,
-   instead defined in terms of dimensions of operations (time,
-   capacity,...), availability and other attributes.  A transport slice
-   can have one or more SLOs associated with it, all SLO's combined form
-   an SLA.  The SLO values are defined unidirectionally and for specific
-   subsets of two or more endpoints (i.e. for a subset of connections in
-   transport slice).
+   characteristics or service level objectives (SLOs).  These objectives
+   define a set of network resource parameters or values necessary to
+   provide a service as requested for a given transport slice.  SLOs do
+   not describe 'how' the transport slices will be implemented or
+   realized in the underlying network layers.  They are, instead defined
+   in terms of dimensions of operations (time, capacity,...),
+   availability and other attributes.  A transport slice can have one or
+   more SLOs associated with it, all SLO's combined form an SLA.  The
+   SLO values are defined unidirectionally and for specific subsets of
+   two or more endpoints (i.e. for a subset of connections in transport
+   slice).
 
    The SLOs and values associated with them that are exposed to the end
    user, are in a form of Service Level Indicators (SLIs).  If for
@@ -277,7 +277,7 @@ Internet-Draft    draft-nsdt-transport-slice-definition        June 2020
 
 
 
-Rokui, et al.           Expires December 27, 2020               [Page 5]
+Rokui, et al.           Expires December 30, 2020               [Page 5]
 
 Internet-Draft    draft-nsdt-transport-slice-definition        June 2020
 
@@ -333,7 +333,7 @@ Internet-Draft    draft-nsdt-transport-slice-definition        June 2020
 
 
 
-Rokui, et al.           Expires December 27, 2020               [Page 6]
+Rokui, et al.           Expires December 30, 2020               [Page 6]
 
 Internet-Draft    draft-nsdt-transport-slice-definition        June 2020
 
@@ -370,7 +370,7 @@ Internet-Draft    draft-nsdt-transport-slice-definition        June 2020
    Additional objectives, such as certain geographical restrictions or
    well defined domains that a slice may transit may be necessary.
 
-   Other traffic characteristics may be optionally, requested.  These
+   Other traffic characteristics may be optionally requested.  These
    include for example MTU, traffic type (e.g., IPv4, IPv6, Ethernet or
    unstructured), or a higher-level behavior to process traffic
    according to user-application (which may be realized using network
@@ -384,18 +384,21 @@ Internet-Draft    draft-nsdt-transport-slice-definition        June 2020
    flows) and optionally a maximum number of countable rosurce units,
    e.g IP or MAC addresses a slice might consume.
 
+   With these objectives incorporated, a customer sees transport slice
+   as a network which is dedicated for its exclusive use.  Achieving
 
 
 
-
-
-Rokui, et al.           Expires December 27, 2020               [Page 7]
+Rokui, et al.           Expires December 30, 2020               [Page 7]
 
 Internet-Draft    draft-nsdt-transport-slice-definition        June 2020
 
 
-   Further description of set of slice attributes is captured in the
-   section 'Generic network Slice Template'
+   this requires different types of isolation techniques in provider
+   networks as described in Appendix A.1.
+
+   Additional description of slice attributes is covered in a broader
+   context of 'Generic Network Slice Template' in
    [I-D.contreras-teas-slice-nbi].
 
 4.2.  Transport Slice Endpoints
@@ -439,17 +442,17 @@ Internet-Draft    draft-nsdt-transport-slice-definition        June 2020
 
    There is another type of the endpoints called "Transport Slice
    Realization endpoints (TSRE)".  These endpoints are allocated and
-   assigned by the network controller during the realization of a
-   transport slice and are technology-specific, i.e. they depends on the
-   network technology which is used during the transport slice
 
 
 
-Rokui, et al.           Expires December 27, 2020               [Page 8]
+Rokui, et al.           Expires December 30, 2020               [Page 8]
 
 Internet-Draft    draft-nsdt-transport-slice-definition        June 2020
 
 
+   assigned by the network controller during the realization of a
+   transport slice and are technology-specific, i.e. they depends on the
+   network technology which is used during the transport slice
    realization.  They are identified by a node and some associated data.
    A non-exhaustive list of nodes containing TSRE are routers, switches,
    PON nodes, Wireless nodes and Optical devices.
@@ -498,10 +501,7 @@ Internet-Draft    draft-nsdt-transport-slice-definition        June 2020
 
 
 
-
-
-
-Rokui, et al.           Expires December 27, 2020               [Page 9]
+Rokui, et al.           Expires December 30, 2020               [Page 9]
 
 Internet-Draft    draft-nsdt-transport-slice-definition        June 2020
 
@@ -557,7 +557,7 @@ Internet-Draft    draft-nsdt-transport-slice-definition        June 2020
 
 
 
-Rokui, et al.           Expires December 27, 2020              [Page 10]
+Rokui, et al.           Expires December 30, 2020              [Page 10]
 
 Internet-Draft    draft-nsdt-transport-slice-definition        June 2020
 
@@ -574,7 +574,7 @@ Internet-Draft    draft-nsdt-transport-slice-definition        June 2020
       Note: The specification to connect TS121 and TS122 are similar to
       those connecting TS12 and TS11.
 
-4.4.  Horizontal Composition of Transport slice
+4.4.  Horizontal Composition of Transport Slice
 
    In contrast, horizontal transport slices enable the composition of
    multiple realized transport slices.  Since transport slices are not
@@ -613,7 +613,7 @@ Internet-Draft    draft-nsdt-transport-slice-definition        June 2020
 
 
 
-Rokui, et al.           Expires December 27, 2020              [Page 11]
+Rokui, et al.           Expires December 30, 2020              [Page 11]
 
 Internet-Draft    draft-nsdt-transport-slice-definition        June 2020
 
@@ -669,7 +669,7 @@ Internet-Draft    draft-nsdt-transport-slice-definition        June 2020
 
 
 
-Rokui, et al.           Expires December 27, 2020              [Page 12]
+Rokui, et al.           Expires December 30, 2020              [Page 12]
 
 Internet-Draft    draft-nsdt-transport-slice-definition        June 2020
 
@@ -725,7 +725,7 @@ Internet-Draft    draft-nsdt-transport-slice-definition        June 2020
 
 
 
-Rokui, et al.           Expires December 27, 2020              [Page 13]
+Rokui, et al.           Expires December 30, 2020              [Page 13]
 
 Internet-Draft    draft-nsdt-transport-slice-definition        June 2020
 
@@ -781,7 +781,7 @@ Internet-Draft    draft-nsdt-transport-slice-definition        June 2020
 
 
 
-Rokui, et al.           Expires December 27, 2020              [Page 14]
+Rokui, et al.           Expires December 30, 2020              [Page 14]
 
 Internet-Draft    draft-nsdt-transport-slice-definition        June 2020
 
@@ -837,7 +837,7 @@ Internet-Draft    draft-nsdt-transport-slice-definition        June 2020
 
 
 
-Rokui, et al.           Expires December 27, 2020              [Page 15]
+Rokui, et al.           Expires December 30, 2020              [Page 15]
 
 Internet-Draft    draft-nsdt-transport-slice-definition        June 2020
 
@@ -893,7 +893,7 @@ Internet-Draft    draft-nsdt-transport-slice-definition        June 2020
 
 
 
-Rokui, et al.           Expires December 27, 2020              [Page 16]
+Rokui, et al.           Expires December 30, 2020              [Page 16]
 
 Internet-Draft    draft-nsdt-transport-slice-definition        June 2020
 
@@ -949,7 +949,7 @@ Internet-Draft    draft-nsdt-transport-slice-definition        June 2020
 
 
 
-Rokui, et al.           Expires December 27, 2020              [Page 17]
+Rokui, et al.           Expires December 30, 2020              [Page 17]
 
 Internet-Draft    draft-nsdt-transport-slice-definition        June 2020
 
@@ -1005,7 +1005,7 @@ Internet-Draft    draft-nsdt-transport-slice-definition        June 2020
 
 
 
-Rokui, et al.           Expires December 27, 2020              [Page 18]
+Rokui, et al.           Expires December 30, 2020              [Page 18]
 
 Internet-Draft    draft-nsdt-transport-slice-definition        June 2020
 
@@ -1045,7 +1045,7 @@ Internet-Draft    draft-nsdt-transport-slice-definition        June 2020
 
 Appendix A.  Discussions
 
-A.1.  On isolation requirements in a transport slice
+A.1.  On Isolation Requirements In a Transport Slice
 
    Transport slices are perceived as if slice was provisioned for the
    customer as a dedicated network with specific SLOs.  These committed
@@ -1061,7 +1061,7 @@ A.1.  On isolation requirements in a transport slice
 
 
 
-Rokui, et al.           Expires December 27, 2020              [Page 19]
+Rokui, et al.           Expires December 30, 2020              [Page 19]
 
 Internet-Draft    draft-nsdt-transport-slice-definition        June 2020
 
@@ -1079,9 +1079,10 @@ Internet-Draft    draft-nsdt-transport-slice-definition        June 2020
    other slices does not affect a given slice.  Simillarly, traffic
    separation can be provided by VPN technologies, and interference
    avoidance may be provided by mechanisms such as technical approaches
-   mentioned in previous paragraph.  Moreover, these are some of the
-   examples of particular realization of requirement for guarantees;
-   other mechanisms may also be used.
+   mentioned in previous paragraph (network planning, capacity
+   management, etc).  Moreover, these are some of the examples of
+   particular realization of requirement for guarantees; other
+   mechanisms may also be used.
 
 Authors' Addresses
 
@@ -1116,8 +1117,7 @@ Authors' Addresses
 
 
 
-
-Rokui, et al.           Expires December 27, 2020              [Page 20]
+Rokui, et al.           Expires December 30, 2020              [Page 20]
 
 Internet-Draft    draft-nsdt-transport-slice-definition        June 2020
 
@@ -1173,4 +1173,4 @@ Internet-Draft    draft-nsdt-transport-slice-definition        June 2020
 
 
 
-Rokui, et al.           Expires December 27, 2020              [Page 21]
+Rokui, et al.           Expires December 30, 2020              [Page 21]
