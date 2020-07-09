@@ -280,7 +280,7 @@ resource availability information.
 
 This should be true even if both the consumer and provider are associated with
 a single administrative domain, in order to reduce the potential for adverse
-interactions between transport slice consumers and other uses/users of the
+interactions between transport slice consumers and other users of the
 transport network infrastructure.
 
 The benefits of this model can include:
@@ -390,7 +390,7 @@ TSC NBI may also include a capability to provide notification in
 case the transport slice performance reaches threshold values
 defined by the transport slice consumer.
 
-### Northbound Inteface (NBI)
+### Northbound Interface (NBI)
 
 The Transport Slice Controller provides a Northbound Interface (NBI)
 that allows consumers of network slices to request and monitor

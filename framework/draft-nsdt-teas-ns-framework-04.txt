@@ -80,7 +80,7 @@ Table of Contents
      3.1.  Management systems or other applications  . . . . . . . .   6
      3.2.  Expressing connectivity intents . . . . . . . . . . . . .   6
      3.3.  Transport Slice Controller (TSC)  . . . . . . . . . . . .   8
-       3.3.1.  Northbound Inteface (NBI) . . . . . . . . . . . . . .   9
+       3.3.1.  Northbound Interface (NBI)  . . . . . . . . . . . . .   9
      3.4.  Mapping . . . . . . . . . . . . . . . . . . . . . . . . .   9
      3.5.  Underlying technology . . . . . . . . . . . . . . . . . .   9
    4.  Applicability of ACTN to Transport Slices . . . . . . . . . .  10
@@ -310,8 +310,7 @@ Internet-Draft      Transport Network Slice Framework          July 2020
    This should be true even if both the consumer and provider are
    associated with a single administrative domain, in order to reduce
    the potential for adverse interactions between transport slice
-   consumers and other uses/users of the transport network
-   infrastructure.
+   consumers and other users of the transport network infrastructure.
 
    The benefits of this model can include:
 
@@ -329,6 +328,7 @@ Internet-Draft      Transport Network Slice Framework          July 2020
 
    *  Scalability: consumers do not need to know any information beyond
       that which is exposed via the NBI.
+
 
 
 
@@ -453,7 +453,7 @@ Internet-Draft      Transport Network Slice Framework          July 2020
       the transport slice performance reaches threshold values defined
       by the transport slice consumer.
 
-3.3.1.  Northbound Inteface (NBI)
+3.3.1.  Northbound Interface (NBI)
 
    The Transport Slice Controller provides a Northbound Interface (NBI)
    that allows consumers of network slices to request and monitor
