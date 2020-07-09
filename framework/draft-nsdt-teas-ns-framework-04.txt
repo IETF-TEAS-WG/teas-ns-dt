@@ -5,8 +5,8 @@
 Network Working Group                                       E. Gray, Ed.
 Internet-Draft                                                  Ericsson
 Intended status: Informational                             J. Drake, Ed.
-Expires: 2 November 2020                                Juniper Networks
-                                                              1 May 2020
+Expires: 10 January 2021                                Juniper Networks
+                                                             9 July 2020
 
 
                  Framework for Transport Network Slices
@@ -46,16 +46,16 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 2 November 2020.
+   This Internet-Draft will expire on 10 January 2021.
 
 
 
 
 
 
-Gray & Drake             Expires 2 November 2020                [Page 1]
+Gray & Drake             Expires 10 January 2021                [Page 1]
 
-Internet-Draft      Transport Network Slice Framework           May 2020
+Internet-Draft      Transport Network Slice Framework          July 2020
 
 
 Copyright Notice
@@ -86,32 +86,32 @@ Table of Contents
    4.  Applicability of ACTN to Transport Slices . . . . . . . . . .  10
    5.  Considerations  . . . . . . . . . . . . . . . . . . . . . . .  12
      5.1.  Monitoring  . . . . . . . . . . . . . . . . . . . . . . .  12
-     5.2.  Security Considerations . . . . . . . . . . . . . . . . .  12
-     5.3.  Privacy Considerations  . . . . . . . . . . . . . . . . .  12
+     5.2.  Security Considerations . . . . . . . . . . . . . . . . .  13
+     5.3.  Privacy Considerations  . . . . . . . . . . . . . . . . .  13
      5.4.  IANA Considerations . . . . . . . . . . . . . . . . . . .  13
    6.  Acknowledgments . . . . . . . . . . . . . . . . . . . . . . .  13
-   7.  References  . . . . . . . . . . . . . . . . . . . . . . . . .  13
+   7.  References  . . . . . . . . . . . . . . . . . . . . . . . . .  14
      7.1.  Normative References  . . . . . . . . . . . . . . . . . .  14
      7.2.  Informative References  . . . . . . . . . . . . . . . . .  14
    Contributors  . . . . . . . . . . . . . . . . . . . . . . . . . .  17
-   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  17
+   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  18
 
 1.  Introduction
 
    This draft provides a framework for discussing transport slices, as
-   defined in [I-D.nsdt-teas-transport-slice-definition] (to be replaced
-   by draft-rokui-teas-transport-slice-definition).  It is the intention
-   in this document to use terminology consistent with this and other
-   definitions provided in that draft.
+   defined in [I-D.nsdt-teas-transport-slice-definition] It is the
+   intention in this document to use terminology consistent with this
+   and other definitions provided in that draft.
 
    In particular, this document uses the following terminology defined
    in the definitions document:
 
 
 
-Gray & Drake             Expires 2 November 2020                [Page 2]
+
+Gray & Drake             Expires 10 January 2021                [Page 2]
 
-Internet-Draft      Transport Network Slice Framework           May 2020
+Internet-Draft      Transport Network Slice Framework          July 2020
 
 
    *  Transport Slice
@@ -165,9 +165,9 @@ Internet-Draft      Transport Network Slice Framework           May 2020
 
 
 
-Gray & Drake             Expires 2 November 2020                [Page 3]
+Gray & Drake             Expires 10 January 2021                [Page 3]
 
-Internet-Draft      Transport Network Slice Framework           May 2020
+Internet-Draft      Transport Network Slice Framework          July 2020
 
 
    While network slices are commonly discussed in the context of 5G, it
@@ -177,14 +177,15 @@ Internet-Draft      Transport Network Slice Framework           May 2020
    a component to create entire systems and concatenated constructs that
    match their needs, including end-to-end connectivity.
 
-   A Transport Slice could span multiple technologies and multiple
-   administrative domains.  Depending on the consumer's requirements, a
-   transport slice could be isolated from other, often concurrent
-   transport slices in terms of data, control and management planes.
+   A transport slice could span multiple technologies and multiple
+   administrative domains.  Depending on the transport slice consumer's
+   requirements, a transport slice could be isolated from other, often
+   concurrent transport slices in terms of data, control and management
+   planes.
 
    The consumer expresses requirements for a particular transport slice
    by specifying what is required rather than how the requirement is to
-   be fulfilled.  That is, the Transport Slice consumer's view of a
+   be fulfilled.  That is, the transport slice consumer's view of a
    transport slice is an abstract one.
 
    Thus, there is a need to create logical network structures with
@@ -216,15 +217,17 @@ Internet-Draft      Transport Network Slice Framework           May 2020
    use these transport slices to move packets between the specified end-
    points in accordance with specified characteristics.
 
+
+
+
+
+Gray & Drake             Expires 10 January 2021                [Page 4]
+
+Internet-Draft      Transport Network Slice Framework          July 2020
+
+
    As an example of requirements that might apply to transport slices,
    see [I-D.ietf-teas-enhanced-vpn] (in particular, section 3).
-
-
-
-Gray & Drake             Expires 2 November 2020                [Page 4]
-
-Internet-Draft      Transport Network Slice Framework           May 2020
-
 
 3.  Framework
 
@@ -253,7 +256,7 @@ Internet-Draft      Transport Network Slice Framework           May 2020
       applicable service level objectives (SLO), and any monitoring and
       reporting requirements that may apply.  Note that - in this
       context - "topology" means what the transport slice connectivity
-      is meant to look like from the users perspective; it may be as
+      is meant to look like from the user's perspective; it may be as
       simple as a list of mutually (and symmetrically) connected end
       points, or it may be complicated by details of connection
       asymmetry, per-connection SLO requirements, etc.
@@ -274,12 +277,9 @@ Internet-Draft      Transport Network Slice Framework           May 2020
 
 
 
-
-
-
-Gray & Drake             Expires 2 November 2020                [Page 5]
+Gray & Drake             Expires 10 January 2021                [Page 5]
 
-Internet-Draft      Transport Network Slice Framework           May 2020
+Internet-Draft      Transport Network Slice Framework          July 2020
 
 
 3.1.  Management systems or other applications
@@ -333,9 +333,9 @@ Internet-Draft      Transport Network Slice Framework           May 2020
 
 
 
-Gray & Drake             Expires 2 November 2020                [Page 6]
+Gray & Drake             Expires 10 January 2021                [Page 6]
 
-Internet-Draft      Transport Network Slice Framework           May 2020
+Internet-Draft      Transport Network Slice Framework          July 2020
 
 
    The general issues of abstraction in a TE network is described more
@@ -389,9 +389,9 @@ Internet-Draft      Transport Network Slice Framework           May 2020
 
 
 
-Gray & Drake             Expires 2 November 2020                [Page 7]
+Gray & Drake             Expires 10 January 2021                [Page 7]
 
-Internet-Draft      Transport Network Slice Framework           May 2020
+Internet-Draft      Transport Network Slice Framework          July 2020
 
 
 3.3.  Transport Slice Controller (TSC)
@@ -445,9 +445,9 @@ Internet-Draft      Transport Network Slice Framework           May 2020
 
 
 
-Gray & Drake             Expires 2 November 2020                [Page 8]
+Gray & Drake             Expires 10 January 2021                [Page 8]
 
-Internet-Draft      Transport Network Slice Framework           May 2020
+Internet-Draft      Transport Network Slice Framework          July 2020
 
 
       the transport slice performance reaches threshold values defined
@@ -501,9 +501,9 @@ Internet-Draft      Transport Network Slice Framework           May 2020
 
 
 
-Gray & Drake             Expires 2 November 2020                [Page 9]
+Gray & Drake             Expires 10 January 2021                [Page 9]
 
-Internet-Draft      Transport Network Slice Framework           May 2020
+Internet-Draft      Transport Network Slice Framework          July 2020
 
 
    A transport slice can be realized in a network, using specific
@@ -527,74 +527,78 @@ Internet-Draft      Transport Network Slice Framework           May 2020
 
 4.  Applicability of ACTN to Transport Slices
 
-   [RFC8453] defined three controllers as per the framework for
-   Abstraction and Control of TE Networks (ACTN) to support virtual
-   network (VN) services - Customer Network Controller (CNC), Multi-
-   Domain Service Coordinator (MDSC) and Provisioning Network Controller
-   (PNC).  A CNC is responsible for communicating a customer's virtual
-   network requirements, a MDSC is responsible for multi-domain
-   coordination, virtualization/abstraction, customer mapping/
-   translation and virtual service coordination to realize the virtual
-   network requirement.  Its key role is to detach the network/service
-   requirements from the underlying technology.  A PNC oversees the
-   configuration, monitoring and collection of the network topology.
-   The PNC is a underlay technology specific controller.
+   Abstraction and Control of TE Networks (ACTN - [RFC8453]) is an
+   example of similar IETF work.  ACTN defines three controllers to
+   support virtual network (VN) services -
+
+   *  Customer Network Controller (CNC),
+
+   *  Multi-Domain Service Coordinator (MDSC) and
+
+   *  Provisioning Network Controller (PNC).
+
+   A CNC is responsible for communicating a customer's VN requirements.
+
+   A MDSC is responsible for multi-domain coordination, virtualization
+   (or abstraction), customer mapping/translation and virtual service
+   coordination to realize the VN requirement.  Its key role is to
+   detach the network/service requirements from the underlying
+   technology.
+
+   A PNC oversees the configuration, monitoring and collection of the
+   network topology.  The PNC is a underlay technology specific
+   controller.
 
    While the ACTN framework is a generic VN framework that is used for
    various VN service beyond the transport slice, it is still a suitable
-   based to understand how the various controllers interact to realize
-   the Transport slice.
+   basis to understand how the various controllers interact to realize a
+   transport slice.
 
-   A mapping between the Transport Slice definitions and ACTN
+
+
+
+Gray & Drake             Expires 10 January 2021               [Page 10]
+
+Internet-Draft      Transport Network Slice Framework          July 2020
+
+
+   One possible mapping between the transport slice, and ACTN,
    definitions is as shown in Figure 1 below.
 
+       +-------------------------------------+
+       |             Customer                |  |
+       +-------------------------------------+
+                         ^                      |     ACTN
+                         |                         Terminology
+                         v                      |  and Concepts
+       +-------------------------------------+
+       | A higher level operation system     |  |   +-----+
+       |(e.g. e2e network slice orchestrator)| ===> | CNC |
+       +-------------------------------------+  |   +-----+
+                         ^                             ^
+                         | TSC NBI              |      | CMI
+                         v                             v
+       +-------------------------------------+  |   +------+
+       |      Transport Slice Controller     | ===> | MDSC |
+       +-------------------------------------+  |   +------+
+                         ^                             ^
+                         | TSC SBI              |      | MPI
+                         v                             v
+       +-------------------------------------+  |   +-----+
+       |   Transport Network Controller(s)   | ===> | PNC |
+       +-------------------------------------+  |   +-----+
 
-
-
-
-
-
-
-
-
-Gray & Drake             Expires 2 November 2020               [Page 10]
-
-Internet-Draft      Transport Network Slice Framework           May 2020
-
-
-       ------------------------------------+
-       |             Customer               |  |
-       +------------------------------------+
-                         A                     |     ACTN
-                         |                        Terminology
-                         V                     |  and Concepts
-       +------------------------------------+
-       |      A highter level system        |  |
-       |(e.g e2e network slice orchestrator)|
-       +------------------------------------+  |
-                         A
-                         | TSC NBI             |
-                         V
-       +------------------------------------+  |   +-----+
-       |      Transport Slice Controller    | ===> | CNC |
-       +------------------------------------+  |   +-----+
-                         A                            A
-                         | TSC SBI             |      | CMI
-                         V                            V
-       +------------------------------------+  |   +-----+
-       |        Network Controller(s)       | ===> |MDSC |
-       +------------------------------------+  |   +-----+
-                                                      A
-                Terminology/Concepts           |      | MPI
-               Used in this Document                  V
-                                               |   +-----+
-                                                   | PNC |
-                                               |   +-----+
+                Terminology/Concepts            |
+               Used in this Document
+                                                |
 
                               Figure 1
 
+   Note that the left-hand side of this figure comes from Transport
+   Slice Definition ([I-D.nsdt-teas-transport-slice-definition]).
+
    The TSC NBI conveys the generic transport slice requirements.  These
-   may then be realized using an SBI.
+   may then be realized using an SBI within the TSC.
 
    As per [RFC8453] and [I-D.ietf-teas-actn-yang], the CNC-MDSC
    Interface (CMI) is used to convey the virtual network service
@@ -603,24 +607,52 @@ Internet-Draft      Transport Network Slice Framework           May 2020
    models.  [I-D.ietf-teas-te-service-mapping-yang] further describe how
    the VPN services can be mapped to the underlying TE resources.
 
-   The Transport Network Controller is depicted as a single block, where
-   as in the ACTN framework this has been decomposed into MDSC and PNC
-   to handle multiple domains and various underlay technologies.
+   The Transport Network Controller (TNC) is depicted as a single block,
+   analogous to the Provisioning Network Controller (in this example).
+   In the ACTN framework, however, it is also possible that the TNC
+
+
+
+Gray & Drake             Expires 10 January 2021               [Page 11]
+
+Internet-Draft      Transport Network Slice Framework          July 2020
+
+
+   function is decomposed into MDSC and PNC - that is, the TNC may
+   comprise hierarchy as needed to handle the multiple domains and
+   various underlay technologies, whereas a PNC in ACTN is intended to
+   be specific to at most a single underlay technology and (likely) to
+   individual devices (or functional components).
+
+   Note that the details of potential implementations of everything that
+   is below the TSC in Figure 1 are out of scope in this document -
+   hence the specifics of the relationship between TNC and PNC, and the
+   possibility that the MDSC and PNC may be combined are at most
+   academically interesting in this context.  Another way to view this
+   is that, in the same way that ACTN might combine MDSC and PNC, the
+   TSC might also directly include TNC functionality.
 
    [RFC8453] also describes TE Network Slicing in the context of ACTN as
    a collection of resources that is used to establish a logically
    dedicated virtual network over one or more TE networks.  In case of
-
-
-
-Gray & Drake             Expires 2 November 2020               [Page 11]
-
-Internet-Draft      Transport Network Slice Framework           May 2020
-
-
    TE enabled underlying network, ACTN VN can be used as a base to
    realize the transport network slicing by coordination among multiple
    peer domains as well as underlay technology domains.
+
+   Figure 1 shows only one possible mapping as each ACTN component (or
+   interface) in the figure may be a composed differently in other
+   mappings, and the exact role of both components and subcomponents
+   will not be always an exact analogy between the concepts used in this
+   document and those defined in ACTN.
+
+   This is - in part - shown in a previous paragraph in this section
+   where it is pointed out that the TNC may actually subsume some
+   aspects of both the MDSC and PNC.
+
+   Similarly, in part depending on how "customer" is interpreted, CNC
+   might merge some aspects of the higher level system and the TSC.  As
+   in the TNC/PNC case, this way of comparing ACTN to this work is not
+   useful as the TSC and TSC NBI are the focus on this document.
 
 5.  Considerations
 
@@ -630,6 +662,17 @@ Internet-Draft      Transport Network Slice Framework           May 2020
    track how it is working, and it might be necessary to modify the
    transport slice as requirements change.  Dynamic reconfiguration
    might be needed.
+
+
+
+
+
+
+
+Gray & Drake             Expires 10 January 2021               [Page 12]
+
+Internet-Draft      Transport Network Slice Framework          July 2020
+
 
 5.2.  Security Considerations
 
@@ -666,14 +709,6 @@ Internet-Draft      Transport Network Slice Framework           May 2020
    In this sense, it is of paramount importance that the system use the
    privacy protection mechanism defined for the specific underlying
    technologies used, including in particular those mechanisms designed
-
-
-
-Gray & Drake             Expires 2 November 2020               [Page 12]
-
-Internet-Draft      Transport Network Slice Framework           May 2020
-
-
    to preclude acquiring identifying information associated with any
    transport slice consumer.
 
@@ -687,6 +722,13 @@ Internet-Draft      Transport Network Slice Framework           May 2020
    discussions has contributed to this draft.  Some text fragments in
    the draft have been copied from the [I-D.ietf-teas-enhanced-vpn], for
    which we are grateful.
+
+
+
+Gray & Drake             Expires 10 January 2021               [Page 13]
+
+Internet-Draft      Transport Network Slice Framework          July 2020
+
 
    Significant contributions to this document were gratefully received
    from the contributing authors listed in the "Contributors" section.
@@ -723,13 +765,6 @@ Internet-Draft      Transport Network Slice Framework           May 2020
 
 7.  References
 
-
-
-Gray & Drake             Expires 2 November 2020               [Page 13]
-
-Internet-Draft      Transport Network Slice Framework           May 2020
-
-
 7.1.  Normative References
 
    [I-D.nsdt-teas-transport-slice-definition]
@@ -741,6 +776,15 @@ Internet-Draft      Transport Network Slice Framework           May 2020
               definition-02.txt>.
 
 7.2.  Informative References
+
+
+
+
+
+Gray & Drake             Expires 10 January 2021               [Page 14]
+
+Internet-Draft      Transport Network Slice Framework          July 2020
+
 
    [BBF-SD406]
               Broadband Forum, ., "End-to-end network slicing", BBF
@@ -778,14 +822,6 @@ Internet-Draft      Transport Network Slice Framework           May 2020
               <http://www.ietf.org/internet-drafts/draft-openconfig-
               rtgwg-gnmi-spec-01.txt>.
 
-
-
-
-Gray & Drake             Expires 2 November 2020               [Page 14]
-
-Internet-Draft      Transport Network Slice Framework           May 2020
-
-
    [NGMN-NS-Concept]
               NGMN Alliance, ., "Description of Network Slicing
               Concept", https://www.ngmn.org/uploads/
@@ -797,6 +833,14 @@ Internet-Draft      Transport Network Slice Framework           May 2020
               Version 2 (SMIv2)", STD 58, RFC 2578,
               DOI 10.17487/RFC2578, April 1999,
               <https://www.rfc-editor.org/info/rfc2578>.
+
+
+
+
+Gray & Drake             Expires 10 January 2021               [Page 15]
+
+Internet-Draft      Transport Network Slice Framework          July 2020
+
 
    [RFC3412]  Case, J., Harrington, D., Presuhn, R., and B. Wijnen,
               "Message Processing and Dispatching for the Simple Network
@@ -835,13 +879,6 @@ Internet-Draft      Transport Network Slice Framework           May 2020
               DOI 10.17487/RFC5212, July 2008,
               <https://www.rfc-editor.org/info/rfc5212>.
 
-
-
-Gray & Drake             Expires 2 November 2020               [Page 15]
-
-Internet-Draft      Transport Network Slice Framework           May 2020
-
-
    [RFC5440]  Vasseur, JP., Ed. and JL. Le Roux, Ed., "Path Computation
               Element (PCE) Communication Protocol (PCEP)", RFC 5440,
               DOI 10.17487/RFC5440, March 2009,
@@ -851,6 +888,15 @@ Internet-Draft      Transport Network Slice Framework           May 2020
               the Network Configuration Protocol (NETCONF)", RFC 6020,
               DOI 10.17487/RFC6020, October 2010,
               <https://www.rfc-editor.org/info/rfc6020>.
+
+
+
+
+
+Gray & Drake             Expires 10 January 2021               [Page 16]
+
+Internet-Draft      Transport Network Slice Framework          July 2020
+
 
    [RFC6241]  Enns, R., Ed., Bjorklund, M., Ed., Schoenwaelder, J., Ed.,
               and A. Bierman, Ed., "Network Configuration Protocol
@@ -888,16 +934,6 @@ Internet-Draft      Transport Network Slice Framework           May 2020
    [TS28530]  3GPP, ., "Management and orchestration; Concepts, use
               cases and requirements", 3GPP TS 28.530 , 2019.
 
-
-
-
-
-
-Gray & Drake             Expires 2 November 2020               [Page 16]
-
-Internet-Draft      Transport Network Slice Framework           May 2020
-
-
 Contributors
 
    The following authors contributed significantly to this document:
@@ -909,6 +945,15 @@ Contributors
 
 
    Dhruv Dhody
+
+
+
+
+Gray & Drake             Expires 10 January 2021               [Page 17]
+
+Internet-Draft      Transport Network Slice Framework          July 2020
+
+
    Huawei, India
 
    Email: dhruv.ietf@gmail.com
@@ -949,4 +994,15 @@ Authors' Addresses
 
 
 
-Gray & Drake             Expires 2 November 2020               [Page 17]
+
+
+
+
+
+
+
+
+
+
+
+Gray & Drake             Expires 10 January 2021               [Page 18]
