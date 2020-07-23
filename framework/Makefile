@@ -1,5 +1,8 @@
 
-base:	draft-nsdt-teas-ns-framework-04.txt
+base:	draft-nsdt-teas-ns-framework-05.txt
+
+draft-nsdt-teas-ns-framework-05.txt:	draft-nsdt-teas-ns-framework-05.md
+	kdrfc -3 draft-nsdt-teas-ns-framework-05.md > /dev/null
 
 draft-nsdt-teas-ns-framework-04.txt:	draft-nsdt-teas-ns-framework-04.md
 	kdrfc -3 draft-nsdt-teas-ns-framework-04.md > /dev/null
@@ -18,16 +21,16 @@ draft-nsdt-teas-ns-framework-01.txt:	draft-nsdt-teas-ns-framework-01.md
 # 
 # draft-nsdt-teas-ns-framework-01.txt:	draft-nsdt-teas-ns-framework-01.xml
 # 	xml2rfc draft-nsdt-teas-ns-framework-01.xml
+# 
+# draft-framework.xml:	draft-framework.md
+# 	kramdown-rfc2629 draft-framework.md
 
-draft-framework.xml:	draft-framework.md
-	kramdown-rfc2629 draft-framework.md
-
-draft-framework.txt: draft-framework.xml
-	xml2rfc draft-framework.xml
-
-draft-nsdt-teas-ns-framework-00.txt: draft-framework.txt
-	mv -v draft-framework.txt draft-nsdt-teas-ns-framework-00.txt
-
+# draft-framework.txt: draft-framework.xml
+# 	xml2rfc draft-framework.xml
+# 
+# draft-nsdt-teas-ns-framework-00.txt: draft-framework.txt
+# 	mv -v draft-framework.txt draft-nsdt-teas-ns-framework-00.txt
+# 
 #base:	draft-framework.txt
 #
 #LIBDIR := lib
