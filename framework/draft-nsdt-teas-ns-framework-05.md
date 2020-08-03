@@ -1,7 +1,7 @@
 ---
 title: Framework for Transport Network Slices
 abbrev: Transport Network Slice Framework
-docname: draft-nsdt-teas-ns-framework-04
+docname: draft-nsdt-teas-ns-framework-05
 date:
 category: info
 
@@ -631,7 +631,7 @@ the design team meetings, including:
 - Lou Berger
 - Luis M. Contreras
 - Rakesh Gandhi
-- Ren Chen
+- Ran Chen
 - Sergio Belotti
 - Shunsuke Homma
 - Stewart Bryant

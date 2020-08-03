@@ -5,12 +5,12 @@
 Network Working Group                                       E. Gray, Ed.
 Internet-Draft                                                  Ericsson
 Intended status: Informational                             J. Drake, Ed.
-Expires: 24 January 2021                                Juniper Networks
-                                                            23 July 2020
+Expires: 4 February 2021                                Juniper Networks
+                                                           3 August 2020
 
 
                  Framework for Transport Network Slices
-                    draft-nsdt-teas-ns-framework-04
+                    draft-nsdt-teas-ns-framework-05
 
 Abstract
 
@@ -46,16 +46,16 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 24 January 2021.
+   This Internet-Draft will expire on 4 February 2021.
 
 
 
 
 
 
-Gray & Drake             Expires 24 January 2021                [Page 1]
+Gray & Drake             Expires 4 February 2021                [Page 1]
 
-Internet-Draft      Transport Network Slice Framework          July 2020
+Internet-Draft      Transport Network Slice Framework        August 2020
 
 
 Copyright Notice
@@ -109,9 +109,9 @@ Table of Contents
 
 
 
-Gray & Drake             Expires 24 January 2021                [Page 2]
+Gray & Drake             Expires 4 February 2021                [Page 2]
 
-Internet-Draft      Transport Network Slice Framework          July 2020
+Internet-Draft      Transport Network Slice Framework        August 2020
 
 
    *  Transport Slice
@@ -165,9 +165,9 @@ Internet-Draft      Transport Network Slice Framework          July 2020
 
 
 
-Gray & Drake             Expires 24 January 2021                [Page 3]
+Gray & Drake             Expires 4 February 2021                [Page 3]
 
-Internet-Draft      Transport Network Slice Framework          July 2020
+Internet-Draft      Transport Network Slice Framework        August 2020
 
 
    While network slices are commonly discussed in the context of 5G, it
@@ -221,9 +221,9 @@ Internet-Draft      Transport Network Slice Framework          July 2020
 
 
 
-Gray & Drake             Expires 24 January 2021                [Page 4]
+Gray & Drake             Expires 4 February 2021                [Page 4]
 
-Internet-Draft      Transport Network Slice Framework          July 2020
+Internet-Draft      Transport Network Slice Framework        August 2020
 
 
    As an example of requirements that might apply to transport slices,
@@ -277,9 +277,9 @@ Internet-Draft      Transport Network Slice Framework          July 2020
 
 
 
-Gray & Drake             Expires 24 January 2021                [Page 5]
+Gray & Drake             Expires 4 February 2021                [Page 5]
 
-Internet-Draft      Transport Network Slice Framework          July 2020
+Internet-Draft      Transport Network Slice Framework        August 2020
 
 
 3.1.  Management systems or other applications
@@ -333,9 +333,9 @@ Internet-Draft      Transport Network Slice Framework          July 2020
 
 
 
-Gray & Drake             Expires 24 January 2021                [Page 6]
+Gray & Drake             Expires 4 February 2021                [Page 6]
 
-Internet-Draft      Transport Network Slice Framework          July 2020
+Internet-Draft      Transport Network Slice Framework        August 2020
 
 
    The general issues of abstraction in a TE network is described more
@@ -389,9 +389,9 @@ Internet-Draft      Transport Network Slice Framework          July 2020
 
 
 
-Gray & Drake             Expires 24 January 2021                [Page 7]
+Gray & Drake             Expires 4 February 2021                [Page 7]
 
-Internet-Draft      Transport Network Slice Framework          July 2020
+Internet-Draft      Transport Network Slice Framework        August 2020
 
 
 3.3.  Transport Slice Controller (TSC)
@@ -445,9 +445,9 @@ Internet-Draft      Transport Network Slice Framework          July 2020
 
 
 
-Gray & Drake             Expires 24 January 2021                [Page 8]
+Gray & Drake             Expires 4 February 2021                [Page 8]
 
-Internet-Draft      Transport Network Slice Framework          July 2020
+Internet-Draft      Transport Network Slice Framework        August 2020
 
 
       the transport slice performance reaches threshold values defined
@@ -501,9 +501,9 @@ Internet-Draft      Transport Network Slice Framework          July 2020
 
 
 
-Gray & Drake             Expires 24 January 2021                [Page 9]
+Gray & Drake             Expires 4 February 2021                [Page 9]
 
-Internet-Draft      Transport Network Slice Framework          July 2020
+Internet-Draft      Transport Network Slice Framework        August 2020
 
 
    A transport slice can be realized in a network, using specific
@@ -557,9 +557,9 @@ Internet-Draft      Transport Network Slice Framework          July 2020
 
 
 
-Gray & Drake             Expires 24 January 2021               [Page 10]
+Gray & Drake             Expires 4 February 2021               [Page 10]
 
-Internet-Draft      Transport Network Slice Framework          July 2020
+Internet-Draft      Transport Network Slice Framework        August 2020
 
 
    One possible mapping between the transport slice, and ACTN,
@@ -613,9 +613,9 @@ Internet-Draft      Transport Network Slice Framework          July 2020
 
 
 
-Gray & Drake             Expires 24 January 2021               [Page 11]
+Gray & Drake             Expires 4 February 2021               [Page 11]
 
-Internet-Draft      Transport Network Slice Framework          July 2020
+Internet-Draft      Transport Network Slice Framework        August 2020
 
 
    function is decomposed into MDSC and PNC - that is, the TNC may
@@ -669,9 +669,9 @@ Internet-Draft      Transport Network Slice Framework          July 2020
 
 
 
-Gray & Drake             Expires 24 January 2021               [Page 12]
+Gray & Drake             Expires 4 February 2021               [Page 12]
 
-Internet-Draft      Transport Network Slice Framework          July 2020
+Internet-Draft      Transport Network Slice Framework        August 2020
 
 
 5.2.  Security Considerations
@@ -725,9 +725,9 @@ Internet-Draft      Transport Network Slice Framework          July 2020
 
 
 
-Gray & Drake             Expires 24 January 2021               [Page 13]
+Gray & Drake             Expires 4 February 2021               [Page 13]
 
-Internet-Draft      Transport Network Slice Framework          July 2020
+Internet-Draft      Transport Network Slice Framework        August 2020
 
 
    Significant contributions to this document were gratefully received
@@ -751,7 +751,7 @@ Internet-Draft      Transport Network Slice Framework          July 2020
 
    *  Rakesh Gandhi
 
-   *  Ren Chen
+   *  Ran Chen
 
    *  Sergio Belotti
 
@@ -781,9 +781,9 @@ Internet-Draft      Transport Network Slice Framework          July 2020
 
 
 
-Gray & Drake             Expires 24 January 2021               [Page 14]
+Gray & Drake             Expires 4 February 2021               [Page 14]
 
-Internet-Draft      Transport Network Slice Framework          July 2020
+Internet-Draft      Transport Network Slice Framework        August 2020
 
 
    [BBF-SD406]
@@ -837,9 +837,9 @@ Internet-Draft      Transport Network Slice Framework          July 2020
 
 
 
-Gray & Drake             Expires 24 January 2021               [Page 15]
+Gray & Drake             Expires 4 February 2021               [Page 15]
 
-Internet-Draft      Transport Network Slice Framework          July 2020
+Internet-Draft      Transport Network Slice Framework        August 2020
 
 
    [RFC3412]  Case, J., Harrington, D., Presuhn, R., and B. Wijnen,
@@ -893,9 +893,9 @@ Internet-Draft      Transport Network Slice Framework          July 2020
 
 
 
-Gray & Drake             Expires 24 January 2021               [Page 16]
+Gray & Drake             Expires 4 February 2021               [Page 16]
 
-Internet-Draft      Transport Network Slice Framework          July 2020
+Internet-Draft      Transport Network Slice Framework        August 2020
 
 
    [RFC6241]  Enns, R., Ed., Bjorklund, M., Ed., Schoenwaelder, J., Ed.,
@@ -949,9 +949,9 @@ Contributors
 
 
 
-Gray & Drake             Expires 24 January 2021               [Page 17]
+Gray & Drake             Expires 4 February 2021               [Page 17]
 
-Internet-Draft      Transport Network Slice Framework          July 2020
+Internet-Draft      Transport Network Slice Framework        August 2020
 
 
    Huawei, India
@@ -1005,4 +1005,4 @@ Authors' Addresses
 
 
 
-Gray & Drake             Expires 24 January 2021               [Page 18]
+Gray & Drake             Expires 4 February 2021               [Page 18]
