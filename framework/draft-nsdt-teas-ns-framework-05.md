@@ -37,19 +37,19 @@ contributor:
     org: Huawei, India
     email: dhruv.ietf@gmail.com
   -
-    ins: R. Rokui
-    name: Reza Rokui
-    org: Nokia
-    email: reza.rokui@nokia.com
+    ins: J. Dong
+    name: Jie Dong
+    org: Huawei
+    email: jie.dong@huawei.com
   -
     ins: X. Liu
     name: Xufeng Liu
     email: xufeng.liu.ietf@gmail.com
   -
-    ins: J. Dong
-    name: Jie Dong
-    org: Huawei
-    email: jie.dong@huawei.com
+    ins: R. Rokui
+    name: Reza Rokui
+    org: Nokia
+    email: reza.rokui@nokia.com
 
 normative:
   I-D.nsdt-teas-transport-slice-definition: 
