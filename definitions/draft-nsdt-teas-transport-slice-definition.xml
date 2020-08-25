@@ -42,7 +42,9 @@
 -->
 <!--<!ENTITY I-D.draft-homma-rtgwg-slice-gateway SYSTEM "https://xml2rfc.tools.ietf.org/public/rfc/bibxml3/reference.I-D.draft-homma-rtgwg-slice-gateway-01.xml">-->
 <!ENTITY I-D.draft-contreras-teas-slice-nbi SYSTEM "https://xml2rfc.tools.ietf.org/public/rfc/bibxml3/reference.I-D.draft-contreras-teas-slice-nbi-01.xml">
+<!--
 <!ENTITY I-D.draft-ietf-teas-sf-aware-topo-model SYSTEM "https://xml2rfc.tools.ietf.org/public/rfc/bibxml3/reference.I-D.draft-ietf-teas-sf-aware-topo-model-05.xml">
+-->
 <!ENTITY I-D.draft-ietf-teas-enhanced-vpn SYSTEM "https://xml2rfc.tools.ietf.org/public/rfc/bibxml3/reference.I-D.draft-ietf-teas-enhanced-vpn-05.xml">
 <!ENTITY I-D.draft-nsdt-teas-ns-framework SYSTEM "https://xml2rfc.tools.ietf.org/public/rfc/bibxml3/reference.I-D.draft-nsdt-teas-ns-framework-02.xml">
 <!ENTITY I-D.draft-ietf-teas-yang-te-topo SYSTEM "https://xml2rfc.tools.ietf.org/public/rfc/bibxml3/reference.I-D.draft-ietf-teas-yang-te-topo-22.xml">
@@ -74,7 +76,7 @@
 <?rfc subcompact="no" ?>
 <!-- keep one blank line between list items -->
 <!-- end of list of popular I-D processing instructions -->
-<rfc category="info" docName="draft-nsdt-teas-transport-slice-definition-03">
+<rfc category="info" docName="draft-nsdt-teas-transport-slice-definition-04">
   <!-- ***** FRONT MATTER ***** -->
 
   <front>
@@ -385,7 +387,7 @@ realize the transport slice.-->
       </t>
 		  
 <t>
- With these objectives incorporated, a customer sees transport slice as a  dedicated network for its exclusive use. Achieving this may require different types of isolation techniques in provider networks as described in 
+ With these objectives incorporated, a customer sees transport slice as a  dedicated network for its exclusive use. Achieving this may require explicit request for different types of isolation in provider networks as described in 
  <xref target="ApdxIsolation" />.
 </t>
       <t> Additional description of slice attributes is covered in a broader context of 'Generic Network Slice Template' in <xref target="I-D.contreras-teas-slice-nbi"/>. </t>
@@ -398,13 +400,13 @@ realize the transport slice.-->
         <list style="symbols">
           <t> They are conceptual points of connection of a network function, device or application to the transport slice</t>
           <t> They are identified in a request provided by the customer of transport slice (i.e.  higher level operation systems) during the creation of the transport slice</t>
-          <t> They are associated with a device,  application and/or network function nodes. A non-exhaustive list of such nodes are routers, switches, firewalls, WAN, 4G/5G RAN nodes, 4G/5G Core nodes, application acceleration, Deep Packet Inspection (DPI), server load balancers, NAT44 [RFC3022], NAT64 [RFC6146], HTTP header enrichment functions, and TCP optimizers</t>
+          <t> They are associated with a device,  application and/or network function nodes. A non-exhaustive list of such nodes are routers, switches, firewalls, WAN, 4G/5G RAN nodes, 4G/5G Core nodes, application acceleration, Deep Packet Inspection (DPI), server load balancers, NAT44 <xref target="RFC3022"/>, NAT64 <xref target="RFC6146"/>, HTTP header enrichment functions, and TCP optimizers</t>
           <t> A TSE is identified by its associated node (its IP address, name , ID, etc.), a unique identifier and/or a unique name and other data. A non-exhaustive list of other data includes IP address (v4 or v6), VLAN, port, connectivity type (P2P, P2MP, MP2MP). TBD for more</t>
         </list>
        </t>
        
-       <t> Note that the TSE is different from access points (AP) defined in [RFC8453] as an AP is a logical identifier to identify the shared link between the customer and the operator where as TSE is an identifier of an endpoint. Also TSE is different from TE Link Termination Point (LTP) defined in  <xref target="I-D.ietf-teas-yang-te-topo"/> as it is a conceptual point of connection of a TE node to one of the TE links on a TE node.</t>
-       <t> The TSE is similar to the Termination Point (TP) defined in [RFC8345] and can contain more attributes. TSE could be modeled by augmenting the TP model.</t>
+       <t> Note that the TSE is different from access points (AP) defined in <xref target="RFC8453"/> as an AP is a logical identifier to identify the shared link between the customer and the operator where as TSE is an identifier of an endpoint. Also TSE is different from TE Link Termination Point (LTP) defined in  <xref target="I-D.ietf-teas-yang-te-topo"/> as it is a conceptual point of connection of a TE node to one of the TE links on a TE node.</t>
+       <t> The TSE is similar to the Termination Point (TP) defined in <xref target="RFC8345"/> and can contain more attributes. TSE could be modeled by augmenting the TP model.</t>
 <!--
        <t>Note that TSE concept is similar to the Link Termination Point (LTP) defined in  <xref target="I-D.ietf-teas-yang-te-topo"/> and access points (AP) defined in [RFC8453] with an important difference. The main difference between them is that both LTP and AP are about a specific set of implementations based on characterestics of the TE network while TSE is an effort to hide the details of the underlying realizaion. </t>
 
@@ -697,6 +699,18 @@ Legend
 
  </section>
   </section>
+    <section anchor="ApdxIsolation" title="Isolation in Transport Slices">
+       <section title="Traffic Isolation">
+<t>
+		This section will describe the scope and use of term isolation.
+</t>
+       </section>
+       <section title="Dedicated Resources">
+<t>
+		This section explains the scope and use of term dedicated resource in the context of transport slices.
+</t>
+       </section>
+  </section>
     <section title="Relationship with End-to-End Network Slicing">
       <t>
         An end-to-end (E2E) network slice is a complete logical network that provides a service in its entirety with a specific
@@ -811,11 +825,10 @@ Legend:
   <back>
     <references title="Informative References">
     &I-D.draft-contreras-teas-slice-nbi;
-    &I-D.draft-nsdt-teas-ns-framework;
-    
-<!-- &I-D.draft-homma-rtgwg-slice-gateway;-->
+ <!--&I-D.draft-nsdt-teas-ns-framework;
+     &I-D.draft-homma-rtgwg-slice-gateway;
     &I-D.draft-ietf-teas-sf-aware-topo-model;
-    &I-D.draft-ietf-teas-enhanced-vpn;
+    &I-D.draft-ietf-teas-enhanced-vpn;i-->
     &I-D.draft-ietf-teas-yang-te-topo;
   <!--  &I-D.i2nsf-nsf-monitoring-data-model;
     &I-D.draft-ietf-i2nsf-capability; -->
@@ -859,7 +872,7 @@ Legend:
       <seriesInfo name="RFC" value="3393"/>
       <seriesInfo name="DOI" value="10.17487/RFC3393"/>
       </reference>
-
+<!--
 	  <reference anchor='NFVGST' target="https://www.etsi.org/deliver/etsi_gs/NFV-TST/001_099/008/02.04.01_60/gs_nfv-tst008v020401p.pdf">
         <front>
 		<title>
@@ -871,6 +884,7 @@ Legend:
         <date month="February" year="2018"/>
         </front>
       </reference>
+-->
 
       <reference anchor='TS33.210' target="https://portal.3gpp.org/desktopmodules/Specifications/SpecificationDetails.aspx?specificationId=2279">
         <front>
@@ -909,56 +923,6 @@ Legend:
       </reference>
       
     </references>
-
-       <section title="Discussions">
-    <section anchor="ApdxIsolation" title="On Isolation Requirements In a Transport Slice">
-<t>
-Transport slices are perceived as if slice was provisioned for the
-customer as a dedicated network with specific SLOs. These committed
-SLOs for a given customer should be maintained during the lifetime of
-the slice, even in the face of potential disruptions.  Such disruptions
-include sudden traffic volume changes either from the customer itself
-or others, equipment failures in the service provider network, and
-various misbehaviors or attacks.
- </t>
- <t>
-The service provider needs to ensure that its network can provide
-the requested slices with the availability agreed with its
-customers. Some of the main technical approaches to
-ensuring guarantees are about network planning, managing capacity,
-prioritizing, policing or shaping customer traffic, selecting
-dedicated resources, and so on.
- </t>
- <t>
-One term that has commonly been used in this context is
-&quot;isolation&quot; and is also discussed  in the
-[I-D.ietf-teas-enhanced-vpn].
- </t>
-
-<!--The term &quot;isolation&quot; implies in part traffic separation (a common
-feature in VPNs) and in part the selection of dedicated
-resources. 
-Dedicated resources can help assure that, for instance,
-traffic in other slices does not affect a given slice. However, it
-should also be noted that this is one particular realization of a
-requirement for guarantees, and other mechanisms may also be used,
-such as priority mechanisms or policing amount of traffic entering a
-link from different sources. -->
- <t>
-A transport slice customer may ask for traffic separation, selection of dedicated
-resources, or interference avoidance from other 
-traffic. The term &quot;isolation&quot; can refer to any or all of them. 
-
-For instance, dedicated resources can help assure that traffic in other slices does not affect a given slice. Similarly, VPN technologies can provide traffic separation, 
-and interference avoidance may be provided by mechanisms such as technical approaches mentioned in the previous paragraph (network planning, capacity management, etc).
-Moreover, these are some of the  examples of a particular realization of
-the requirement for guarantees; other mechanisms may also be used.
-
- </t>
-
-</section>
-</section>
-
 
   </back>
 </rfc>
