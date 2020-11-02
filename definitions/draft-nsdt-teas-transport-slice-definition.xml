@@ -76,7 +76,7 @@
 <?rfc subcompact="no" ?>
 <!-- keep one blank line between list items -->
 <!-- end of list of popular I-D processing instructions -->
-<rfc category="info" docName="draft-nsdt-teas-ietf-network-slice-definition-05">
+<rfc category="info" docName="draft-nsdt-teas-ietf-network-slice-definition-01">
   <!-- ***** FRONT MATTER ***** -->
 
   <front>
@@ -550,7 +550,7 @@ The definition of these objectives are as follows:
     </section>
  
       <section title="IETF Network Slice Structure">
-<t> Editor's note: This content of this section can be merged with Relationship with E2E slice discussion.</t>
+<t> Editor's note: This content of this section merged with Relationship with E2E slice discussion.</t>
        <t>
         An IETF Network Slice is a set of connections among various endpoints to form a logical network that meets the SLOs agreed upon.
         <!-- Jeff's comments - the goal is to provide a transport slice that meets the SLO's agreed upon--> <!--kiran: cpmmented
@@ -596,7 +596,22 @@ Legend
       may be distributed in the underlay networks, and an IETF Network Slice can be deployed across multiple network domains. Also, the endpoints 
       on the same IETF Network Slice may belong to the same or different address spaces.
       </t>
+<t>
+   IETF Network slice structure fits into a broader concept of end-to-end network slices.   A network
+   operator may be responsible for delivering services over a number of
+   technologies (such as radio networks) and for providing specific and
+   fine-grained services (such as CCTV feed or High definition realtime traffic data). That operator may
+   need to combine slices of various networks to produce an end-to-end
+   network service.  Each of these networks may include multiple
+   physical or virtual nodes and may also provide network functions
+   beyond simply carrying of technology-specific protocol data units.An end-to-end network slice 
+   is defined by the 3GPP as a complete logical network that provides a service in its entirety with a
+   specific assurance to the customer <xref target="TS.23.501-3GPP" />.</t>
 
+   <t> An end-to-end network slice may be composed from other network slices
+   that include IETF Network Slices.  This composition may include the
+   hierarchical (or recursive) use of underlying network slices and the
+   sequential (or stitched) combination of slices of different networks.</t>
       
       <!-- Jeff's comments - can't parse it, please rephrase it-->
       <!-- Kiran: been asked to move this to framework
@@ -719,15 +734,21 @@ Legend
  </section>
  <!-- </section> -->
  <section anchor="isolation" title="Isolation in IETF Network Slices">
-<t> Editor's note: This content is a work in progress.</t>
+<t> Editor's note: This content is a work in progress. The section on isolation is too descriptive.</t>
 <t>
    An IETF Network Slice consumer may request, that the IETF Network Slice
    delivered to them is isolated from any other network slices of
    services delivered to any other customers.  It is expected that the changes to the other network slices 
-   of services do not have any negative impact on the delivery of the IETF Network Slice. </t>
-
+   of services do not have any negative impact on the delivery of the IETF Network Slice. In a more general sense, isolation can be classified in the following ways:
+   <list style="hanging">
+	<t hangText="Traffic Separation:"> Traffic of one network slice should not be subjected to policies and forwarding rules of other network slices. </t>
+	<t hangText="Interference Avoidance:"> Changes in other network slices should not impact to the SLOs of the network slice. Here the changes in other network slice may include the changes in connectivity, traffic volume, traffic pattern, etc.</t>
+	<t hangText="Service Assurance:"> In case service degradation is unacceptable due to unpredictable network situations producing service degradation (e.g., major congestion events, etc.), explicit reservation of resources in the network maybe requested for a reduces set IETF network slices.</t>
+</list>
+</t>
+<!--
 <t> 
-  <!-- Jeff comment October 21, 2020 I don't like the isolation section, lot's of it makes no sense. I'm not touching it now, let's decide how we word it ASAP-->
+  
   This requirement may be met by simple conformance with other SLOs. For example, traffic congestion (interference from other services) might impact on the latency experienced by an IETF network slice. 
   Thus, conformance to a latency SLO would be the primary requirement for delivery of the IETF network slice service, and isolation from other services might be only a means to that end.
 </t>
@@ -743,10 +764,10 @@ Legend
    this IETF network slice to an endpoint that is not part of this IETF
    network slice" should be taken for granted by the definition and
    realization of any IETF network slice. </t>
+-->
+<section anchor="isoslo" title="Isolation as a Service Requirement">
 
-<section anchor="isoslo" title="Isolation as a Service Level Objective">
-
-
+<!--
    <t>As described above, the concept of "isolation" may be presented as an
    SLO.  It may be unqualified as "keep this IETF network slice free
    from effects caused by any other network slice or service," qualified
@@ -757,10 +778,16 @@ Legend
    <t> It should be noted that some aspects of isolation may be measurable
    by a customer who can control the traffic on a number of IETF network
    slices or other services.</t>
+-->
+    <t> Isolation is an important requirement of IETF network slices for services like critical services, 
+    emergencies, etc. A consumer may express this request through the description of SLOs.</t>
+    <t> This requirement can be met by simple conformance with other SLOs. For example, traffic congestion (interference from other services) might impact on the latency experienced by an IETF network slice. Thus, in this example, conformance to a latency SLO would be the primary requirement for delivery of the IETF network slice service, and isolation from other services might be only a means to that end.</t>
+    <t>It should be noted that some aspects of isolation may be measurable by a customer who have the information about the traffic on a number of IETF network slices or other services.</t>
  </section>
 
 <section anchor="isoreal" title="Isolation in IETF Network Slice Realization">
 
+<!--
    <t> How delivery of isolation is achieved in the realization of a network
    slice is implementation and technology dependent.  It may further
    depend on how a network operator decides to operate their network and
@@ -770,9 +797,22 @@ Legend
    of resource partitioning ranging from dedicated allocation of
    resources for a specific IETF network slice, to sharing or resources
    with safeguards. </t>
+  -->
+  <t>The isolation requirement can be achieved with existing, in-development, and potential new technologies in IETF. </t>
+ 
+<t>Isolation may be achieved in the underlying network by various forms of resource partitioning ranging from dedicated allocation of resources for a specific IETF network slice, to sharing or resources with safeguards.
+For example, traffic separation between different IETF network slices may be achieved using VPN technologies, such as L3VPN, L2VPN, EVPN, etc. Interference avoidance may be achieved by network capacity planning, allocating dedicated network resources, traffic policing or shaping, prioritizing in using shared network resources, etc. Finally, service continuity may be ensured by reserving backup paths for critical traffic, dedicating specific network resources for a selected number of network slices, etc. </t>
+
+  </section>
+<section anchor="iso5g" title="Relationship with Isolation in 5G Network Slice">
+<t> Editor's note: This 5G subsection should not be added to terminology. it does not add value to the definitions.</t>
+
+<t>In the context of 5G network slice, "isolation level" is listed as one of the attributes which can be used to characterize the type of network slice [GSMA Generic Network Slice Template]. For 5G network slice, different types of isolation are considered, including physical and logical isolation. Physical isolation refers to different physical network entities, and logical isolation is further classified into virtual resource isolation, network function isolation and tenant/service isolation. 
+</t>
 
   </section>
 </section>
+<!--
     <section title="Relationship with End-to-End Network Slice">
 <t> Editor's note: The details deleted from here should be in the framework.</t>
     
@@ -792,6 +832,7 @@ Legend
    that include IETF Network Slices.  This composition may include the
    hierarchical (or recursive) use of underlying network slices and the
    sequential (or stitched) combination of slices of different networks.</t>
+-->
 <!--
    <t> Some or all of the network slices that are combined to produce an
    end-to-end network slice may be IETF Network Slices. In particular,
@@ -799,10 +840,10 @@ Legend
    only IETF network slices, and in the most simple case, the end-to-end
    network slice might be just a single IETF network slice.
 
-</t>-->
+</t>
 
     </section>
-
+-->
     <section anchor="security" title="Security Considerations">
    <t> Editor's Note: Need further improvement; work in progress.</t>
     <t>
