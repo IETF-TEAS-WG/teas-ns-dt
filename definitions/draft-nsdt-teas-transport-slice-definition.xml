@@ -76,7 +76,7 @@
 <?rfc subcompact="no" ?>
 <!-- keep one blank line between list items -->
 <!-- end of list of popular I-D processing instructions -->
-<rfc category="info" docName="draft-nsdt-teas-ietf-network-slice-definition-01">
+<rfc category="info" docName="draft-nsdt-teas-ietf-network-slice-definition-02">
   <!-- ***** FRONT MATTER ***** -->
 
   <front>
@@ -201,7 +201,7 @@
 </t>
 
 <t>
- This document defines the concept of IETF Network Slices that provide
+ This document defines the concept of IETF network slices that provide
  connectivity coupled with a set of specific commitments of network resources between a number
   of endpoints over a shared network infrastructure.  Since the term
   network slice is rather generic, the qualifying term 'IETF' is used in
@@ -209,30 +209,19 @@
   technologies described and standardized by the IETF. 
 </t>
 
-	<section title="Rationale">
+<!--	<section title="Rationale"> -->
 
-  <t> IETF Network Slices are created and managed within the scope of one
- or more network technologies (e.g., IP, MPLS, optical).  They are
-  intended to enable a diverse set of applications that have different
-  requirements to coexist on the same network infrastructure.
+<t> 
+   IETF network slices are created and managed within the scope of one
+   or more network technologies (e.g., IP, MPLS, optical).  They are
+   intended to enable a diverse set of applications that have different
+   requirements to coexist on the same network infrastructure.  A
+   request for an IETF network slice is technology-agnostic so as to
+   allow a consumer to describe their network connectivity objectives in
+   a common format, independent of the underlying technologies used.
 </t>
 
-<t>  An IETF Network Slice is a well-defined structure of connectivity
- requirements and associated network behaviors. IETF Network Slices
-  are defined such that they are independent of the underlying
-  infrastructure connectivity and technologies used.  
-  This is to allow an IETF Network Slice consumer to describe their network connectivity and relevant objectives in a common format, independent of the
-  underlying technologies used.
-</t>
-<t> IETF Network Slices may be combined hierarchically,
-  so that a network slice may itself be sliced.  They may also be
-  combined sequentially so that various different networks can each be
-  sliced and the network slices placed into a sequence to provide an
-  end-to-end service.  This form of sequential combination is utilized
-  in some services such as in 3GPP's 5G network <xref target="TS.23.501-3GPP"/>.
-</t>
-
- </section>
+ <!-- </section> -->
 
 </section>
 
@@ -266,36 +255,43 @@
  The definition of a network slice in IETF context is as follows:
 </t>
 <t>
- An IETF Network Slice is a logical network topology connecting a number of endpoints with a set of shared or dedicated network resources,
+ An IETF network slice is a logical network topology connecting a number of 
+ endpoints using a set of shared or dedicated network resources 
  that are used to satisfy specific Service Level Objectives (SLOs).
 </t>
 
-<!--
-<t> The text below describes IETF network slices in more details.
+<t>  
+   An IETF network slice combines the connectivity
+   resource requirements and associated network behaviors such as bandwidth,
+   latency, jitter, and network
+   functions with other resource behaviors such as compute and storage availability.  
+
+   IETF network slices are 
+   independent of the underlying infrastructure connectivity and
+   technologies used.  This is to allow an IETF network slice consumer
+   to describe their network connectivity and relevant objectives in a
+   common format, independent of the underlying technologies used.
 </t>
--->
-<t>
-<!--Jeff's review June16: we are rephrasing definitions already made above -->
-   <!-- kiran: A transport slice consists of a set of connections between multiple
-   endpoints with a specified connectivity type and one or more SLOs associated with it.
-SLOs are used to describe different characteristics of network resources associated with the service delivered and corresponding parameters necessary to 
-realize the transport slice.-->
-      </t>
+
+<t> IETF network slices may be combined hierarchically,
+  so that a network slice may itself be sliced.  They may also be
+  combined sequentially so that various different networks can each be
+  sliced and the network slices placed into a sequence to provide an
+  end-to-end service.  This form of sequential combination is utilized
+  in some services such as in 3GPP's 5G network <xref target="TS.23.501-3GPP"/>.
+</t>
+
  <t>
-	IETF Network Slice specification is technology-agnostic, and the means for IETF network slice realization can be chosen depending on 
-    several factors such as: service requirements, specifications or capabilities of underlying infrastructure. The structure and different 
-    characteristics of IETF Network Slices are described in the following  sections.
+  An IETF network slice is technology-agnostic, and the means for IETF  
+  network slice realization can be chosen depending on 
+  several factors such as: service requirements, specifications or capabilities 
+  of underlying infrastructure. The structure and different 
+  characteristics of IETF network slices are described in the following  sections.
  </t>
 <t>
-<!--
-   The term "transport" in transport slice is derived from the definition of Transport Network in the section 1.3.1 of <xref target="RFC5921"/> : 
-   A Transport Network provides transparent transmission of user traffic between attached client devices by establishing and maintaining 
-   point-to-point or point-to-multipoint connections between such devices. 
--->
-
   Term "Slice" refers to a set of characteristics and behaviours that separate one type of 
    user-traffic from another. 
-   IETF Network Slice assumes that an underlying network is capable of changing 
+   IETF network slice assumes that an underlying network is capable of changing 
    the configurations of the network devices on demand, through in-band signaling or via controller(s) and fulfilling all or some of 
    SLOs to all of the traffic in the slice or to specific flows.
        </t>
@@ -310,7 +306,7 @@ realize the transport slice.-->
 
         <section title="Objectives for IETF Network Slices">
         <t>
-			An IETF Network Slice is defined in terms of several quantifiable characteristics or service level objectives (SLOs). SLOs along with terms Service Level Indicator (SLI) and Service Level Agreement (SLA) are used to define the performance of a service at different levels. 
+			An IETF network slice is defined in terms of several quantifiable characteristics or service level objectives (SLOs). SLOs along with terms Service Level Indicator (SLI) and Service Level Agreement (SLA) are used to define the performance of a service at different levels. 
 </t>
 
 <t>A Service Level Indicator (SLI) is a quantifiable measure of an
@@ -328,7 +324,7 @@ realize the transport slice.-->
 </t>
 <t>
    A Service Level Agreement (SLA) is an explicit or implicit contract
-   between the consumer of an IETF Network Slice and the provider of
+   between the consumer of an IETF network slice and the provider of
    the slice.  The SLA is expressed in terms of a set of SLOs and may
    include commercial terms as well as the consequences of missing/violating the
    SLOs they contain.
@@ -369,7 +365,7 @@ realize the transport slice.-->
         security, geographical restrictions, maximum occupancy level objectives. The later standard might define other SLOs as needed.
 </t>
       
-<t> Editor's Note TODO: Minimal set describes most commonly used objectives to describe network behavior. Other directly or indirectly measurable objectives may be requested by that customer of an IETF network slice. </t>
+<t> Editor's Note TODO: replace Minimal set to most commonly used objectives to describe network behavior. Other directly or indirectly measurable objectives may be requested by that consumer of an IETF network slice. </t>
 <t>
 The definition of these objectives are as follows:
 
@@ -406,12 +402,12 @@ The definition of these objectives are as follows:
 	<t>Security
     <list style="hanging">
       <t> 
-       An IETF Network Slice consumer may request that the network
+       An IETF network slice consumer may request that the network
        applies encryption or other security techniques to traffic
       flowing between endpoints. </t>
 
       <t> Note that the use of security or the violation of this SLO is
-        not directly observable by the IETF Network Slice consumer and
+        not directly observable by the IETF network slice consumer and
        cannot be measured as a quantifiable metric. </t>
        <t> Also note that the objective may include request for encryption (e.g., <xref target="RFC4303"/>) between the two endpoints explicitly to meet architecture recommendations as in <xref target="TS33.210"/> or for compliance with <xref target="HIPAA"/> and/or <xref target="PCI"/>. </t><!--Other security requests may be made as specified in [draft-ietf-i2nsf-capability].-->
        <t> Editor's Note: Please see more discussion on security in <xref target="security"/>.</t>
@@ -430,7 +426,7 @@ The definition of these objectives are as follows:
     </t>
       <t> 
   <!--Jeff's review - these characteristics are not requested by a client but provided by a client for cases when transport slice is "traffic aware", same goes for "occupancy" EVPN would care about number of MAC addresses while optical transport would not, let's phrase this para differently --> <!--  kiran: added traffice aware-->
-      If the IETF Network Slice consumer service is traffic aware, other traffic specific characteristics may be valuable including  MTU, traffic-type (e.g., IPv4, IPv6, Ethernet or
+      If the IETF network slice consumer service is traffic aware, other traffic specific characteristics may be valuable including  MTU, traffic-type (e.g., IPv4, IPv6, Ethernet or
       unstructured), or a higher-level behavior to process traffic according to user-application (which may be realized using network functions). </t>
 
 <t> Maximal occupancy for an IETF network slice should be provided. Since it carries traffic for multiple flows between the two endpoints, the objectives should also say if they are for 
@@ -453,11 +449,11 @@ The definition of these objectives are as follows:
     
     <list style="symbols">
     <t> 
-      They are conceptual points of connection of a customer network, network function, device, or application to the IETF network slice.  This might include routers, switches, firewalls, WAN, 4G/5G RAN nodes, 
+      They are conceptual points of connection of a consumer network, network function, device, or application to the IETF network slice.  This might include routers, switches, firewalls, WAN, 4G/5G RAN nodes, 
       4G/5G Core nodes, application acceleration, Deep Packet Inspection (DPI), server load balancers, NAT44 <xref target="RFC3022"/>, NAT64 <xref target="RFC6146"/>, HTTP header enrichment functions, and TCP optimizers.
     </t>
     <t> 
-      They are identified in a request provided by the consumer of an IETF Network Slice when the IETF Network Slice is requested.
+      They are identified in a request provided by the consumer of an IETF network slice when the IETF network slice is requested.
     </t>
     <t> 
       An NSE is identified a unique identifier and/or a unique name and other data.  A non-exhaustive list of other data includes IPv4 or
@@ -467,7 +463,7 @@ The definition of these objectives are as follows:
     </t>
        
     <t> 
-      Note that the NSE is different from access points (AP) defined in <xref target="RFC8453"/> as an AP is a logical identifier to identify the shared link between the customer and the operator where as NSE is an identifier of an endpoint. 
+      Note that the NSE is different from access points (AP) defined in <xref target="RFC8453"/> as an AP is a logical identifier to identify the shared link between the consumer and the operator where as NSE is an identifier of an endpoint. 
       Also NSE is different from TE Link Termination Point (LTP) defined in  <xref target="I-D.ietf-teas-yang-te-topo"/> as it is a conceptual point of connection of a TE node to one of the TE links on a TE node.</t>
     <t> 
       The NSE is similar to the Termination Point (TP) defined in <xref target="RFC8345"/> and can contain more attributes. NSE could be modeled by augmenting the TP model.
@@ -480,12 +476,12 @@ The definition of these objectives are as follows:
        whereas NSE is the connection point to the transports slice. Note that it might be that the trasport slice is realized in a non-TE network and NSE might not be assocaiate to TE network. 
        The TE characteristic of the network might be taken into consideration during the realization of a transport slice in a TE network.</t>
 -->
-       <t>There is another type of the endpoints called "IETF Network Slice Realization Endpoints (NSREs)". These endpoints are allocated and assigned by the network controller during the realization of an IETF Network Slice and are technology-specific, i.e. 
-       they depend on the network technology used during the IETF Network Slice realization. 
-       The identification of NSREs forms part of the realization of the IETF Network Slice and is implementation and deployment specific.</t>
+       <t>There is another type of the endpoints called "IETF Network Slice Realization Endpoints (NSREs)". These endpoints are allocated and assigned by the network controller during the realization of an IETF network slice and are technology-specific, i.e. 
+       they depend on the network technology used during the IETF network slice realization. 
+       The identification of NSREs forms part of the realization of the IETF network slice and is implementation and deployment specific.</t>
 
 
-       <t> <xref target="fig_tse_tsre"/> shows an example of an IETF Network Slice and its realization between multiple NSEs and NSREs.</t>
+       <t> <xref target="fig_tse_tsre"/> shows an example of an IETF network slice and its realization between multiple NSEs and NSREs.</t>
 
        <figure anchor="fig_tse_tsre" title="An IETF Network Slice between NSEs and its realization between NSREs">
         <artwork align="center"><![CDATA[
@@ -519,14 +515,14 @@ The definition of these objectives are as follows:
 
     </section>
     <section anchor="ExtConcept" title="IETF Network Slice Composition">
-       <t> Operationally, an IETF Network Slice maybe decomposed in two or more IETF Network Slices as specified below. Decomposed network slices are then independently realized and managed.
+       <t> Operationally, an IETF network slice maybe decomposed in two or more IETF network slices as specified below. Decomposed network slices are then independently realized and managed.
 
         <list style="symbols">
           <t>Hierarchical (i.e., recursive) composition:
-            An IETF Network Slice can be further sliced into other network slices. Recursive composition allows an IETF Network Slice at one layer to be used by the other layers.  This type of multi-layer vertical IETF Network Slice associates resources at different layers. </t>
+            An IETF network slice can be further sliced into other network slices. Recursive composition allows an IETF network slice at one layer to be used by the other layers.  This type of multi-layer vertical IETF network slice associates resources at different layers. </t>
 
         <t>Sequential composition:
-          Different IETF Network Slices can be placed into a sequence to provide an end-to-end service. In sequential composition, each IETF Network Slice would potentially support different dataplanes that need to be stitched together.
+          Different IETF network slices can be placed into a sequence to provide an end-to-end service. In sequential composition, each IETF network slice would potentially support different dataplanes that need to be stitched together.
            </t>
         </list> 
       </t>
@@ -552,7 +548,7 @@ The definition of these objectives are as follows:
       <section title="IETF Network Slice Structure">
 <t> Editor's note: This content of this section merged with Relationship with E2E slice discussion.</t>
        <t>
-        An IETF Network Slice is a set of connections among various endpoints to form a logical network that meets the SLOs agreed upon.
+        An IETF network slice is a set of connections among various endpoints to form a logical network that meets the SLOs agreed upon.
         <!-- Jeff's comments - the goal is to provide a transport slice that meets the SLO's agreed upon--> <!--kiran: cpmmented
         The goal is to provide connectivity that meets the SLOs agreed upon
         as shown in --> <!-- <xref target="fig_Transport-NS"/>. The endpoints may be user equipment, any physical or virtual network functions (PNF/VNF),
@@ -591,10 +587,10 @@ Legend
 
 
       <t>
-      <xref target="fig_Transport-NS"/> illustrates a case where an IETF Network Slice provides connectivity between a set of endpoints pairs 
+      <xref target="fig_Transport-NS"/> illustrates a case where an IETF network slice provides connectivity between a set of endpoints pairs 
       with specific characteristics for each SLO (e.g. guaranteed minimum bandwidth of x bps and guaranteed delay of no more than y ms). The endpoints 
-      may be distributed in the underlay networks, and an IETF Network Slice can be deployed across multiple network domains. Also, the endpoints 
-      on the same IETF Network Slice may belong to the same or different address spaces.
+      may be distributed in the underlay networks, and an IETF network slice can be deployed across multiple network domains. Also, the endpoints 
+      on the same IETF network slice may belong to the same or different address spaces.
       </t>
 <t>
    IETF Network slice structure fits into a broader concept of end-to-end network slices.   A network
@@ -606,70 +602,29 @@ Legend
    physical or virtual nodes and may also provide network functions
    beyond simply carrying of technology-specific protocol data units.An end-to-end network slice 
    is defined by the 3GPP as a complete logical network that provides a service in its entirety with a
-   specific assurance to the customer <xref target="TS.23.501-3GPP" />.</t>
+   specific assurance to the consumer <xref target="TS.23.501-3GPP" />.</t>
 
    <t> An end-to-end network slice may be composed from other network slices
-   that include IETF Network Slices.  This composition may include the
+   that include IETF network slices.  This composition may include the
    hierarchical (or recursive) use of underlying network slices and the
    sequential (or stitched) combination of slices of different networks.</t>
       
-      <!-- Jeff's comments - can't parse it, please rephrase it-->
-      <!-- Kiran: been asked to move this to framework
-      <t>
-      IETF Network slices involve both customer's and provider's views. 
-      A customer 'describes' its requirements in terms of connectivity  with specific SLOs.
-      Provider networks address those requirements through 'IETF network slice realization' (its implementation) using provider network specific technologies.
-
-
-      The "Transport Slices" provides various connections with various SLOs between various endpoints whereas the transport slice realization 
-      addresses its implementation using various technologies.
-      In short, the transport slice involves both its definition and its realization; the transport slice definiton addresses the set of connectivities 
-      with required SLOs whereas the transport slice realization addresses how this transport slice is deployed in the network for certain network 
-      technologies.
-      </t>-->
-
-      <!-- Jeff's comments - "higher" reads really wierd, the direction is South->North (not low->high), let's use the directions accoringly?
-      
-      <t> A transport slice is built based on a request from a higher level operation system. The interface to higher operations systems 
-      should express the needed connectivity in a technology-agnostic way, and slice customers don't need to recognize concrete 
-      configurations based on the technologies (e.g. being more declarative than imperative). The request to instantiate a transport slice is 
-      represented with some indicators such as SLO, and technologies are selected and managed accordingly. 
-      </t>
-
-      Kiran: remove request <t> An IETF network slice is requested from an entity (such as an orchestrator or a system-wide controller) performing broader service or application specific functions. 
-
-      The interface from such an entity should express the needed connectivity in a technology-agnostic way and  donot need to recognize configurations based on the technologies (e.g. being more declarative than imperative). 
-      The request to instantiate an IETF network slice is 
-      only represented with some indicators such as SLOs based on which the underlying technologies are selected and managed. 
-      </t>
-
-      <t>
-	Entities above the TSC may be managing a broader construct called network slices. Often, in other SDOs the term sub-slice or slice-subnet comes up. Some of those are mapped to transport network requirements in the form of an IETF network slice.
-
-  With in the scope of IETF network slices as described in this document, (w.r.t. the IP/MPLS based
-	transport networks) there are no definitions for 'sub-slice' or 'slice subnets'. 'IETF network slice' term universally represents SLO and connectivity requirements from those refered to as transport networks in other SDOs.-->
-  <!-- Jeff's comments - equvalent to what? -->
-    
-
-	<!--<t>Furthermore, the structure of IETF network slices may be layered vertically or composed horizontally, i.e. operationally,
-			 an IETF network slice maybe decomposed in two or more IETF network slices which are then
-			independently realized and managed. This is further described in <xref target="Vertical-Concept"/>.</t>-->
-      <!-- Jeff's comments - we have already explained the concept, why are we repeating it again? -->
+     
 </section>
 <section anchor="actors" title="IETF Network Slice Stakeholders">
 	<t> 
-    An IETF Network Slice and its realization involves the following stakeholders and it is relevant to define them for consistent terminology.
+    An IETF network slice and its realization involves the following stakeholders and it is relevant to define them for consistent terminology.
 	   	<list style="hanging">
 			<t hangText="Consumer:">
-        A consumer is the requester of an IETF Network Slice.  Consumers may request monitoring of SLOs.  A consumer may manage the IETF Network Slice service directly by interfacing with the IETF Network Slice controller or indirectly through an orchestrator. </t>
+        A consumer is the requester of an IETF network slice.  Consumers may request monitoring of SLOs.  A consumer may manage the IETF network slice service directly by interfacing with the IETF network slice controller or indirectly through an orchestrator. </t>
 			<t hangText="Orchestrator:">
-        An orchestrator is an entity that composes different services, resource and network requirements. It interfaces with the IETF Network Slice controllers.</t>
+        An orchestrator is an entity that composes different services, resource and network requirements. It interfaces with the IETF network slice controllers.</t>
 			<t hangText="IETF Network Slice Controller (NSC):"> 
-        It realizes an IETF Network Slice in the underlying network, maintains and monitors the run-time state of resources and topologies associated with it. A well-defined interface is needed between different types of IETF Network Slice controllers and different types of orchestrators. 
-        An IETF Network Slice operator (or slice operator for short) manages one or more IETF Network Slices using the IETF Network Slice Controller(s).
+        It realizes an IETF network lice in the underlying network, maintains and monitors the run-time state of resources and topologies associated with it. A well-defined interface is needed between different types of IETF network slice controllers and different types of orchestrators. 
+        An IETF network slice operator (or slice operator for short) manages one or more IETF network slices using the IETF network slice Controller(s).
 			</t>
 			<t hangText="Network Controller:"> 
-        is a form of network infrastructure controller that offers network resources to NSC to realize a particular network slice. These may be existing network controllers associated with one or more specific technologies that may be adapted to the function of realizing IETF Network Slices in a network. </t>
+        is a form of network infrastructure controller that offers network resources to NSC to realize a particular network slice. These may be existing network controllers associated with one or more specific technologies that may be adapted to the function of realizing IETF network slices in a network. </t>
 		</list> </t>
 
 		</section>
@@ -684,12 +639,9 @@ Legend
 	   	<list style="hanging">
 		 <t hangText="NSC Northbound Interface (NBI):">
        The NSC Northbound Interface is an interface between a consumer's higher level operation system (e.g., a network slice orchestrator) and the NSC. It is a technology agnostic interface. 
-       The consumer can use this interface to communicate the requested characteristics and other requirements (i.e., the SLOs) for the IETF Network Slice, and the NSC can use the interface to report the operational state of an IETF Network Slice to the consumer.
+       The consumer can use this interface to communicate the requested characteristics and other requirements (i.e., the SLOs) for the IETF network slice, and the NSC can use the interface to report the operational state of an IETF network slice to the consumer.
 		 </t>
 
-     <!--  Suggested text for the above
-        The NSC Northbound Interface is an interface between a customer's higher level operation system (e.g., a network slice orchestrator) and the NSC.  It is a technology agnostic interface that, within the classification of <xref target="RFC8309"/> is a Customer Service Model interface.  The customer can  use this interface to communicate the requested characteristics and other requirements (i.e., the SLOs) for the IETF network slice, and the NSC can use the interface to report the operational  state of an IETF network slice to the customer.
-     -->
 		 <t hangText="NSC Southbound Interface (SBI):">
        The NSC Southbound Interface is an interface between the NSC and network controllers. <!-- Within the classification of [RFC8309] this interface is a Service Delivery Model interface. -->  It is technology-specific and may be built around the many network models defined within the IETF.
 		 </t>
@@ -722,9 +674,9 @@ Legend
         </figure>
         </t>
 </section>
- <section title="Realizing IETF Network Slice">
+ <section anchor="realize" title="Realizing IETF Network Slice">
 	 <t>
-	  Realization of IETF Network Slices is out of scope of this document.  It is a mapping of the definition of the IETF Network Slice to the underlying infrastructure and is necessarily technology-specific and achieved by the NSC over the SBI. </t>
+	  Realization of IETF network slices is out of scope of this document.  It is a mapping of the definition of the IETF network slice to the underlying infrastructure and is necessarily technology-specific and achieved by the NSC over the SBI. </t>
 
    <t> The realization can be achieved in a form of either physical or logical connectivity through VPNs (see, for example, <xref target="I-D.ietf-teas-enhanced-vpn" />, a variety of tunneling technologies such as Segment Routing, MPLS, etc.  
    Accordingly, endpoints may be realized as physical or logical service or network functions.
@@ -732,131 +684,79 @@ Legend
  
 
  </section>
- <!-- </section> -->
- <section anchor="isolation" title="Isolation in IETF Network Slices">
-<t> Editor's note: This content is a work in progress. The section on isolation is too descriptive.</t>
+<section anchor="isolation" title="Isolation in IETF Network Slices">
+
 <t>
-   An IETF Network Slice consumer may request, that the IETF Network Slice
-   delivered to them is isolated from any other network slices of
-   services delivered to any other customers.  It is expected that the changes to the other network slices 
-   of services do not have any negative impact on the delivery of the IETF Network Slice. In a more general sense, isolation can be classified in the following ways:
-   <list style="hanging">
-	<t hangText="Traffic Separation:"> Traffic of one network slice should not be subjected to policies and forwarding rules of other network slices. </t>
-	<t hangText="Interference Avoidance:"> Changes in other network slices should not impact to the SLOs of the network slice. Here the changes in other network slice may include the changes in connectivity, traffic volume, traffic pattern, etc.</t>
-	<t hangText="Service Assurance:"> In case service degradation is unacceptable due to unpredictable network situations producing service degradation (e.g., major congestion events, etc.), explicit reservation of resources in the network maybe requested for a reduces set IETF network slices.</t>
-</list>
+  An IETF network slice consumer may request, that the IETF Network
+  Slice delivered to them is isolated from any other network slices of
+  services delivered to any other consumers.  It is expected that the
+  changes to the other network slices of services do not have any
+  negative impact on the delivery of the IETF network slice.  
 </t>
-<!--
-<t> 
-  
-  This requirement may be met by simple conformance with other SLOs. For example, traffic congestion (interference from other services) might impact on the latency experienced by an IETF network slice. 
-  Thus, conformance to a latency SLO would be the primary requirement for delivery of the IETF network slice service, and isolation from other services might be only a means to that end.
-</t>
-
-<t> Nevertheless, "isolation" remains a useful shorthand to describe the
-   desire that an IETF network slice should not be impacted by any other
-   network slice or service supported by the underlying network.  The
-   concept may also be useful for achieving independence against failure
-   between a pair of IETF network slices (used, for example, for backup
-   connectivity). </t>
-
-   <t> Other meanings of "isolation" such as "do not deliver traffic from
-   this IETF network slice to an endpoint that is not part of this IETF
-   network slice" should be taken for granted by the definition and
-   realization of any IETF network slice. </t>
--->
 <section anchor="isoslo" title="Isolation as a Service Requirement">
+<t> 
+  Isolation may be an important requirement of IETF network slices
+  for some critical services.  A consumer may express this request as
+  an SLO.
+</t>
+<t>
+  This requirement can be met by simple conformance with other SLOs.
+  For example, traffic congestion (interference from other services)
+  might impact on the latency experienced by an IETF network slice.
+  Thus, in this example, conformance to a latency SLO would be the
+  primary requirement for delivery of the IETF network slice service,
+  and isolation from other services might be only a means to that end.
+</t>
+<t>
+  It should be noted that some aspects of isolation may be measurable
+  by a consumer who have the information about the traffic on a number
+  of IETF network slices or other services.
+</t>
 
-<!--
-   <t>As described above, the concept of "isolation" may be presented as an
-   SLO.  It may be unqualified as "keep this IETF network slice free
-   from effects caused by any other network slice or service," qualified
-   as "keep a specific SLI free from effects caused by any other network
-   slice or service," or tightly specified to the effects or
-   vulnerabilities of another specific IETF network slice. </t>
-
-   <t> It should be noted that some aspects of isolation may be measurable
-   by a customer who can control the traffic on a number of IETF network
-   slices or other services.</t>
--->
-    <t> Isolation is an important requirement of IETF network slices for services like critical services, 
-    emergencies, etc. A consumer may express this request through the description of SLOs.</t>
-    <t> This requirement can be met by simple conformance with other SLOs. For example, traffic congestion (interference from other services) might impact on the latency experienced by an IETF network slice. Thus, in this example, conformance to a latency SLO would be the primary requirement for delivery of the IETF network slice service, and isolation from other services might be only a means to that end.</t>
-    <t>It should be noted that some aspects of isolation may be measurable by a customer who have the information about the traffic on a number of IETF network slices or other services.</t>
- </section>
+</section>
 
 <section anchor="isoreal" title="Isolation in IETF Network Slice Realization">
 
-<!--
-   <t> How delivery of isolation is achieved in the realization of a network
-   slice is implementation and technology dependent.  It may further
-   depend on how a network operator decides to operate their network and
+ <t>Delivery of isolation is achieved in the realization of IETF network slices, 
+    with existing, in-development, and potential new technologies in IETF. 
+   It depends on how a network operator decides to operate their network and
    deliver services. </t>
 
-   <t> Isolation may be achieved in the underlying network by various forms
-   of resource partitioning ranging from dedicated allocation of
-   resources for a specific IETF network slice, to sharing or resources
-   with safeguards. </t>
-  -->
-  <t>The isolation requirement can be achieved with existing, in-development, and potential new technologies in IETF. </t>
- 
-<t>Isolation may be achieved in the underlying network by various forms of resource partitioning ranging from dedicated allocation of resources for a specific IETF network slice, to sharing or resources with safeguards.
-For example, traffic separation between different IETF network slices may be achieved using VPN technologies, such as L3VPN, L2VPN, EVPN, etc. Interference avoidance may be achieved by network capacity planning, allocating dedicated network resources, traffic policing or shaping, prioritizing in using shared network resources, etc. Finally, service continuity may be ensured by reserving backup paths for critical traffic, dedicating specific network resources for a selected number of network slices, etc. </t>
-
-  </section>
-<section anchor="iso5g" title="Relationship with Isolation in 5G Network Slice">
-<t> Editor's note: This 5G subsection should not be added to terminology. it does not add value to the definitions.</t>
-
-<t>In the context of 5G network slice, "isolation level" is listed as one of the attributes which can be used to characterize the type of network slice [GSMA Generic Network Slice Template]. For 5G network slice, different types of isolation are considered, including physical and logical isolation. Physical isolation refers to different physical network entities, and logical isolation is further classified into virtual resource isolation, network function isolation and tenant/service isolation. 
+<t>Isolation may be achieved in the underlying network by various forms
+  of resource partitioning ranging from dedicated allocation of
+  resources for a specific IETF network slice, to sharing or resources
+  with safeguards.  For example, traffic separation between different
+  IETF network slices may be achieved using VPN technologies, such as
+  L3VPN, L2VPN, EVPN, etc.  Interference avoidance may be achieved by
+  network capacity planning, allocating dedicated network resources,
+  traffic policing or shaping, prioritizing in using shared network
+  resources, etc.  Finally, service continuity may be ensured by
+  reserving backup paths for critical traffic, dedicating specific
+  network resources for a selected number of network slices, etc. 
 </t>
 
-  </section>
+ </section>
+
 </section>
-<!--
-    <section title="Relationship with End-to-End Network Slice">
-<t> Editor's note: The details deleted from here should be in the framework.</t>
-    
-<t>
-   An end-to-end network slice is defined by the 3GPP as a complete
-   logical network that provides a service in its entirety with a
-   specific assurance to the customer <xref target="TS.23.501-3GPP" />.  A network
-   operator may be responsible for delivering services over a number of
-   technologies (such as radio networks) and for providing specific and
-   fine-grained services (such as CCTV feed or High definition realtime traffic data).  That operator may
-   need to combine slices of various networks to produce an end-to-end
-   network service.  Each of these networks may include multiple
-   physical or virtual nodes and may also provide network functions
-   beyond simply carrying of technology-specific protocol data units.</t>
 
-   <t> An end-to-end network slice may be composed from other network slices
-   that include IETF Network Slices.  This composition may include the
-   hierarchical (or recursive) use of underlying network slices and the
-   sequential (or stitched) combination of slices of different networks.</t>
--->
-<!--
-   <t> Some or all of the network slices that are combined to produce an
-   end-to-end network slice may be IETF Network Slices. In particular,
-   the end-to-end network slice might be provided as a combination of
-   only IETF network slices, and in the most simple case, the end-to-end
-   network slice might be just a single IETF network slice.
+<section anchor="security" title="Security Considerations">
+	<t> This document specifies terminology and has no direct effect on the security of implementations or deployments. In this section, a few of the security aspects are identified.
+	<list style="symbols">
+		<t>Conformance to security constraints:
+            Specific security requests from consumer defined IETF network slices will be mapped to their realization in the unerlay networks. It will be required by underlay networks to have capabilities to conform to consumer's requests as some aspects of security may be expressed in SLOs.
+            <!--As  mentioned in <xref target="realize" />, there is an underlying asumption that traffic presented to an IETF network slice will not be misdelivered to an endpoint that is not part of that IETF network slice.--> </t>
 
-</t>
+        <t>IETF network slice controller authentication:
+          Unerlying networks need to be protected against the attacks from an adversary NSC as they can destablize overall network operations. It is particularly critical since an IETF network slice may span across different networks, therefore, IETF NSC should have strong authentication with each those networks. Futhermore, both SBI and NBI need to be secured.
+         </t>
+         <t>Specific isolation criteria:
+          The nature of conformance to isolation requests means that it should not be possible to attack an IETF network slice service by varying the traffic on other services or slices carried by the same underlay network.  In general, isolation is expected to strengthen the IETF network slice security.
+         </t>
+         <t> Data Integrity of an IETF network slice: 
+         	A consumer wanting to secure their data and keep it private will be responsible for applying appropriate security measures to their traffic and not depending on the network operator that provides the IETF network slice. It is expected that for data integrity, a consumer is responsible for end-to-end encryption of its own traffic.</t>
+     </list> </t>
 
-    </section>
--->
-    <section anchor="security" title="Security Considerations">
-   <t> Editor's Note: Need further improvement; work in progress.</t>
-    <t>
-    This document specifies terminology and has no direct effect on the security of implementations or deployments. </t>
-
-  <t> 
-    As noted in <xref target="minSLO" />, some aspects of security may be expressed in SLOs and so form part of the service delivered as an IETF network slice.  As further mentioned in Section 8, there is an underlying asumption that traffic presented to an IETF network slice will not be misdelivered to an endpoint that is not part of that IETF network slice. </t>
-
-  <t> 
-    Furthermore, the nature of conformance to SLOs means that it should not be possible to attack an IETF network slice service by varying the traffic on other services or slices carried by the same underlay network.  This concern can be strengthened by the stipulation of "isolation" as an SLO.</t>
-
-  <t> Note, however, that a customer wanting to secure their data and keep it private will be responsible for applying appropriate security measures to their traffic and not depending on the network operator that provides the IETF network slice. </t>
-
+ <t> Note: see NGMN document <xref target="NGMN_SEC"/> on 5G network slice security for discussion relevant to this section.</t>
     </section>
 
     <section title="IANA Considerations">
@@ -977,8 +877,16 @@ For example, traffic separation between different IETF network slices may be ach
         <date month="May" year="2018"/>
         </front>
       </reference>
-      
-    </references>
+      <reference anchor='NGMN_SEC' target="https://www.ngmn.org/wp-content/uploads/Publications/2016/160429_NGMN_5G_Security_Network_Slicing_v1_0.pdf" >
+      	<front>
+      		<title> NGMN 5G Security - Network Slicing </title>
+       <author>
+       	<organization> NGMN Alliance </organization>
+       </author>
+       <date month="April" year="2016"/>
+   	   </front>
+     </reference>
+</references>
 
   </back>
 </rfc>
