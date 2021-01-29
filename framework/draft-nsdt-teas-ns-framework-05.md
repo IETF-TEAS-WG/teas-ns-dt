@@ -565,13 +565,13 @@ the focus on this document.
 
 ## Monitoring
 
-Transport slice realization needs to be instrumented in order to track how it
+IETF network slice realization needs to be instrumented in order to track how it
 is working, and it might be necessary to modify the IETF network slice as
 requirements change. Dynamic reconfiguration might be needed.
 
 ## Security Considerations
 
-Transport slices might use underlying virtualized networking.  All types of
+IETF network slices might use underlying virtualized networking.  All types of
 virtual networking require special consideration to be given to the separation
 of traffic between distinct virtual networks, as well as some degree of
 protection from effects of traffic use of underlying network (and other)
