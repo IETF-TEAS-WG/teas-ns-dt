@@ -5,8 +5,8 @@
 Network Working Group                                       E. Gray, Ed.
 Internet-Draft                                                  Ericsson
 Intended status: Informational                             J. Drake, Ed.
-Expires: 2 August 2021                                  Juniper Networks
-                                                         29 January 2021
+Expires: 6 August 2021                                  Juniper Networks
+                                                         2 February 2021
 
 
                    Framework for IETF Network Slices
@@ -46,16 +46,16 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 2 August 2021.
+   This Internet-Draft will expire on 6 August 2021.
 
 
 
 
 
 
-Gray & Drake              Expires 2 August 2021                 [Page 1]
+Gray & Drake              Expires 6 August 2021                 [Page 1]
 
-Internet-Draft        IETF Network Slice Framework          January 2021
+Internet-Draft        IETF Network Slice Framework         February 2021
 
 
 Copyright Notice
@@ -109,9 +109,9 @@ Table of Contents
 
 
 
-Gray & Drake              Expires 2 August 2021                 [Page 2]
+Gray & Drake              Expires 6 August 2021                 [Page 2]
 
-Internet-Draft        IETF Network Slice Framework          January 2021
+Internet-Draft        IETF Network Slice Framework         February 2021
 
 
    *  IETF Network Slice
@@ -165,9 +165,9 @@ Internet-Draft        IETF Network Slice Framework          January 2021
 
 
 
-Gray & Drake              Expires 2 August 2021                 [Page 3]
+Gray & Drake              Expires 6 August 2021                 [Page 3]
 
-Internet-Draft        IETF Network Slice Framework          January 2021
+Internet-Draft        IETF Network Slice Framework         February 2021
 
 
    While network slices are commonly discussed in the context of 5G, it
@@ -221,9 +221,9 @@ Internet-Draft        IETF Network Slice Framework          January 2021
 
 
 
-Gray & Drake              Expires 2 August 2021                 [Page 4]
+Gray & Drake              Expires 6 August 2021                 [Page 4]
 
-Internet-Draft        IETF Network Slice Framework          January 2021
+Internet-Draft        IETF Network Slice Framework         February 2021
 
 
    As an example of requirements that might apply to IETF network
@@ -277,9 +277,9 @@ Internet-Draft        IETF Network Slice Framework          January 2021
 
 
 
-Gray & Drake              Expires 2 August 2021                 [Page 5]
+Gray & Drake              Expires 6 August 2021                 [Page 5]
 
-Internet-Draft        IETF Network Slice Framework          January 2021
+Internet-Draft        IETF Network Slice Framework         February 2021
 
 
    architecture that might apply in using the technology described in
@@ -333,9 +333,9 @@ Internet-Draft        IETF Network Slice Framework          January 2021
 
 
 
-Gray & Drake              Expires 2 August 2021                 [Page 6]
+Gray & Drake              Expires 6 August 2021                 [Page 6]
 
-Internet-Draft        IETF Network Slice Framework          January 2021
+Internet-Draft        IETF Network Slice Framework         February 2021
 
 
    *  Scalability: consumers do not need to know any information beyond
@@ -389,9 +389,9 @@ Internet-Draft        IETF Network Slice Framework          January 2021
 
 
 
-Gray & Drake              Expires 2 August 2021                 [Page 7]
+Gray & Drake              Expires 6 August 2021                 [Page 7]
 
-Internet-Draft        IETF Network Slice Framework          January 2021
+Internet-Draft        IETF Network Slice Framework         February 2021
 
 
    While several generic formats and data models for specific purposes
@@ -445,9 +445,9 @@ Internet-Draft        IETF Network Slice Framework          January 2021
 
 
 
-Gray & Drake              Expires 2 August 2021                 [Page 8]
+Gray & Drake              Expires 6 August 2021                 [Page 8]
 
-Internet-Draft        IETF Network Slice Framework          January 2021
+Internet-Draft        IETF Network Slice Framework         February 2021
 
 
    *  Using the telemetry data from the underlying realization of a IETF
@@ -501,9 +501,9 @@ Internet-Draft        IETF Network Slice Framework          January 2021
 
 
 
-Gray & Drake              Expires 2 August 2021                 [Page 9]
+Gray & Drake              Expires 6 August 2021                 [Page 9]
 
-Internet-Draft        IETF Network Slice Framework          January 2021
+Internet-Draft        IETF Network Slice Framework         February 2021
 
 
    Also, as outlined in "applicability of ACTN to IETF Network Slices"
@@ -557,9 +557,9 @@ Internet-Draft        IETF Network Slice Framework          January 2021
 
 
 
-Gray & Drake              Expires 2 August 2021                [Page 10]
+Gray & Drake              Expires 6 August 2021                [Page 10]
 
-Internet-Draft        IETF Network Slice Framework          January 2021
+Internet-Draft        IETF Network Slice Framework         February 2021
 
 
    While the ACTN framework is a generic VN framework that is used for
@@ -613,9 +613,9 @@ Internet-Draft        IETF Network Slice Framework          January 2021
 
 
 
-Gray & Drake              Expires 2 August 2021                [Page 11]
+Gray & Drake              Expires 6 August 2021                [Page 11]
 
-Internet-Draft        IETF Network Slice Framework          January 2021
+Internet-Draft        IETF Network Slice Framework         February 2021
 
 
    as needed to handle the multiple domains and various underlay
@@ -669,9 +669,9 @@ Internet-Draft        IETF Network Slice Framework          January 2021
 
 
 
-Gray & Drake              Expires 2 August 2021                [Page 12]
+Gray & Drake              Expires 6 August 2021                [Page 12]
 
-Internet-Draft        IETF Network Slice Framework          January 2021
+Internet-Draft        IETF Network Slice Framework         February 2021
 
 
 5.2.  Security Considerations
@@ -725,9 +725,9 @@ Internet-Draft        IETF Network Slice Framework          January 2021
 
 
 
-Gray & Drake              Expires 2 August 2021                [Page 13]
+Gray & Drake              Expires 6 August 2021                [Page 13]
 
-Internet-Draft        IETF Network Slice Framework          January 2021
+Internet-Draft        IETF Network Slice Framework         February 2021
 
 
    Significant contributions to this document were gratefully received
@@ -781,9 +781,9 @@ Internet-Draft        IETF Network Slice Framework          January 2021
 
 
 
-Gray & Drake              Expires 2 August 2021                [Page 14]
+Gray & Drake              Expires 6 August 2021                [Page 14]
 
-Internet-Draft        IETF Network Slice Framework          January 2021
+Internet-Draft        IETF Network Slice Framework         February 2021
 
 
    [BBF-SD406]
@@ -837,9 +837,9 @@ Internet-Draft        IETF Network Slice Framework          January 2021
 
 
 
-Gray & Drake              Expires 2 August 2021                [Page 15]
+Gray & Drake              Expires 6 August 2021                [Page 15]
 
-Internet-Draft        IETF Network Slice Framework          January 2021
+Internet-Draft        IETF Network Slice Framework         February 2021
 
 
    [RFC3412]  Case, J., Harrington, D., Presuhn, R., and B. Wijnen,
@@ -893,9 +893,9 @@ Internet-Draft        IETF Network Slice Framework          January 2021
 
 
 
-Gray & Drake              Expires 2 August 2021                [Page 16]
+Gray & Drake              Expires 6 August 2021                [Page 16]
 
-Internet-Draft        IETF Network Slice Framework          January 2021
+Internet-Draft        IETF Network Slice Framework         February 2021
 
 
    [RFC6241]  Enns, R., Ed., Bjorklund, M., Ed., Schoenwaelder, J., Ed.,
@@ -949,9 +949,9 @@ Contributors
 
 
 
-Gray & Drake              Expires 2 August 2021                [Page 17]
+Gray & Drake              Expires 6 August 2021                [Page 17]
 
-Internet-Draft        IETF Network Slice Framework          January 2021
+Internet-Draft        IETF Network Slice Framework         February 2021
 
 
    Huawei, India
@@ -1005,4 +1005,4 @@ Authors' Addresses
 
 
 
-Gray & Drake              Expires 2 August 2021                [Page 18]
+Gray & Drake              Expires 6 August 2021                [Page 18]
