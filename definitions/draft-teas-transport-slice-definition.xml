@@ -453,59 +453,59 @@ The definition of these objectives are as follows:
 
       <list style="symbols">
         <t> 
-          They are conceptual points of connection to IETF network slice. As such, they are ingress/egress point where the traffic enters/exits the IETF network slice. In other words, they are the edge of the IETF network slices.
+          The IETF network slice endpoints (NSEs) are conceptual points of connection to IETF network slice. As such, they are ingress/egress point where the traffic enters/exits the IETF network slice. In other words, they are the edge of the IETF network slices.
         </t>
         <t>
-          Each endpoint belongs to a device, application or network function(DAN). A non-exhaustive list of DAN might include routers, switches, firewalls, WAN, 4G/5G RAN nodes, 4G/5G Core nodes, application acceleration, Deep Packet Inspection (DPI), server load balancers, NAT44 <xref target="RFC3022"/>, NAT64 <xref target="RFC6146"/>, HTTP header enrichment functions, and TCP optimizers
+          Each endpoint belongs to a device, application or network function. A non-exhaustive list of device, application or network function might include routers, switches, firewalls, WAN, 4G/5G RAN nodes, 4G/5G Core nodes, application acceleration, Deep Packet Inspection (DPI), server load balancers, NAT44 <xref target="RFC3022"/>, NAT64 <xref target="RFC6146"/>, HTTP header enrichment functions, and TCP optimizers
         </t>
         <t>
-          They are identified in request provided by the consumer of an IETF network slice during the creation/modification of the IETF network slice.
+          An NSE should be uniquely identifed in an IETF network. There are 2 possible schemes of selecting the unique identifiers. Both conventions are technology agnostic.
+          <list style="symbols">
+            <t>
+              First option is to use a consumer-defined format such as a unique name for each NSE in entire IETF network.
+            </t>
+            <t>
+              Another method is to choose well-known formats such as using IPv4/IPv6 addresses, encapsulation type (i.e., VLAN tag, MPLS Label etc.), interface/port numbers, etc. 
+            </t>
+          </list>
+          </t>
+         <t>
+          The IETF network slice endpoints are provided to IETF network slice controller (NSC) by the consumer of an IETF network slice during the creation/modification of the IETF network slice.
         </t>
         <t>
-          An NSE is identified by a set of attributes. Depends on use-cases of the IETF network slice (see <xref target="Intro"/> Introduction), some of these attributes might be OPTIONAL. A non-exhaustive list of NSE attributes include a unique identifier, description, IPv4/IPv6 addresses, encapsulation type (i.e., VLAN tag, MPLS Label etc.), interface info to the Operator network, connectivity type (P2P, P2MP, MP2P, MP2MP), node Id, etc. Refer to [draft-wd-teas-ietf-network-slice-nbi-yang-01] for more details on NSE attributes and different types of IETF Network Slice Endpoints.
+          During the realization of the IETF network slice, in addition to SLOs, all or subset of IETF network slice Endpoints attributes will be utilized by IETF network slice Controller (NSC) to find the optimal realization in the IETF network.
         </t>
         <t>
-          During the realization of the IETF Network Slice, in addition to SLOs, all attributes of the IETF Network Slice Endpoints or a subset of them will be utilized by IETF Network Slice Controller (NSC) to find the best realization.
+          Similar to IETF network slice, the IETF networ slice endpoints are also logical entities which are mapped to services/tunnels/paths endpoints in IETF Network during the IETF network Sslice realizaiton
         </t>
       </list>
     </t>
 
     <t>
-      Note that the IETF Network Slice Endpoint (NSE) is different from access points (AP) defined in <xref target="RFC8453"/> as an AP is a logical identifier to identify the shared link between the consumer and the operator whereas the NSE is the ingress/egress to IETF network slice. Also NSE is different from TE Link Termination Point (LTP) defined in  <xref target="I-D.ietf-teas-yang-te-topo"/> as it is a conceptual point of connection of a TE node to one of the TE-links on a TE node whereas the NSE is technology-agnostics and represents entry point to IETF network slices. The NSE is conceptually similar to the Termination Point (TP) defined in <xref target="RFC8345"/> but with different attributes and characteristics.
+      Note that the IETF network slice Endpoint (NSE) is different from access points (AP) defined in <xref target="RFC8453"/> as an AP is a logical identifier to identify the shared link between the consumer and the operator whereas the NSE is the ingress/egress to IETF network slice. Also NSE is different from TE Link Termination Point (LTP) defined in  <xref target="I-D.ietf-teas-yang-te-topo"/> as it is a conceptual point of connection of a TE node to one of the TE-links on a TE node whereas the NSE is technology-agnostics and represents entry point to IETF network slices. The NSE is conceptually similar to the Termination Point (TP) defined in <xref target="RFC8345"/> but with different attributes and characteristics.
     </t>
 
-    <t>
-      Refer to [draft-wd-teas-ietf-network-slice-nbi-yang-01] for more details on NSE attributes and different types of IETF Network Slice Endpoints.
-    </t>
-
-    <figure anchor="fig_nse" title="An IETF Network Slice between NSEs and its realization between NSREs">
+    <figure anchor="fig_nse" title="An IETF Network Slice Endpoints (NSE)">
         <artwork align="center"><![CDATA[
 
-     DAN1   |-------------------------------------+  DANm
-   |--------|                                     |--------|
-   |   O    |                                     |  O     |
-   |  NSE1  |                                     | NSEm   |
-   |--------|                                     |--------|                                   
-        .   |                                     |    .
-        .   |                                     |    . 
-        .   |         IETF Network Slice 1        |    .
-            |                                     | 
-      DANk  |                                     |  DANn
-   +--------|                                     |--------|       
-   |   O    |                                     |  O     |
-   |  NSEk  |                                     | NSEn   |
-   |--------|                                     |--------|
-            |-------------------------------------|   
-                                                                
-                                                                
-        <----------- IETF Network Slice 1 ------------->                  
-              Created between endpoints NSE1 to NSEn 
-              on DAN1 to DANn for specific SLOs
+               |----------------------------------|
+          NSE1 |                                  | NSE2
+         O.....|                                  |.....O
+           .   |                                  |  . 
+           .   |                                  |  .   
+           .   |                                  |  .
+               |                                  |  
+          NSEm |                                  | NSEn
+         O.....|                                  |.....O
+               |                                  |
+               |----------------------------------|
+                                                                                                                 
+         <------------ IETF Network Slice -------------->                  
+                  between endpoints NSE1 to NSEn 
 
    Legend:
         NSE: IETF Network Slice Endpoint
-        DAN: Device, Application and Network Function
-          O: Identifies the IETF Network Slice Endpoints 
+          O: Represents IETF Network Slice Endpoints 
 
       ]]></artwork>
      </figure>
@@ -561,36 +561,36 @@ The definition of these objectives are as follows:
         <artwork align="center"><![CDATA[
 
 
-             ____________________________
-[EP11]------/                           /--[EP21]
-           /                           /
-[EP12]----/   IETF Network  Slice     /----[EP22]
-  :      /        (SLOs e.g.         /
-  :     / B/W > x bps, Delay < y ms)/
-[EP1m]-/___________________________/-------[EP2n]
+           |------------------------------------------------|  
+ NSE1 O....|                                                |.....O NSE2
+   .       |                                                |     .
+   .       |               IETF Network  Slice              |     .
+   .       |    (SLOs e.g.  B/W > x bps, Delay < y ms)      |     .
+ NSEm O....|                                                |.....O NSEn
+           |------------------------------------------------|
 
-== == == == == == == == == == == == == == == == == ==
+== == == == == == == == == == == == == == == == == == == == == == == == ==
+  
+                      .--.               .--.
+            [EP1]    (    )- .          (    )- .    [EP2]
+              .    .' IETF    '  SLO  .'  IETF   '     .
+              .   (  Network-1 ) ... (  Network-p )    .
+                  `-----------'      `-----------'     
+            [EPm]                                    [EPn]
 
-           .--.               .--.
-[EP11]    (    )- .          (    )- .     [EP21]
-         .'         '  SLO  .'         '
-[EP12]  (  Network-1 ) ... (  Network-p )  [EP22]
- :       `-----------'      `-----------'     :
-[EP1m]                                     [EP2n]
-
-Legend
-  SLOs in terms of attributes, e.g. BW, delay.
-  EP: Endpoint
-  B/W: Bandwidth
+Legendy
+  NSE: IETF Network Slice Endpoints
+  EP: Serivce/tunnels/path Endpoints used to realize the 
+      IETF Network Slice
 
   ]]></artwork>
       </figure>
 
 
       <t>
-      <xref target="fig_Transport-NS"/> illustrates a case where an IETF network slice provides connectivity between a set of endpoints pairs 
-      with specific characteristics for each SLO (e.g. guaranteed minimum bandwidth of x bps and guaranteed delay of no more than y ms). The endpoints 
-      may be distributed in the underlay networks, and an IETF network slice can be deployed across multiple network domains. Also, the endpoints 
+      <xref target="fig_Transport-NS"/> illustrates a case where an IETF network slice provides connectivity between a set of IEFT network slice endpoints (NSE) pairs 
+      with specific SLO (e.g. guaranteed minimum bandwidth of x bps and guaranteed delay of no more than y ms). The IETF network slice endpoints
+      are mapped to the underlay IETF networks endpoints (EP). Also, the IETF network slice endpoints 
       on the same IETF network slice may belong to the same or different address spaces.
       </t>
 <t>
@@ -634,7 +634,7 @@ Legend
 
    <t> The interworking and interoperability among the different
    stakeholders to provide common means of provisioning, operating and
-   monitoring the IETF Network slices is enabled by the following
+   monitoring the IETF network slices is enabled by the following
    communication interfaces (see <xref target="fig_interfaces"/>).
 
       <list style="hanging">
