@@ -459,16 +459,16 @@ The definition of these objectives are as follows:
           Each endpoint belongs to a device, application or network function. A non-exhaustive list of device, application or network function might include routers, switches, firewalls, WAN, 4G/5G RAN nodes, 4G/5G Core nodes, application acceleration, Deep Packet Inspection (DPI), server load balancers, NAT44 <xref target="RFC3022"/>, NAT64 <xref target="RFC6146"/>, HTTP header enrichment functions, and TCP optimizers
         </t>
         <t>
-          An NSE should be uniquely identifed in an IETF network. There are following possible schemes of selecting the unique identifiers. All conventions are technology agnostic.
+          An NSE should be uniquely identified in an IETF network. There are following possible schemes of selecting the unique identifiers. All conventions are technology agnostic.
           <list style="symbols">
             <t>
               To use a consumer-defined format such as a unique name for each NSE. This allows the IETF network slice controller (NSC) to uniquely identify each NSE.
             </t>
             <t>
-              To choose well-known attriubtes such as using IPv4/IPv6 addresses, encapsulation type (i.e., VLAN tag, MPLS Label etc.), interface/port numbers, etc or their combinations.
+              To choose well-known attributes such as using IPv4/IPv6 addresses, encapsulation type (i.e., VLAN tag, MPLS Label etc.), interface/port numbers, etc or their combinations.
             </t>
              <t>
-              In addition to approache above, a clear association to the consumer (i.e., a consumer ID) migh also be needed for avoiding issues since it is possible that some IETF network slice consumers use share IP address (private ones) and other attributes like VLAN tags, etc. 
+              In addition to approaches above, a clear association to the consumer (i.e., a consumer ID) might also be needed for avoiding issues since it is possible that some IETF network slice consumers use share IP address (private ones) and other attributes like VLAN tags, etc. 
             </t>           
           </list>
           </t>
@@ -479,7 +479,7 @@ The definition of these objectives are as follows:
           During the realization of the IETF network slice, in addition to SLOs, all or subset of IETF network slice Endpoints attributes will be utilized by IETF network slice controller (NSC) to find the optimal realization in the IETF network.
         </t>
         <t>
-          Similar to IETF network slice, the IETF networ slice endpoints are also logical entities which are mapped to services/tunnels/paths endpoints in IETF Network during the IETF network slice realizaiton
+          Similar to IETF network slice, the IETF network slice endpoints are also logical entities which are mapped to services/tunnels/paths endpoints in IETF Network during the IETF network slice realization.
         </t>
       </list>
     </t>
