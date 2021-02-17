@@ -147,8 +147,8 @@
     <author fullname="Jeff Tantsura"
             initials="J."
             surname="Tantsura">
-      <organization abbrev="Juniper">
-        Juniper
+      <organization abbrev="Juniper Networks">
+        Juniper Networks
       </organization>
       <address>
         <postal>
@@ -215,7 +215,7 @@
    IETF network slices are created and managed within the scope of one
    or more network technologies (e.g., IP, MPLS, optical).  They are
    intended to enable a diverse set of applications that have different
-   requirements to coexist on the same shared network infrastructure.  A
+   requirements to coexist on the shared network infrastructure.  A
    request for an IETF network slice is technology-agnostic so as to
    allow a consumer to describe their network connectivity objectives in
    a common format, independent of the underlying technologies used.
@@ -441,25 +441,25 @@ The definition of these objectives are as follows:
     <section anchor="nse" title="IETF Network Slice Endpoints">
 
     <t>
-      As noted in Section 3, an IETF network slice describes connectivity between multiple endpoints across the underlying network.  These connectivity types maybe point-to-point, point-to-multipoint, multipoint-to-point multipoint-to-point, or multipoint-to-multipoint.
+      As noted in Section 3, an IETF network slice describes connectivity between multiple endpoints across the underlying network.  These connectivity types are: point-to-point, point-to-multipoint, multipoint-to-point multipoint-to-point, or multipoint-to-multipoint.
     </t>
 
     <t> 
-      <xref target="fig_nse"/> shows an IETF network slice along with its endpoint NSE.
+      <xref target="fig_nse"/> shows an IETF network slice along with its NSEs.
     </t>
 
     <t>  
-      The characteristics of IETF network slice endpoints (NSEs) are as follows.
+      The characteristics of IETF network slice endpoints (NSEs) are as follows:
 
       <list style="symbols">
         <t> 
-          The IETF network slice endpoints (NSEs) are conceptual points of connection to IETF network slice. As such, they serve as an ingress/egress point where the traffic enters/exits the IETF network slice. In other words, they are the edge of the IETF network slices.
+          The IETF network slice endpoints (NSEs) are conceptual points of connection to IETF network slice. As such, they serve as the IETF network slice ingress/egress points. 
         </t>
         <t>
-          Each endpoint belongs to a device, application or network function. A non-exhaustive list of devices, applications or network functions might include routers, switches, firewalls, WAN, 4G/5G RAN nodes, 4G/5G Core nodes, application acceleration, Deep Packet Inspection (DPI), server load balancers, NAT44 <xref target="RFC3022"/>, NAT64 <xref target="RFC6146"/>, HTTP header enrichment functions, and TCP optimizers.
+          Each endpoint can be: a device, application or a network function. A non-exhaustive list of devices, applications or network functions might include but not limited to: routers, switches, firewalls, WAN, 4G/5G RAN nodes, 4G/5G Core nodes, application acceleration, Deep Packet Inspection (DPI), server load balancers, NAT44 <xref target="RFC3022"/>, NAT64 <xref target="RFC6146"/>, HTTP header enrichment functions, and TCP optimizers.
         </t>
         <t>
-          An NSE should be uniquely identified in an IETF network. There are following possible schemes of selecting the unique identifiers. All conventions are technology agnostic.
+          An NSE should be uniquely identified within an IETF network slice. There are following possible schemes of selecting the unique identifiers. All conventions are technology agnostic.
           <list style="symbols">
             <t>
               To use a consumer-defined format such as a unique name for each NSE. This allows the IETF network slice controller (NSC) to uniquely identify each NSE.
@@ -468,18 +468,18 @@ The definition of these objectives are as follows:
               To choose well-known attributes such as using IPv4/IPv6 addresses, encapsulation type (i.e., VLAN tag, MPLS Label etc.), interface/port numbers, etc or their combinations.
             </t>
              <t>
-              In addition to the approaches above, a clear association to the consumer (i.e., a consumer ID) might also be needed for avoiding ambiguity since it is possible that some IETF network slice consumers use overlapping IP ranges and other attributes like VLAN tags, etc. 
+              In addition to the approaches above, a clear association to the consumer (i.e., a consumer ID) might also be needed for avoiding ambiguity since it is possible that some IETF network slice consumers use overlapping IP addresses and other attributes like VLAN tags, etc. 
             </t>           
           </list>
           </t>
          <t>
-          The IETF network slice endpoints are provided to IETF network slice controller (NSC) by the consumer of an IETF network slice during the creation/modification of the IETF network slice.
+          The IETF network slice endpoints are provided to IETF network slice controller (NSC) by the consumer of an IETF network slice during the creation/modification of the IETF network slice and used during the IETF network slice life-cycle.
         </t>
         <t>
-          During the realization of the IETF network slice, in addition to SLOs, all or subset of IETF network slice Endpoints attributes will be utilized by IETF network slice controller (NSC) to find the optimal realization in the IETF network.
+          During the realization of the IETF network slice, in addition to SLOs, all or subset of IETF NSE attributes will be utilized by IETF network slice controller (NSC) to find the optimal realization in the IETF network.
         </t>
         <t>
-          Similar to IETF network slice, the IETF network slice endpoints are also logical entities which are mapped to services/tunnels/paths endpoints in IETF Network during the IETF network slice realization.
+          Similarly to IETF network slices, the IETF network slice endpoints are logical entities that are mapped to services/tunnels/paths endpoints in IETF network slice during its initialization and realization.
         </t>
       </list>
     </t>
