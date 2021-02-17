@@ -147,8 +147,8 @@
     <author fullname="Jeff Tantsura"
             initials="J."
             surname="Tantsura">
-      <organization abbrev="Apstra, Inc.">
-        Apstra, Inc.
+      <organization abbrev="Juniper">
+        Juniper
       </organization>
       <address>
         <postal>
@@ -188,7 +188,7 @@
       <t>
     A number of use cases benefit from network connections that along with the connectivity provide assurance of meeting a specific set of 
         objectives wrt network resources use. In this document, as detailed in the subsequent sections, we refer to this connectivity and resource commitment 
-        as an IETF network slice. Services that might benefit from the network slices include but not limited to:
+        as an IETF Network Slice. Services that might benefit from the network slices include but not limited to:
         <list style="symbols">
           <t>5G services (e.g. eMBB, URLLC, mMTC)(See <xref target="TS.23.501-3GPP"/>)</t>
           <t>Network wholesale services</t>
@@ -215,7 +215,7 @@
    IETF network slices are created and managed within the scope of one
    or more network technologies (e.g., IP, MPLS, optical).  They are
    intended to enable a diverse set of applications that have different
-   requirements to coexist on the same network infrastructure.  A
+   requirements to coexist on the same shared network infrastructure.  A
    request for an IETF network slice is technology-agnostic so as to
    allow a consumer to describe their network connectivity objectives in
    a common format, independent of the underlying technologies used.
@@ -441,7 +441,7 @@ The definition of these objectives are as follows:
     <section anchor="nse" title="IETF Network Slice Endpoints">
 
     <t>
-      As noted in Section 3, an IETF network slice describes connectivity between multiple endpoints across the underlying network.  These connectivities maybe point-to-point, point-to-multipoint, multipoint-to-point multipoint-to-point, or multipoint-to-multipoint.
+      As noted in Section 3, an IETF network slice describes connectivity between multiple endpoints across the underlying network.  These connectivity types maybe point-to-point, point-to-multipoint, multipoint-to-point multipoint-to-point, or multipoint-to-multipoint.
     </t>
 
     <t> 
@@ -453,10 +453,10 @@ The definition of these objectives are as follows:
 
       <list style="symbols">
         <t> 
-          The IETF network slice endpoints (NSEs) are conceptual points of connection to IETF network slice. As such, they are ingress/egress point where the traffic enters/exits the IETF network slice. In other words, they are the edge of the IETF network slices.
+          The IETF network slice endpoints (NSEs) are conceptual points of connection to IETF network slice. As such, they serve as an ingress/egress point where the traffic enters/exits the IETF network slice. In other words, they are the edge of the IETF network slices.
         </t>
         <t>
-          Each endpoint belongs to a device, application or network function. A non-exhaustive list of device, application or network function might include routers, switches, firewalls, WAN, 4G/5G RAN nodes, 4G/5G Core nodes, application acceleration, Deep Packet Inspection (DPI), server load balancers, NAT44 <xref target="RFC3022"/>, NAT64 <xref target="RFC6146"/>, HTTP header enrichment functions, and TCP optimizers
+          Each endpoint belongs to a device, application or network function. A non-exhaustive list of devices, applications or network functions might include routers, switches, firewalls, WAN, 4G/5G RAN nodes, 4G/5G Core nodes, application acceleration, Deep Packet Inspection (DPI), server load balancers, NAT44 <xref target="RFC3022"/>, NAT64 <xref target="RFC6146"/>, HTTP header enrichment functions, and TCP optimizers.
         </t>
         <t>
           An NSE should be uniquely identified in an IETF network. There are following possible schemes of selecting the unique identifiers. All conventions are technology agnostic.
@@ -468,7 +468,7 @@ The definition of these objectives are as follows:
               To choose well-known attributes such as using IPv4/IPv6 addresses, encapsulation type (i.e., VLAN tag, MPLS Label etc.), interface/port numbers, etc or their combinations.
             </t>
              <t>
-              In addition to approaches above, a clear association to the consumer (i.e., a consumer ID) might also be needed for avoiding issues since it is possible that some IETF network slice consumers use share IP address (private ones) and other attributes like VLAN tags, etc. 
+              In addition to the approaches above, a clear association to the consumer (i.e., a consumer ID) might also be needed for avoiding ambiguity since it is possible that some IETF network slice consumers use overlapping IP ranges and other attributes like VLAN tags, etc. 
             </t>           
           </list>
           </t>
@@ -484,7 +484,7 @@ The definition of these objectives are as follows:
       </list>
     </t>
     <t>
-      Note that the IETF network slice Endpoint (NSE) is different from access points (AP) defined in <xref target="RFC8453"/> as an AP is a logical identifier to identify the shared link between the consumer and the operator whereas the NSE is the ingress/egress to IETF network slice. Also NSE is different from TE Link Termination Point (LTP) defined in  <xref target="I-D.ietf-teas-yang-te-topo"/> as it is a conceptual point of connection of a TE node to one of the TE-links on a TE node whereas the NSE is technology-agnostics and represents entry point to IETF network slices. The NSE is conceptually similar to the Termination Point (TP) defined in <xref target="RFC8345"/> but with different attributes and characteristics.
+      Note that the IETF network slice Endpoint (NSE) is different from access points (AP) defined in <xref target="RFC8453"/> as an AP is a logical identifier to identify the shared link between the consumer and the operator whereas the NSE is the ingress/egress to IETF network slice. Also, NSE is different from TE Link Termination Point (LTP) defined in  <xref target="I-D.ietf-teas-yang-te-topo"/> as it is a conceptual point of connection of a TE node to one of the TE-links on a TE node whereas the NSE is technology-agnostics and represents ingress/egress to IETF network slice. The NSE is conceptually similar to the Termination Point (TP) defined in <xref target="RFC8345"/> but with different attributes and characteristics.
     </t>
 
     <figure anchor="fig_nse" title="An IETF Network Slice Endpoints (NSE)">
@@ -518,7 +518,7 @@ The definition of these objectives are as follows:
 
     </section>
     <section anchor="ExtConcept" title="IETF Network Slice Composition">
-       <t> Operationally, an IETF network slice maybe decomposed in two or more IETF network slices as specified below. Decomposed network slices are then independently realized and managed.
+       <t> Operationally, an IETF network slice may be decomposed in two or more IETF network slices as specified below. Decomposed network slices are then independently realized and managed.
 
         <list style="symbols">
           <t>Hierarchical (i.e., recursive) composition:
@@ -591,7 +591,7 @@ Legendy
 
       <t>
       <xref target="fig_Transport-NS"/> illustrates a case where an IETF network slice provides connectivity between a set of IEFT network slice endpoints (NSE) pairs 
-      with specific SLO (e.g. guaranteed minimum bandwidth of x bps and guaranteed delay of no more than y ms). The IETF network slice endpoints
+      with specific SLOs (e.g. guaranteed minimum bandwidth of x bps and guaranteed delay of no more than y ms). The IETF network slice endpoints
       are mapped to the underlay IETF networks endpoints (EP). Also, the IETF network slice endpoints 
       on the same IETF network slice may belong to the same or different address spaces.
       </t>
