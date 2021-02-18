@@ -459,25 +459,14 @@ The definition of these objectives are as follows:
           Each endpoint could map to a device, application or a network function. A non-exhaustive list of devices, applications or network functions might include but not limited to: routers, switches, firewalls, WAN, 4G/5G RAN nodes, 4G/5G Core nodes, application acceleration, Deep Packet Inspection (DPI), server load balancers, NAT44 <xref target="RFC3022"/>, NAT64 <xref target="RFC6146"/>, HTTP header enrichment functions, and TCP optimizers.
         </t>
         <t>
-          An NSE should be identified by a unique ID within an IETF network slice and in context of an IETF network slice controller (NSC). This allows the IETF network slice controller (NSC) to uniquely identify each NSE. The unique ID should be technology-agnostic.
+          An NSE should be identified by a unique ID in the context of an IETF network slice consumer.
         </t>
         <t>
-          In addition to a unique identifier, an NSE may contain the following attributes. If provided, these attributes is used by IETF network slice controller (NSC) during the realization of the IETF network slice:
-        
-          <list style="symbols">
-            <t>
-            Attributes such as IPv4/IPv6 addresses, encapsulation type (i.e., VLAN tag, MPLS Label etc.), interface/port numbers, node ID etc.
-            </t>
-             <t>
-              In some cases a clear association to the consumer (i.e., a consumer ID) might also be needed for avoiding ambiguity since it is possible that some IETF network slice consumers use overlapping IP addresses and other attributes like VLAN tags, etc. 
-            </t> 
-            <t>
-              Any combination thereof
-            </t>          
-          </list>
+          In addition to an identifier, each NSE should contain a subset of attributes such as IPv4/IPv6 addresses, encapsulation type
+         (i.e., VLAN tag, MPLS Label etc.), interface/port numbers, node ID etc. 
           </t>
          <t>
-          The IETF network slice endpoints are provided to IETF network slice controller (NSC) by the consumer of an IETF network slice during the creation/modification of the IETF network slice and used during the IETF network slice life-cycle.
+          A combination of NSE unique ID and NSE attributes defines an NSE in the context of the IETF network slice controller.
         </t>
         <t>
           During the realization of the IETF network slice, in addition to SLOs, all or subset of IETF NSE attributes will be utilized by IETF network slice controller (NSC) to find the optimal realization in the IETF network.
