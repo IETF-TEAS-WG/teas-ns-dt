@@ -456,20 +456,24 @@ The definition of these objectives are as follows:
           The IETF network slice endpoints (NSEs) are conceptual points of connection to IETF network slice. As such, they serve as the IETF network slice ingress/egress points. 
         </t>
         <t>
-          Each endpoint can be: a device, application or a network function. A non-exhaustive list of devices, applications or network functions might include but not limited to: routers, switches, firewalls, WAN, 4G/5G RAN nodes, 4G/5G Core nodes, application acceleration, Deep Packet Inspection (DPI), server load balancers, NAT44 <xref target="RFC3022"/>, NAT64 <xref target="RFC6146"/>, HTTP header enrichment functions, and TCP optimizers.
+          Each endpoint could map to a device, application or a network function. A non-exhaustive list of devices, applications or network functions might include but not limited to: routers, switches, firewalls, WAN, 4G/5G RAN nodes, 4G/5G Core nodes, application acceleration, Deep Packet Inspection (DPI), server load balancers, NAT44 <xref target="RFC3022"/>, NAT64 <xref target="RFC6146"/>, HTTP header enrichment functions, and TCP optimizers.
         </t>
         <t>
-          An NSE should be uniquely identified within an IETF network slice. There are following possible schemes of selecting the unique identifiers. All conventions are technology agnostic.
+          An NSE should be identified by a unique ID within an IETF network slice and in context of an IETF network slice controller (NSC). This allows the IETF network slice controller (NSC) to uniquely identify each NSE. The unique ID should be technology-agnostic.
+        </t>
+        <t>
+          In addition to a unique identifier, an NSE may contain the following attributes. If provided, these attributes is used by IETF network slice controller (NSC) during the realization of the IETF network slice:
+        
           <list style="symbols">
             <t>
-              To use a consumer-defined format such as a unique name for each NSE. This allows the IETF network slice controller (NSC) to uniquely identify each NSE.
-            </t>
-            <t>
-              To choose well-known attributes such as using IPv4/IPv6 addresses, encapsulation type (i.e., VLAN tag, MPLS Label etc.), interface/port numbers, etc or their combinations.
+            Attributes such as IPv4/IPv6 addresses, encapsulation type (i.e., VLAN tag, MPLS Label etc.), interface/port numbers, node ID etc.
             </t>
              <t>
-              In addition to the approaches above, a clear association to the consumer (i.e., a consumer ID) might also be needed for avoiding ambiguity since it is possible that some IETF network slice consumers use overlapping IP addresses and other attributes like VLAN tags, etc. 
-            </t>           
+              In some cases a clear association to the consumer (i.e., a consumer ID) might also be needed for avoiding ambiguity since it is possible that some IETF network slice consumers use overlapping IP addresses and other attributes like VLAN tags, etc. 
+            </t> 
+            <t>
+              Any combination thereof
+            </t>          
           </list>
           </t>
          <t>
@@ -484,7 +488,13 @@ The definition of these objectives are as follows:
       </list>
     </t>
     <t>
+      Note that there are various IETF TE terms such as access points (AP) defined in <xref target="RFC8453"/>, 
+      Termination Point (TP) defined in <xref target="RFC8345"/>, and Link Termination Point (LTP) defined in [RFC8795] 
+      which are tightly coupled with TE network type and various realization techniques. At the time of realization of the IETF network
+      slice, the NSE could be mapped to one or more of these based on the network slice realization technique in use.
+<!--
       Note that the IETF network slice Endpoint (NSE) is different from access points (AP) defined in <xref target="RFC8453"/> as an AP is a logical identifier to identify the shared link between the consumer and the operator whereas the NSE is the ingress/egress to IETF network slice. Also, NSE is different from TE Link Termination Point (LTP) defined in  <xref target="I-D.ietf-teas-yang-te-topo"/> as it is a conceptual point of connection of a TE node to one of the TE-links on a TE node whereas the NSE is technology-agnostics and represents ingress/egress to IETF network slice. The NSE is conceptually similar to the Termination Point (TP) defined in <xref target="RFC8345"/> but with different attributes and characteristics.
+-->
     </t>
 
     <figure anchor="fig_nse" title="An IETF Network Slice Endpoints (NSE)">
