@@ -1,5 +1,8 @@
 
-base:	draft-nsdt-teas-ns-framework-05.txt
+base:	draft-ietf-teas-ns-framework-00.txt
+
+draft-ietf-teas-ns-framework-00.txt:	draft-ietf-teas-ns-framework-00.md
+	kdrfc -3 draft-ietf-teas-ns-framework-00.md > /dev/null
 
 draft-nsdt-teas-ns-framework-05.txt:	draft-nsdt-teas-ns-framework-05.md
 	kdrfc -3 draft-nsdt-teas-ns-framework-05.md > /dev/null
@@ -7,15 +10,15 @@ draft-nsdt-teas-ns-framework-05.txt:	draft-nsdt-teas-ns-framework-05.md
 draft-nsdt-teas-ns-framework-04.txt:	draft-nsdt-teas-ns-framework-04.md
 	kdrfc -3 draft-nsdt-teas-ns-framework-04.md > /dev/null
 
-draft-nsdt-teas-ns-framework-03.txt:	draft-nsdt-teas-ns-framework-03.md
-	kdrfc -3 draft-nsdt-teas-ns-framework-03.md > /dev/null
-
-draft-nsdt-teas-ns-framework-02.txt:	draft-nsdt-teas-ns-framework-02.md
-	kdrfc -3 draft-nsdt-teas-ns-framework-02.md > /dev/null
-
-draft-nsdt-teas-ns-framework-01.txt:	draft-nsdt-teas-ns-framework-01.md
-	kdrfc -3 draft-nsdt-teas-ns-framework-01.md > /dev/null
-
+# draft-nsdt-teas-ns-framework-03.txt:	draft-nsdt-teas-ns-framework-03.md
+# 	kdrfc -3 draft-nsdt-teas-ns-framework-03.md > /dev/null
+# 
+# draft-nsdt-teas-ns-framework-02.txt:	draft-nsdt-teas-ns-framework-02.md
+# 	kdrfc -3 draft-nsdt-teas-ns-framework-02.md > /dev/null
+# 
+# draft-nsdt-teas-ns-framework-01.txt:	draft-nsdt-teas-ns-framework-01.md
+# 	kdrfc -3 draft-nsdt-teas-ns-framework-01.md > /dev/null
+# 
 # draft-nsdt-teas-ns-framework-01.xml:	draft-nsdt-teas-ns-framework-01.md
 # 	kdrfc -3 draft-nsdt-teas-ns-framework-01.md > draft-nsdt-teas-ns-framework-01.xml
 # 
