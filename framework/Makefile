@@ -1,8 +1,8 @@
 
-base:	draft-ietf-teas-ns-framework-00.txt
+base:	draft-ietf-teas-ietf-network-slice-framework-00.txt
 
-draft-ietf-teas-ns-framework-00.txt:	draft-ietf-teas-ns-framework-00.md
-	kdrfc -3 draft-ietf-teas-ns-framework-00.md > /dev/null
+draft-ietf-teas-ietf-network-slice-framework-00.txt:	draft-ietf-teas-ietf-network-slice-framework-00.md
+	kdrfc -3 draft-ietf-teas-ietf-network-slice-framework-00.md > /dev/null
 
 draft-nsdt-teas-ns-framework-05.txt:	draft-nsdt-teas-ns-framework-05.md
 	kdrfc -3 draft-nsdt-teas-ns-framework-05.md > /dev/null
